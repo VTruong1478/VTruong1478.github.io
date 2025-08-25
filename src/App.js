@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
+import Hobbies from "./pages/Hobbies";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <main className="flex-grow">
         <About />
         <Portfolio />
+        <Hobbies />
       </main>
     </div>
   );

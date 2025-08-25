@@ -7,9 +7,9 @@ export default function About() {
       id="about"
       className="bg-background min-h-screen flex flex-col justify-center items-center py-4 px-4 text-text scroll-mt-16"
     >
-      <div className="bg-background min-h-screen flex flex-col justify-center items-center py-4 px-4 text-text">
+      <div className="flex flex-col justify-center items-center py-4 text-text">
         {/* Profile Section */}
-        <div className="flex flex-col items-center space-y-6 max-w-3xl text-center">
+        <div className="flex flex-col items-center space-y-6 text-center w-full sm:w-11/12 md:w-3/4 lg:w-4/5 xl:w-4/5 ">
           {/* Profile Picture */}
           <img
             src="/profile.jpg"
@@ -19,10 +19,10 @@ export default function About() {
 
           {/* Name & Tagline */}
           <h1 className="text-4xl font-bold text-primary flex items-center justify-center space-x-2">
-            Hi, I'm An Truong{" "}
-            <span className="animate-wave inline-block">👋</span>
+            Hi, I'm An Truong
+            <span className="animate-wave inline-block ml-2">👋</span>
           </h1>
-          <p className="text-secondaryText text-lg leading-relaxed max-w-2xl mt-4">
+          <p className="text-secondaryText text-lg leading-relaxed mt-4">
             I’m a problem-solver at heart, passionate about designing smarter
             workflows and building efficient systems that help teams work
             better, faster, and more creatively. From scaling operations for a
