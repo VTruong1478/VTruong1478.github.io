@@ -1,44 +1,63 @@
 import React from "react";
 
-const Portfolio = () => {
-  const projects = [
-    {
-      title: "Reduced Rework by 30%",
-      description:
-        "Streamlined developer training and accessibility compliance, reducing rework by 30% while improving usability for end-users.",
-    },
-    {
-      title: "Improved Workflow Automation",
-      description:
-        "Leveraged AI-powered tools and workflow automation to cut manual reporting time in half, enabling faster decision-making.",
-    },
-    {
-      title: "Cross-Team Collaboration",
-      description:
-        "Facilitated collaboration between design, development, and QA teams, improving sprint velocity and consistency of deliverables.",
-    },
-  ];
-
+export default function Portfolio() {
   return (
-    <main className="container mx-auto p-6">
-      <section className="bg-white rounded-2xl shadow-md p-8">
-        <h2 className="text-2xl font-bold text-text mb-6">Portfolio</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-card p-6 rounded-xl shadow hover:shadow-lg transition"
-            >
-              <h3 className="text-xl font-semibold text-text mb-2">
-                {project.title}
-              </h3>
-              <p className="text-text">{project.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
-};
+    <section
+      id="portfolio"
+      className="bg-background min-h-screen justify-center py-4 px-4 scroll-mt-16"
+    >
+      <h2 className="text-4xl font-bold text-primary text-center mb-12">
+        Portfolio
+      </h2>
 
-export default Portfolio;
+      {/* Portfolio Grid */}
+      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl w-full">
+        {/* Example Portfolio Card */}
+        <div className="bg-card rounded-2xl shadow-md p-6 flex flex-col">
+          <h3 className="text-2xl font-semibold text-text mb-2">
+            Workflow Automation
+          </h3>
+          <p className="text-secondaryText mb-4">
+            Implemented automated reporting and task tracking, reducing team
+            bottlenecks and saving 10+ hours per week.
+          </p>
+          <div className="mt-auto">
+            <a href="#" className="text-accent font-semibold hover:underline">
+              Learn More
+            </a>
+          </div>
+        </div>
+
+        <div className="bg-card rounded-2xl shadow-md p-6 flex flex-col">
+          <h3 className="text-2xl font-semibold text-text mb-2">
+            Process Optimization
+          </h3>
+          <p className="text-secondaryText mb-4">
+            Streamlined onboarding workflows and documentation, improving team
+            efficiency and reducing errors.
+          </p>
+          <div className="mt-auto">
+            <a href="#" className="text-accent font-semibold hover:underline">
+              Learn More
+            </a>
+          </div>
+        </div>
+
+        <div className="bg-card rounded-2xl shadow-md p-6 flex flex-col">
+          <h3 className="text-2xl font-semibold text-text mb-2">
+            Project Management
+          </h3>
+          <p className="text-secondaryText mb-4">
+            Led cross-functional projects using agile methodology, improving
+            communication and meeting deadlines consistently.
+          </p>
+          <div className="mt-auto">
+            <a href="#" className="text-accent font-semibold hover:underline">
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
