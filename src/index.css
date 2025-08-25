@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-blue-100; /* test Tailwind by making background light blue */
+  @apply bg-background text-text;
 }

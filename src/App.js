@@ -1,13 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import About from "./pages/About";
+import Portfolio from "./pages/Portfolio";
 
 function App() {
   return (
-   <div className="flex items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold text-blue-600">
-        Tailwind is working! 🎉
-      </h1>
-    </div>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<About />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
