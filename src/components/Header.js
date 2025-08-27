@@ -52,6 +52,15 @@ const Header = () => {
               <span className="absolute left-0 -bottom-0.5 w-full h-[2px] bg-accent transform scale-x-0 origin-center transition-transform duration-300 group-hover:scale-x-100"></span>
             </a>
           </li>
+          <li>
+            <a
+              href="#blog"
+              className="group relative px-3 py-2 transition-colors duration-300 hover:text-accent"
+            >
+              Blog
+              <span className="absolute left-0 -bottom-0.5 w-full h-[2px] bg-accent transform scale-x-0 origin-center transition-transform duration-300 group-hover:scale-x-100"></span>
+            </a>
+          </li>
         </ul>
       </nav>
     </header>

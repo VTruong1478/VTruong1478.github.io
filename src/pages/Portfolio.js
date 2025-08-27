@@ -2,31 +2,25 @@ import React from "react";
 
 const portfolioData = [
   {
-    title: "Workflow Automation",
-    date: "Sept. 12, 2019",
-    author: "Admin",
-    comments: 3,
+    title: "Small Business Growth",
+    date: "August 2023",
     description:
-      "Implemented automated reporting and task tracking, reducing team bottlenecks and saving 10+ hours per week.",
-    image: "/portfolio-placeholder1.png", // Replace with your image paths
+      "Increased revenue by $2.2K in 8 months through data-driven pricing, supply chain optimization, and targeted customer engagement.",
+    image: "/images/open.jpg",
   },
   {
-    title: "Process Optimization",
-    date: "Oct. 5, 2019",
-    author: "Admin",
-    comments: 2,
+    title: "Process Automation",
+    date: "July 2024",
     description:
-      "Streamlined onboarding workflows and documentation, improving team efficiency and reducing errors.",
-    image: "/portfolio-placeholder2.png",
+      "Leveraged AI-powered tools and workflow automation to manage backlog input, generate reports, and optimize repetitive processes, reducing manual work, ensuring real-time data synchronization, and saving 5+ hours per week.",
+    image: "/images/automation.jpg",
   },
   {
-    title: "Project Management",
-    date: "Nov. 20, 2019",
-    author: "Admin",
-    comments: 5,
+    title: "Developer Training",
+    date: "March 2024",
     description:
-      "Led cross-functional projects using agile methodology, improving communication and meeting deadlines consistently.",
-    image: "/portfolio-placeholder3.png",
+      "Streamlined developer training and accessibility compliance, reducing Jira defect tickets by 30% while enhancing usability for a wider range of users.",
+    image: "/images/coding.jpg",
   },
 ];
 
@@ -56,11 +50,9 @@ export default function Portfolio() {
                 {item.title}
               </h3>
 
-              {/* Meta Info */}
-              <div className="flex items-center space-x-4 text-sm text-accentDark mb-4">
+              {/* Meta Info (just date now) */}
+              <div className="text-sm text-accentDark mb-4">
                 <span>{item.date}</span>
-                <span>{item.author}</span>
-                <span>💬 {item.comments}</span>
               </div>
 
               <p className="text-secondaryText mb-4">{item.description}</p>
