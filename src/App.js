@@ -1,11 +1,9 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
-import Hobbies from "./pages/Hobbies";
 import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
+import HowIDesignedThisWebsite from "./articles/HowIDesignedThisWebsite";
 
 function App() {
   return (
@@ -24,7 +22,7 @@ function App() {
                 </>
               }
             />
-            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/blog/1" element={<HowIDesignedThisWebsite />} />
           </Routes>
         </main>
       </div>
