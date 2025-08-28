@@ -55,11 +55,10 @@ export default function About() {
         transition={{ duration: 1 }}
       >
         {/* Profile Picture */}
-        <motion.img
+        <img
           src="/profile.jpg"
           alt="Profile"
           className="w-44 h-44 rounded-full shadow-lg border-4 border-primary mb-6 lg:mb-0"
-          whileHover={{ scale: 1.05 }}
         />
 
         {/* Text Content */}
@@ -70,7 +69,7 @@ export default function About() {
           </h1>
 
           {/* Dynamic Tagline */}
-          <p className="text-accent text-xl font-medium mt-2 h-8">
+          <p className="text-secondary text-xl font-medium mt-2 h-8">
             {currentRole}
             <span className="blink">|</span>
           </p>
@@ -80,10 +79,11 @@ export default function About() {
             creating experiences that stick.
           </p>
 
+          {/* Resume Button with same transition as icons */}
           <a
             href="/resume.pdf"
             download="An_Truong_Resume.pdf"
-            className="px-6 py-3 mt-6 rounded-lg bg-accent text-white font-semibold shadow-md hover:bg-primary transition"
+            className="px-6 py-3 mt-6 rounded-lg bg-accent text-white font-semibold shadow-md hover:bg-accentShade transition-transform transform hover:-translate-y-1"
           >
             Download Resume
           </a>
@@ -92,7 +92,7 @@ export default function About() {
           <div className="flex space-x-8 mt-8">
             <a
               href="mailto:your-email@example.com"
-              className="text-secondary hover:text-accent text-4xl transition-transform transform hover:scale-110"
+              className="text-accent hover:text-accentShade text-4xl transition-transform transform hover:scale-110"
             >
               <FaEnvelope />
             </a>
@@ -100,7 +100,7 @@ export default function About() {
               href="https://www.linkedin.com/in/vinhan-truong/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary hover:text-accent text-4xl transition-transform transform hover:scale-110"
+              className="text-accent hover:text-accentShade text-4xl transition-transform transform hover:scale-110"
             >
               <FaLinkedin />
             </a>

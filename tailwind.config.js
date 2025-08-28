@@ -66,12 +66,19 @@ module.exports = {
       }),
       colors: {
         primary: "#55A1D1", // light blue
-        secondary: "#ccc0f4", // light purple
+        primaryShade: "#3C71A2", // 30% darker
+
+        secondary: "#8F7EC9", // light purple
+        secondaryShade: "#655B91", // 30% darker
+
         accent: "#2FB6A6", // light teal
-        background: "#f9fafb", // very light gray for background
+        accentShade: "#227F75", // 30% darker
+        // Text
         text: "#2C2F33", // dark gray for text
         secondaryText: "#6B7280", // medium gray for secondary text
-        card: "#D3D8D9", // very light gray for cards
+        // Areas
+        background: "#f9fafb", // very light gray for background
+        card: "#dce9f4", // very light purple for cards
       },
     },
   },

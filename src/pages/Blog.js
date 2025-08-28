@@ -45,7 +45,7 @@ export default function Blog() {
 
             {/* Content */}
             <div className="p-6 flex flex-col">
-              <h3 className="text-2xl font-semibold text-text mb-2 group-hover:text-accent transition-colors duration-300">
+              <h3 className="text-2xl font-semibold text-text mb-2 transition-colors duration-300">
                 {post.title}
               </h3>
 

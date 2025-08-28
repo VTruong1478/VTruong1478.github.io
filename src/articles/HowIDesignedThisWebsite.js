@@ -16,7 +16,7 @@ export default function HowIDesignedThisWebsite() {
             prose prose-lg prose-invert max-w-none
             prose-headings:font-bold prose-headings:text-text
             prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-            prose-strong:text-primary prose-strong:font-semibold
+            prose-strong:text-secondary prose-strong:font-semibold
             prose-a:text-accent prose-a:no-underline hover:prose-a:text-secondary hover:prose-a:no-underline
             prose-li:marker:text-accent prose-li:text-secondaryText
           "
