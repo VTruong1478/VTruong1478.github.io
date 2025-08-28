@@ -20,7 +20,6 @@ function App() {
                 <>
                   <About />
                   <Portfolio />
-                  <Hobbies />
                   <Blog />
                 </>
               }

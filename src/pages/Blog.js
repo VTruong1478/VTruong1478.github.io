@@ -7,14 +7,14 @@ const blogPosts = [
     title: "How I Designed This Website",
     date: "August 2025",
     excerpt: "Look at the design decisions and tools I used...",
-    image: "/images/portfolio-blog.jpg",
+    image: "/images/design.jpg",
   },
   {
     id: 2,
     title: "Lessons from Starting my Own Business",
     date: "December 2023",
     excerpt: "What I learned from launching a small business...",
-    image: "/images/startup-blog.jpg",
+    image: "/images/lessons.jpg",
   },
 ];
 
@@ -32,15 +32,20 @@ export default function Blog() {
         {blogPosts.map((post) => (
           <div
             key={post.id}
-            className="bg-card rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="group bg-card rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
           >
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-48 object-cover"
-            />
+            {/* Image with zoom on hover */}
+            <div className="overflow-hidden">
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* Content */}
             <div className="p-6 flex flex-col">
-              <h3 className="text-2xl font-semibold text-text mb-2">
+              <h3 className="text-2xl font-semibold text-text mb-2 group-hover:text-accent transition-colors duration-300">
                 {post.title}
               </h3>
 
@@ -49,11 +54,13 @@ export default function Blog() {
                 <span>{post.date}</span>
               </div>
 
-              <p className="text-secondaryText mb-4">{post.excerpt}</p>
+              <p className="text-secondaryText mb-6">{post.excerpt}</p>
+
+              {/* CTA Button */}
               <div className="mt-auto">
                 <Link
                   to={`/blog/${post.id}`}
-                  className="text-accent font-semibold hover:underline"
+                  className="inline-block bg-accent text-white font-semibold px-4 py-2 rounded-xl shadow hover:bg-accent/90 transition-colors duration-300"
                 >
                   Read More →
                 </Link>
