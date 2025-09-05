@@ -6,10 +6,10 @@ export default function HowIDesignedThisWebsite() {
       <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-6 max-w-7xl mx-auto">
         <div className="col-span-6 md:col-span-8 lg:col-span-8 lg:col-start-3">
           {/* Page Title */}
-          <h1 className="text-4xl font-bold text-primary">
+          <h1 className="text-4xl font-bold text-primary mb-4">
             How I Designed This Website
           </h1>
-          <p className="text-sm text-accentDark mb-12">Published August 2025</p>
+          <p className="text-md text-accentDark mb-12">Published August 2025</p>
 
           {/* Blog Content */}
           <div

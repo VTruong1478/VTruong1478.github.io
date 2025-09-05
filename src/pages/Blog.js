@@ -22,17 +22,19 @@ export default function Blog() {
   return (
     <section
       id="blog"
-      className="bg-background min-h-screen py-16 px-6 scroll-mt-16"
+      className="bg-background min-h-screen py-20 px-8 sm:px-12 md:px-16 scroll-mt-16"
     >
-      <h2 className="text-4xl font-bold text-primary text-center mb-12">
+      <h2 className="text-4xl font-bold text-primary text-center mb-16">
         Blog
       </h2>
 
-      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full sm:w-11/12 md:w-3/4 lg:w-4/5 xl:w-4/5 mx-auto">
+      {/* 12-column grid on desktop, 8 on tablet, 6 on mobile */}
+      <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-6 max-w-7xl mx-auto justify-center">
         {blogPosts.map((post) => (
           <div
             key={post.id}
-            className="group bg-card rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            className="group bg-card rounded-2xl overflow-hidden shadow-md transition-shadow duration-300 hover:shadow-2xl
+                       col-span-6 md:col-span-4 lg:col-span-6"
           >
             {/* Image with zoom on hover */}
             <div className="overflow-hidden">
@@ -49,18 +51,17 @@ export default function Blog() {
                 {post.title}
               </h3>
 
-              {/* Meta Info (date) */}
-              <div className="text-sm text-accentDark mb-4">
-                <span>{post.date}</span>
-              </div>
+              <div className="text-sm text-accentDark mb-4">{post.date}</div>
 
-              <p className="text-secondaryText mb-6">{post.excerpt}</p>
+              <p className="text-secondaryText mb-6 leading-relaxed">
+                {post.excerpt}
+              </p>
 
-              {/* CTA Button */}
+              {/* CTA Button with float on hover */}
               <div className="mt-auto">
                 <Link
                   to={`/blog/${post.id}`}
-                  className="inline-block bg-accent text-white font-semibold px-4 py-2 rounded-xl shadow hover:bg-accent/90 transition-colors duration-300"
+                  className="inline-block bg-accent text-white font-semibold px-4 py-2 rounded-xl shadow transition-all duration-300 transform hover:-translate-y-1 hover:bg-accent/90"
                 >
                   Read More →
                 </Link>

@@ -15,12 +15,10 @@ export default function About() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  // Scroll to top on first load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Typewriter effect
   useEffect(() => {
     if (charIndex < roles[roleIndex].length) {
       const timeout = setTimeout(() => {
@@ -41,20 +39,20 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-background min-h-screen flex flex-col justify-center py-16 px-4 text-text overflow-hidden"
+      className="bg-background min-h-screen flex flex-col justify-center py-16 px-4 text-text"
     >
       <motion.div
-        className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 items-center max-w-7xl mx-auto"
+        className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 max-w-7xl mx-auto items-center"
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
         {/* Profile Picture */}
-        <div className="col-span-full flex justify-center">
+        <div className="col-span-6 md:col-span-8 lg:col-span-12 flex justify-center">
           <motion.img
             src="/profile.jpg"
             alt="Profile"
-            className="w-60 h-60 rounded-full shadow-lg border-4 border-primary mb-6"
+            className="w-60 h-60 rounded-full shadow-lg border-4 border-primary mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -62,35 +60,29 @@ export default function About() {
         </div>
 
         {/* Text Content */}
-        <div className="col-span-full flex flex-col items-center text-center max-w-xl mx-auto">
-          <h1 className="text-4xl font-bold text-primary flex items-center space-x-2">
+        <div className="col-span-6 md:col-span-8 lg:col-span-12 flex flex-col items-center text-center">
+          <h1 className="text-4xl font-bold text-text flex items-center space-x-2">
             <span>Hi, I'm An Truong</span>
             <span className="animate-wave inline-block">👋</span>
           </h1>
 
-          {/* Dynamic Tagline */}
-          <p className="text-secondary text-xl font-medium mt-2 h-8">
+          <p className="text-secondary text-xl font-medium mt-4 h-8">
             {currentRole}
             <span className="blink">|</span>
           </p>
 
           <p className="text-secondaryText text-lg leading-relaxed mt-4">
-            Bridging ideas and execution by listening to users and delivering
-            impactful products.
+            I connect users, teams, and impactful products.
           </p>
 
-          {/* Resume Button */}
           <a
             href="/resume.pdf"
             download="An_Truong_Resume.pdf"
-            className="px-6 py-3 mt-8 rounded-xl text-center
-             bg-primary text-white font-semibold shadow-md
-             hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
+            className="px-6 py-3 mt-8 rounded-xl text-center bg-primary text-white font-semibold shadow-md hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
           >
             Download Resume
           </a>
 
-          {/* Contact Icons */}
           <div className="flex justify-center space-x-8 mt-8">
             <a
               href="mailto:your-email@example.com"

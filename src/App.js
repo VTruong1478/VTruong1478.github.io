@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
   useLocation,
 } from "react-router-dom";
 import { useEffect } from "react";
@@ -11,6 +10,7 @@ import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 import Blog from "./pages/Blog";
 import HowIDesignedThisWebsite from "./articles/HowIDesignedThisWebsite";
+import SmallBusinessGrowth from "./articles/SmallBusinessGrowth"; // import your new portfolio post
 
 // Scroll manager for anchors + route changes
 function ScrollToHashElement() {
@@ -18,7 +18,6 @@ function ScrollToHashElement() {
 
   useEffect(() => {
     if (hash) {
-      // wait until DOM paints, then scroll to element
       setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
@@ -26,7 +25,6 @@ function ScrollToHashElement() {
         }
       }, 0);
     } else {
-      // always reset to top when no hash
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [pathname, hash]);
@@ -42,6 +40,7 @@ function App() {
         <Header />
         <main className="flex-grow">
           <Routes>
+            {/* Homepage with sections */}
             <Route
               path="/"
               element={
@@ -52,7 +51,17 @@ function App() {
                 </>
               }
             />
+
+            {/* Blog post */}
             <Route path="/blog/1" element={<HowIDesignedThisWebsite />} />
+
+            {/* Portfolio posts */}
+            <Route
+              path="/portfolio/small-business-growth"
+              element={<SmallBusinessGrowth />}
+            />
+
+            {/* Future portfolio pages can be added here */}
           </Routes>
         </main>
       </div>

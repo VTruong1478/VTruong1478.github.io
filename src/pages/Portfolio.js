@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const portfolioData = [
   {
@@ -8,13 +8,7 @@ const portfolioData = [
     description:
       "Increased revenue by $2.2K in 8 months through data-driven pricing, supply chain optimization, and targeted customer engagement.",
     image: "/images/small-business.jpg",
-  },
-  {
-    title: "Process Automation",
-    date: "July 2024",
-    description:
-      "Leveraged AI-powered tools and workflow automation to manage backlog input, generate reports, and optimize repetitive processes, reducing manual work, ensuring real-time data synchronization, and saving 5+ hours per week.",
-    image: "/images/automation.jpg",
+    path: "/portfolio/small-business-growth",
   },
   {
     title: "Developer Training",
@@ -22,6 +16,7 @@ const portfolioData = [
     description:
       "Streamlined developer training and accessibility compliance, reducing Jira defect tickets by 30% while enhancing usability for a wider range of users.",
     image: "/images/coding.jpg",
+    path: "/portfolio/developer-training",
   },
 ];
 
@@ -35,48 +30,46 @@ export default function Portfolio() {
         Portfolio
       </h2>
 
-      <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full sm:w-11/12 md:w-4/5 lg:w-4/5 xl:w-3/4 mx-auto">
+      {/* 12-column grid on desktop, 8 on tablet, 6 on mobile */}
+      <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-6 max-w-7xl mx-auto justify-center">
         {portfolioData.map((item, idx) => (
-          <motion.div
+          <div
             key={idx}
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="bg-card rounded-2xl shadow-lg overflow-hidden group cursor-pointer relative"
+            className="group bg-card rounded-2xl overflow-hidden shadow-md transition-shadow duration-300 hover:shadow-2xl
+                       col-span-6 md:col-span-4 lg:col-span-6"
           >
-            <div className="relative">
+            {/* Image with zoom on hover */}
+            <div className="overflow-hidden">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-              {/* Title over image */}
-              <h3 className="absolute bottom-4 left-4 text-2xl font-semibold text-white drop-shadow-lg">
-                {item.title}
-              </h3>
             </div>
 
+            {/* Content */}
             <div className="p-6 flex flex-col">
-              {/* Meta Info */}
-              <div className="text-sm text-accentDark mb-3">
-                <span>{item.date}</span>
-              </div>
+              <h3 className="text-2xl font-semibold text-text mb-2 transition-colors duration-300">
+                {item.title}
+              </h3>
+
+              <div className="text-sm text-accentDark mb-4">{item.date}</div>
 
               <p className="text-secondaryText mb-6 leading-relaxed">
                 {item.description}
               </p>
 
+              {/* CTA Button with float on hover */}
               <div className="mt-auto">
-                <a
-                  href="#"
-                  className="inline-block text-accent font-semibold hover:underline"
+                <Link
+                  to={item.path}
+                  className="inline-block bg-accent text-white font-semibold px-4 py-2 rounded-xl shadow transition-all duration-300 transform hover:-translate-y-1 hover:bg-accent/90"
                 >
                   Learn More →
-                </a>
+                </Link>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
