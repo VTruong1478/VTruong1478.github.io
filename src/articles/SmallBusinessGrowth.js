@@ -9,31 +9,29 @@ export default function SmallBusinessGrowth() {
           <h1 className="text-4xl font-bold text-primary mb-4">
             Small Business Growth
           </h1>
-          <p className="text-md text-accentDark mb-12">
-            Published September 2025
-          </p>
+          <p className="text-md text-accentDark mb-12">Published August 2023</p>
 
           {/* Portfolio Content */}
           <div
-            className="
-            prose prose-lg prose-invert max-w-none
-            prose-headings:font-bold prose-headings:text-text
-            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-            prose-strong:text-secondary prose-strong:font-semibold
-            prose-a:text-accent prose-a:no-underline hover:prose-a:text-secondary hover:prose-a:no-underline
-            prose-li:marker:text-accent prose-li:text-secondaryText
-          "
+            className="prose prose-lg prose-invert max-w-none
+                prose-headings:font-bold prose-headings:text-text
+                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+                prose-h3:text-xl prose-h3:text-secondaryText prose-h3:mt-8 prose-h3:mb-2
+                prose-strong:text-secondary prose-strong:font-semibold
+                prose-a:text-accent prose-a:no-underline hover:prose-a:text-secondary hover:prose-a:no-underline
+                prose-li:marker:text-accent prose-li:text-text"
           >
             <h2>Overview</h2>
             <p>
               I started a small boba tea business at local farmers markets with
               the goal of creating a product that people would look forward to
               every week. I managed every aspect of the business from product
-              development to supply chain and operations. In just eight months,
-              I grew revenue by over <strong>$2.2K</strong>. This experience
-              showed me how even a small farmers market stand can grow into a
-              meaningful and impactful venture when{" "}
-              <strong>strategy and customer focus</strong> are combined.
+              development to supply chain and operations. In just{" "}
+              <strong>eight months</strong>, I grew revenue by over{" "}
+              <strong>$2.2K</strong>. This experience showed me how even a small
+              farmers market stand can grow into a meaningful and impactful
+              venture when <strong>strategy and customer focus</strong> are
+              combined.
             </p>
 
             <h2>The Challenge</h2>
@@ -46,16 +44,16 @@ export default function SmallBusinessGrowth() {
             </p>
             <ul>
               <li>
-                Build a brand that stood out among all of the vendors while
-                communicating <strong>xyz</strong>.
+                <strong>Build a brand</strong> that stood out among countless
+                vendors while clearly communicating our value.
               </li>
               <li>
-                Build a loyal customer base in an environment where options were
-                plentiful.
+                <strong>Cultivate a loyal customer base</strong> in a market
+                full of choices.
               </li>
               <li>
-                Run sustainably while managing limited resources, capital, and
-                time as a solo operator.
+                <strong>Operate sustainably</strong> as a solo founder, managing
+                limited resources, time, and capital.
               </li>
             </ul>
 
@@ -63,15 +61,14 @@ export default function SmallBusinessGrowth() {
 
             <h3>Supply Chain Optimization</h3>
             <p>
-              I analyzed supplier product offerings and cross-referenced them
-              with insights about my farmers market audience to select
-              ingredients that matched their tastes. For example, I added taro
-              and mango flavors to the menu for their bright colors and unique
-              taste, knowing that children would often see the drinks and ask
-              their parents to visit my stand. At a market in a health-conscious
-              neighborhood, I invested in a non-dairy milk alternative for milk
-              teas, which was chosen by over <strong>20% of customers</strong>{" "}
-              in that location.
+              By analyzing supplier offerings and customer preferences, I
+              introduced bright, trendy flavors like taro and mango that
+              attracted children’s attention, driving parents to try our drinks
+              and boosting foot traffic. I also added a non-dairy milk option in
+              a health-conscious neighborhood, resulting in over{" "}
+              <strong>20% of customers</strong>choosing it. This demonstrated
+              how targeted product choices directly increased sales and customer
+              satisfaction.
             </p>
 
             <h3>Data-Driven Pricing</h3>
@@ -106,9 +103,9 @@ export default function SmallBusinessGrowth() {
                 and family along.
               </li>
               <li>
-                Positioned the business as a go-to destination at the local
-                farmers market, with customers actively seeking it out each
-                week.
+                Positioned the business as a <strong>go-to destination</strong>{" "}
+                at the local farmers market, with customers actively seeking it
+                out each week.
               </li>
             </ul>
 

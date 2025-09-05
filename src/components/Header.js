@@ -28,7 +28,7 @@ const Header = () => {
         <ul className="flex flex-wrap justify-end gap-4 sm:gap-6 md:gap-8 flex-1">
           <li>
             <Link
-              to="/#about"
+              to="/about"
               className="group relative px-2 py-1 text-accent hover:text-accentShade font-medium transition-colors duration-300"
             >
               About
@@ -37,7 +37,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              to="/#portfolio"
+              to="/portfolio"
               className="group relative px-2 py-1 text-accent hover:text-accentShade font-medium transition-colors duration-300"
             >
               Portfolio
@@ -46,7 +46,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              to="/#blog"
+              to="/blog"
               className="group relative px-2 py-1 text-accent hover:text-accentShade font-medium transition-colors duration-300"
             >
               Blog
