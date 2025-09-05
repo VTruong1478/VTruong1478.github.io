@@ -3,15 +3,22 @@ import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const roles = [
-  "Product Ops Specialist",
-  "Customer Experience Advocate",
+  "Product Ops & Strategy",
   "Bridge Between Teams & Customers",
+  "Turning Ideas Into Execution",
+  "Customer Insights Into Product Decisions",
+  "From Vision to Product Delivery",
 ];
 
 export default function About() {
   const [currentRole, setCurrentRole] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+
+  // Scroll to top on first load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Typewriter effect
   useEffect(() => {
@@ -34,38 +41,31 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-background min-h-screen flex flex-col justify-center items-center py-4 px-4 text-text scroll-mt-16 overflow-hidden"
+      className="relative bg-background min-h-screen flex flex-col justify-center py-16 px-4 text-text overflow-hidden"
     >
-      {/* Floating Background Shapes */}
       <motion.div
-        className="absolute top-10 left-10 w-24 h-24 rounded-full bg-accent/20 blur-3xl animate-float"
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, repeatType: "loop" }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-primary/20 blur-3xl animate-float"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, repeatType: "loop" }}
-      />
-
-      <motion.div
-        className="flex flex-col items-center text-center w-full sm:w-11/12 md:w-3/4 lg:flex-row lg:space-x-12 lg:text-left"
-        initial={{ opacity: 0, y: 30 }}
+        className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 items-center max-w-7xl mx-auto"
+        initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
         {/* Profile Picture */}
-        <img
-          src="/profile.jpg"
-          alt="Profile"
-          className="w-44 h-44 rounded-full shadow-lg border-4 border-primary mb-6 lg:mb-0"
-        />
+        <div className="col-span-full flex justify-center">
+          <motion.img
+            src="/profile.jpg"
+            alt="Profile"
+            className="w-60 h-60 rounded-full shadow-lg border-4 border-primary mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          />
+        </div>
 
         {/* Text Content */}
-        <div className="flex flex-col justify-center items-center lg:items-start">
-          <h1 className="text-4xl font-bold text-primary flex items-center justify-center lg:justify-start space-x-2">
-            Hi, I'm An Truong
-            <span className="animate-wave inline-block ml-2">👋</span>
+        <div className="col-span-full flex flex-col items-center text-center max-w-xl mx-auto">
+          <h1 className="text-4xl font-bold text-primary flex items-center space-x-2">
+            <span>Hi, I'm An Truong</span>
+            <span className="animate-wave inline-block">👋</span>
           </h1>
 
           {/* Dynamic Tagline */}
@@ -74,22 +74,24 @@ export default function About() {
             <span className="blink">|</span>
           </p>
 
-          <p className="text-secondaryText text-lg leading-relaxed mt-4 max-w-xl">
-            I bridge the gap between what customers want and what teams deliver,
-            creating experiences that stick.
+          <p className="text-secondaryText text-lg leading-relaxed mt-4">
+            Bridging ideas and execution by listening to users and delivering
+            impactful products.
           </p>
 
-          {/* Resume Button with same transition as icons */}
+          {/* Resume Button */}
           <a
             href="/resume.pdf"
             download="An_Truong_Resume.pdf"
-            className="px-6 py-3 mt-6 rounded-lg bg-accent text-white font-semibold shadow-md hover:bg-accentShade transition-transform transform hover:-translate-y-1"
+            className="px-6 py-3 mt-8 rounded-xl text-center
+             bg-primary text-white font-semibold shadow-md
+             hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
           >
             Download Resume
           </a>
 
           {/* Contact Icons */}
-          <div className="flex space-x-8 mt-8">
+          <div className="flex justify-center space-x-8 mt-8">
             <a
               href="mailto:your-email@example.com"
               className="text-accent hover:text-accentShade text-4xl transition-transform transform hover:scale-110"
