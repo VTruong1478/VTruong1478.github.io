@@ -11,25 +11,9 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-center gap-6">
           <a
             href="mailto:v.truong1478@gmail.com"
-            className="text-secondary hover:text-secondaryShade transition-colors duration-300 font-medium"
+            className="text-accent hover:text-accentShade transition-colors duration-300 font-medium"
           >
             v.truong1478@gmail.com
-          </a>
-          <a
-            href="https://linkedin.com/in/yourprofile"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent transition-colors duration-300 font-medium"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent transition-colors duration-300 font-medium"
-          >
-            GitHub
           </a>
         </div>
       </div>

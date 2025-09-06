@@ -37,11 +37,7 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 bg-white shadow-md transition-all duration-300">
       <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <h1 className="text-primary text-2xl font-bold tracking-tight transition-colors duration-300">
