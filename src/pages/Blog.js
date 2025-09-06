@@ -22,7 +22,7 @@ export default function Blog() {
   return (
     <section
       id="blog"
-      className="bg-background min-h-screen py-20 px-8 sm:px-12 md:px-16 scroll-mt-16"
+      className="bg-background min-h-screen py-8 px-8 sm:px-12 md:px-16 scroll-mt-16"
     >
       <h2 className="text-4xl font-bold text-primary text-center mb-16">
         Blog
@@ -61,7 +61,7 @@ export default function Blog() {
               <div className="mt-auto">
                 <Link
                   to={`/blog/${post.id}`}
-                  className="inline-block bg-accent text-white font-semibold px-4 py-2 rounded-xl shadow transition-all duration-300 transform hover:-translate-y-1 hover:bg-accent/90"
+                  className="inline-block bg-accent text-white font-semibold px-4 py-2 rounded-2xl shadow transition-all duration-300 transform hover:-translate-y-1 hover:bg-accent/90"
                 >
                   Read More →
                 </Link>

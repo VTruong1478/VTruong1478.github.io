@@ -6,9 +6,13 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
+
 import HowIDesignedThisWebsite from "./articles/HowIDesignedThisWebsite";
 import SmallBusinessGrowth from "./articles/SmallBusinessGrowth"; // import your new portfolio post
 
@@ -48,6 +52,7 @@ function App() {
                   <About />
                   <Portfolio />
                   <Blog />
+                  <Contact />
                 </>
               }
             />
@@ -64,6 +69,7 @@ function App() {
             {/* Future portfolio pages can be added here */}
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );

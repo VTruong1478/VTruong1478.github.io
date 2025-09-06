@@ -18,7 +18,7 @@ export default function HowIDesignedThisWebsite() {
             prose-headings:font-bold prose-headings:text-text
             prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
             prose-strong:text-secondary prose-strong:font-semibold
-            prose-a:text-accent prose-a:no-underline hover:prose-a:text-secondary hover:prose-a:no-underline
+            prose-a:text-accent prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-secondary hover:prose-a:no-underline
             prose-li:marker:text-accent prose-li:text-secondaryText
           "
           >
@@ -82,11 +82,19 @@ export default function HowIDesignedThisWebsite() {
             <p>
               To ensure readability and accessibility, I selected colors that
               meet WCAG contrast standards. Tools like{" "}
-              <a href="https://realtimecolors.com" target="_blank">
+              <a
+                href="https://www.realtimecolors.com/?colors=050315-fbfbfe-55A1D1-8F7EC9-2FB6A6&fonts=Inter-Inter"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Realtime Colors
               </a>{" "}
               and{" "}
-              <a href="https://coolors.co" target="_blank">
+              <a
+                href="https://coolors.co/55a1d1-8f7ec9-2fb6a6-2c2f33-f9fafb"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Coolors
               </a>{" "}
               helped me test combinations in both light and dark modes, ensuring
@@ -144,6 +152,7 @@ export default function HowIDesignedThisWebsite() {
               <a
                 href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6119549/"
                 target="_blank"
+                rel="noreferrer"
               >
                 <i>decision fatigue!</i>
               </a>

@@ -39,7 +39,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="bg-background min-h-screen flex flex-col justify-center py-16 px-4 text-text"
+      className="bg-background min-h-screen flex flex-col justify-center py-8 px-8 text-text sm:px-12 md:px-16 scroll-mt-16"
     >
       <motion.div
         className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 max-w-7xl mx-auto items-center"
@@ -61,7 +61,7 @@ export default function About() {
 
         {/* Text Content */}
         <div className="col-span-6 md:col-span-8 lg:col-span-12 flex flex-col items-center text-center">
-          <h1 className="text-4xl font-bold text-text flex items-center space-x-2">
+          <h1 className="text-4xl font-bold text-primary flex items-center space-x-2">
             <span>Hi, I'm An Truong</span>
             <span className="animate-wave inline-block">👋</span>
           </h1>
@@ -78,7 +78,7 @@ export default function About() {
           <a
             href="/resume.pdf"
             download="An_Truong_Resume.pdf"
-            className="px-6 py-3 mt-8 rounded-xl text-center bg-primary text-white font-semibold shadow-md hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
+            className="px-6 py-3 mt-8 rounded-2xl text-center bg-primary text-white font-semibold shadow-md hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
           >
             Download Resume
           </a>
