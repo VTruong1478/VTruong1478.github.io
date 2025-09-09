@@ -14,7 +14,7 @@ const portfolioData = [
     title: "Improving Developer Experience",
     date: "March 2024",
     description:
-      "Streamlined developer training and accessibility compliance, reducing Jira defect tickets by 30% while enhancing usability for a wider range of users.",
+      "Redesigned developer workflow, cutting Jira defects by 30%, and removing bottlenecks to accelerate team delivery.",
     image: "/images/coding.jpg",
     path: "/portfolio/developer-experience",
   },

@@ -3,11 +3,10 @@ import { FaLinkedin, FaEnvelope, FaExternalLinkAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const roles = [
-  "Drive Product Ops & Strategy",
-  "Bridge Teams & Customers",
-  "Execute Ideas into Action",
-  "Translate Customer Insights into Product Decisions",
-  "Deliver Vision to Product Launch",
+  "Driving Product Ops & Strategy",
+  "Bridging Teams & Customers",
+  "Executing Ideas into Action",
+  "Delivering Vision to Product Launch",
 ];
 
 export default function About() {

@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Animation variants for container + items
   const menuVariants = {
@@ -41,7 +32,7 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <h1 className="text-primary text-2xl font-bold tracking-tight transition-colors duration-300">
-          <span>An Truong</span>
+          <Link to="/#about">An Truong</Link>
         </h1>
 
         {/* Desktop Nav */}
