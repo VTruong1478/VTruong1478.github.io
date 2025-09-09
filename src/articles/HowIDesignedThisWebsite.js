@@ -26,17 +26,16 @@ export default function HowIDesignedThisWebsite() {
               When I set out to build my personal website, I knew I didn’t want
               it to feel like just another static resume. I wanted it to reflect
               my personality while still being easy and enjoyable to use. That’s
-              why I turned to <strong>Human-Centered Design (HCD)</strong>, an
-              approach that puts <strong>people</strong> at the core of every
+              why I turned to <strong>Human-Centered Design </strong>(HCD), an
+              approach that puts <strong>people at the core </strong>of every
               design decision. Instead of starting with “what do I want to
-              show?” the question shifts to{" "}
-              <strong>“how will someone experience this</strong> and what will
-              make it more enjoyable for them?”
+              show?” the question shifts to “how will someone experience thisand
+              what will make it more enjoyable for them?”
             </p>
 
             <p>
               I first came across this mindset while working on a design team. I
-              saw what happens when you skip the foundational stuff. Without a
+              saw what happens when you skip the foundational steps. Without a
               proper design system, the product quickly turned messy. Elements
               looked inconsistent, users got confused, and developers got
               frustrated trying to keep it all together. That experience taught
@@ -134,10 +133,7 @@ export default function HowIDesignedThisWebsite() {
                 <strong>Consistent typography hierarchy</strong> so visual users
                 can instantly identify headlines, sections, and body text
               </li>
-              <li>
-                <strong>Subtle animations</strong> to bring life to the site
-                without pulling focus from the message
-              </li>
+
               <li>
                 <strong>Semantic HTML elements</strong> to ensure screen reader
                 users can easily navigate and understand the page structure

@@ -6,7 +6,7 @@ const portfolioData = [
     title: "Small Business Growth",
     date: "August 2023",
     description:
-      "Increased revenue by $2.2K in 8 months through data-driven pricing, supply chain optimization, and targeted customer engagement.",
+      "$2.2K in 8 months by by streamlining operations, pricing smarter, and engaging customers strategically.",
     image: "/images/small-business.jpg",
     path: "/portfolio/small-business-growth",
   },

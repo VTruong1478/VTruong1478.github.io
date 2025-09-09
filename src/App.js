@@ -14,7 +14,8 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 
 import HowIDesignedThisWebsite from "./articles/HowIDesignedThisWebsite";
-import SmallBusinessGrowth from "./articles/SmallBusinessGrowth"; // import your new portfolio post
+import SmallBusinessGrowth from "./articles/SmallBusinessGrowth";
+import LessonsFromStartingBusiness from "./articles/LessonsFromStartingBusiness";
 
 // Scroll manager for anchors + route changes
 function ScrollToHashElement() {
@@ -57,8 +58,9 @@ function App() {
               }
             />
 
-            {/* Blog post */}
+            {/* Blog posts */}
             <Route path="/blog/1" element={<HowIDesignedThisWebsite />} />
+            <Route path="/blog/2" element={<LessonsFromStartingBusiness />} />
 
             {/* Portfolio posts */}
             <Route

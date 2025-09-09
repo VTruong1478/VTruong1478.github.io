@@ -66,7 +66,7 @@ export default function SmallBusinessGrowth() {
               attracted children’s attention, driving parents to try our drinks
               and boosting foot traffic. I also added a non-dairy milk option in
               a health-conscious neighborhood, resulting in over{" "}
-              <strong>20% of customers</strong>choosing it. This demonstrated
+              <strong>20% of customers </strong>choosing it. This demonstrated
               how targeted product choices directly increased sales and customer
               satisfaction.
             </p>

@@ -6,7 +6,8 @@ const blogPosts = [
     id: 1,
     title: "How I Designed This Website",
     date: "August 2025",
-    excerpt: "Look at the design decisions and tools I used...",
+    excerpt:
+      "Putting users first: a deep dive into the design decisions and tools I used to create a website that’s intuitive, engaging, and human-centered.",
     image: "/images/design.jpg",
   },
   {

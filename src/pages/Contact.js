@@ -18,7 +18,7 @@ export default function Contact() {
           >
             hobbies
           </Link>
-          , I’d be excited to connect with you.
+          , I’d be excited to connect with you!
         </p>
 
         {/* CTA Buttons */}
