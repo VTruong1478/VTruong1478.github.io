@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 
 const portfolioData = [
   {
-    title: "Small Business Growth",
+    title: "Driving Revenue Growth for Small Business",
     date: "August 2023",
     description:
-      "$2.2K in 8 months by by streamlining operations, pricing smarter, and engaging customers strategically.",
+      "$2.2K in 8 months by streamlining operations, pricing smarter, and engaging customers strategically.",
     image: "/images/small-business.jpg",
     path: "/portfolio/small-business-growth",
   },
   {
-    title: "Developer Training",
+    title: "Improving Developer Experience",
     date: "March 2024",
     description:
       "Streamlined developer training and accessibility compliance, reducing Jira defect tickets by 30% while enhancing usability for a wider range of users.",
     image: "/images/coding.jpg",
-    path: "/portfolio/developer-training",
+    path: "/portfolio/developer-experience",
   },
 ];
 
@@ -30,26 +30,24 @@ export default function Portfolio() {
         Portfolio
       </h2>
 
-      {/* 12-column grid on desktop, 8 on tablet, 6 on mobile */}
       <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-6 max-w-7xl mx-auto justify-center">
         {portfolioData.map((item, idx) => (
           <div
             key={idx}
-            className="group bg-card rounded-2xl overflow-hidden shadow-md transition-shadow duration-300 hover:shadow-2xl
-                       col-span-6 md:col-span-4 lg:col-span-6"
+            className="bg-card rounded-2xl overflow-hidden shadow-md col-span-6 md:col-span-4 lg:col-span-6"
           >
-            {/* Image with zoom on hover */}
+            {/* Image */}
             <div className="overflow-hidden">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-48 object-cover"
               />
             </div>
 
             {/* Content */}
             <div className="p-6 flex flex-col">
-              <h3 className="text-2xl font-semibold text-text mb-2 transition-colors duration-300">
+              <h3 className="text-2xl font-semibold text-text mb-2">
                 {item.title}
               </h3>
 

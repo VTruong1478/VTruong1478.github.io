@@ -7,14 +7,14 @@ const blogPosts = [
     title: "How I Designed This Website",
     date: "August 2025",
     excerpt:
-      "Putting users first: a deep dive into the design decisions and tools I used to create a website that’s intuitive, engaging, and human-centered.",
+      "A deep dive into the design decisions and tools I used to create a website that’s intuitive, engaging, and human-centered.",
     image: "/images/design.jpg",
   },
   {
     id: 2,
     title: "Lessons from Starting my Own Business",
     date: "December 2023",
-    excerpt: "What I learned from launching a small business...",
+    excerpt: "What I learned from launching my own boba tea small business.",
     image: "/images/lessons.jpg",
   },
 ];
@@ -29,26 +29,24 @@ export default function Blog() {
         Blog
       </h2>
 
-      {/* 12-column grid on desktop, 8 on tablet, 6 on mobile */}
       <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-6 max-w-7xl mx-auto justify-center">
         {blogPosts.map((post) => (
           <div
             key={post.id}
-            className="group bg-card rounded-2xl overflow-hidden shadow-md transition-shadow duration-300 hover:shadow-2xl
-                       col-span-6 md:col-span-4 lg:col-span-6"
+            className="bg-card rounded-2xl overflow-hidden shadow-md col-span-6 md:col-span-4 lg:col-span-6"
           >
-            {/* Image with zoom on hover */}
+            {/* Image */}
             <div className="overflow-hidden">
               <img
                 src={post.image}
                 alt={post.title}
-                className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-48 object-cover"
               />
             </div>
 
             {/* Content */}
             <div className="p-6 flex flex-col">
-              <h3 className="text-2xl font-semibold text-text mb-2 transition-colors duration-300">
+              <h3 className="text-2xl font-semibold text-text mb-2">
                 {post.title}
               </h3>
 
@@ -57,7 +55,6 @@ export default function Blog() {
               <p className="text-secondaryText mb-6 leading-relaxed">
                 {post.excerpt}
               </p>
-
               {/* CTA Button with float on hover */}
               <div className="mt-auto">
                 <Link

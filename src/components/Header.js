@@ -62,7 +62,7 @@ const Header = () => {
         {/* Mobile Hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="sm:hidden p-2 rounded-2xl text-accent hover:bg-gray-100 transition"
+          className="sm:hidden p-2 rounded-2xl text-secondary hover:bg-gray-100 transition"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -85,7 +85,7 @@ const Header = () => {
                   <Link
                     to={`/#${item}`}
                     onClick={() => setMenuOpen(false)} // close on click
-                    className="text-accent hover:text-accentShade font-medium text-lg transition-colors duration-300"
+                    className="text-secondary hover:text-secondaryShade font-medium text-lg transition-colors duration-300"
                   >
                     {item.charAt(0).toUpperCase() + item.slice(1)}
                   </Link>

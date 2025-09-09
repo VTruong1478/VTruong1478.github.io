@@ -79,7 +79,7 @@ module.exports = {
         secondaryText: "#6B7280", // medium gray for secondary text
         // Areas
         background: "#f9fafb", // very light white/gray for background
-        card: "#C3DBEA", // very light blue for cards
+        card: "#D9E8F2", // very light blue for cards
       },
     },
   },

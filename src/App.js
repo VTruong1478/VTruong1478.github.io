@@ -13,8 +13,12 @@ import Portfolio from "./pages/Portfolio";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 
-import HowIDesignedThisWebsite from "./articles/HowIDesignedThisWebsite";
+// Portfolio articles
 import SmallBusinessGrowth from "./articles/SmallBusinessGrowth";
+import ImprovingDeveloperExperience from "./articles/ImprovingDeveloperExperience";
+
+// Blog articles
+import HowIDesignedThisWebsite from "./articles/HowIDesignedThisWebsite";
 import LessonsFromStartingBusiness from "./articles/LessonsFromStartingBusiness";
 
 // Scroll manager for anchors + route changes
@@ -66,6 +70,10 @@ function App() {
             <Route
               path="/portfolio/small-business-growth"
               element={<SmallBusinessGrowth />}
+            />
+            <Route
+              path="/portfolio/developer-experience"
+              element={<ImprovingDeveloperExperience />}
             />
 
             {/* Future portfolio pages can be added here */}

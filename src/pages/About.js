@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope, FaExternalLinkAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const roles = [
-  "Product Ops & Strategy",
-  "Bridge Between Teams & Customers",
-  "Turning Ideas Into Execution",
-  "Customer Insights Into Product Decisions",
-  "From Vision to Product Delivery",
+  "Drive Product Ops & Strategy",
+  "Bridge Teams & Customers",
+  "Execute Ideas into Action",
+  "Translate Customer Insights into Product Decisions",
+  "Deliver Vision to Product Launch",
 ];
 
 export default function About() {
@@ -69,20 +69,24 @@ export default function About() {
             </span>
           </h1>
 
+          {/* Dynamic Roles */}
           <p className="text-secondary text-xl font-medium mt-4 h-8 text-center">
             {currentRole}
             <span className="blink">|</span>
           </p>
 
           <p className="text-secondaryText text-lg leading-relaxed mt-8 sm:mt-4 text-center">
-            I connect users, teams, and impactful products.
+            From optimizing operations to driving product impact, I thrive at
+            the intersection of strategy, execution, and user experience.
           </p>
 
           <a
             href="/resume.pdf"
-            download="An_Truong_Resume.pdf"
-            className="px-6 py-3 mt-8 rounded-2xl text-center bg-primary text-white font-semibold shadow-md hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 mt-8 rounded-2xl bg-primary text-white font-semibold shadow-md hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
           >
+            <FaExternalLinkAlt className="w-4 h-4" />
             Download Resume
           </a>
 
