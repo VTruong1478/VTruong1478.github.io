@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Hobbies from "./pages/Hobbies";
 
 // Portfolio articles
 import SmallBusinessGrowth from "./articles/SmallBusinessGrowth";
@@ -61,11 +62,9 @@ function App() {
                 </>
               }
             />
-
             {/* Blog posts */}
             <Route path="/blog/1" element={<HowIDesignedThisWebsite />} />
             <Route path="/blog/2" element={<LessonsFromStartingBusiness />} />
-
             {/* Portfolio posts */}
             <Route
               path="/portfolio/small-business-growth"
@@ -75,8 +74,8 @@ function App() {
               path="/portfolio/developer-experience"
               element={<ImprovingDeveloperExperience />}
             />
-
-            {/* Future portfolio pages can be added here */}
+            {/* Hobbies page */}
+            <Route path="/hobbies" element={<Hobbies />} />
           </Routes>
         </main>
         <Footer />

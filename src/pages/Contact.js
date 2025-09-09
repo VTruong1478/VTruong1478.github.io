@@ -37,7 +37,7 @@ export default function Contact() {
             className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold shadow-md hover:bg-primaryShade transition-transform transform hover:-translate-y-1"
           >
             <FaLinkedin className="text-lg" />
-            Connect on LinkedIn
+            Connect with Me
           </a>
           <a
             href="https://github.com/VTruong1478/VTruong1478.github.io"
