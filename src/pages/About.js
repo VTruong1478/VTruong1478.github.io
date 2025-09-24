@@ -49,7 +49,7 @@ export default function About() {
         {/* Profile Picture */}
         <div className="col-span-6 md:col-span-8 lg:col-span-12 flex justify-center">
           <motion.img
-            src="/profile.jpg"
+            src="/images/profile.jpg"
             alt="Profile"
             className="w-60 h-60 rounded-full shadow-lg border-4 border-primary mb-4"
             initial={{ opacity: 0, scale: 0.9 }}

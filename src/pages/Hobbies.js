@@ -5,21 +5,21 @@ import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 const danceVideos = [
   {
     type: "video",
-    src: "/videos/timeless.MOV",
+    src: "/videos/timeless.mp4",
     title: "4/21/25 - Comeback Crew Advanced Workshop",
     description:
       "For this one, I came in with the right mindset which helped me retain the choreo better. Even though I messed up a bit, I gave myself grace and kept going. Dance really feels like more of a mental sport than a physical one. The mindset you bring truly makes or breaks the experience.",
   },
   {
     type: "video",
-    src: "/videos/push2start.MOV",
+    src: "/videos/push2start.mp4",
     title: "6/10/26 - Project Jeong Workshop",
     description:
       "This was one of the most memorable workshops I’ve been to. The vibes in the room were special. Everyone was just happy to be together and dance.",
   },
   {
     type: "video",
-    src: "/videos/beat.MOV",
+    src: "/videos/beat.mp4",
     title: "8/2/25 - Comeback Crew Workshop",
     description:
       "This was my last workshop as a NOVA local. I’m usually very stressed when I can't pick up a choreo right away, but I told myself to just have fun and feel the dance rather than overthink the details. That really helped me, and I liked how I danced more.",
@@ -30,7 +30,7 @@ const danceVideos = [
 const guitarVideos = [
   {
     type: "video",
-    src: "/videos/blueGuitar.MOV",
+    src: "/videos/blueGuitar.mp4",
     title: "blue - yung kai (solo)",
     description:
       "Figuring out how to record, layer, and loop tracks on GarageBand has been such a fun journey. Hearing my guitar sound so dreamy through the audio interface makes me appreciate the little tools that open up whole new ways to create.",
@@ -44,7 +44,7 @@ const guitarVideos = [
   },
   {
     type: "video",
-    src: "/videos/sevenGuitar.MOV",
+    src: "/videos/sevenGuitar.mp4",
     title: "Seven - Jungkook (loop)",
     description:
       "I bought my very own electric guitar back in Jan 2025, but I haven’t practiced nearly as much as I hoped. After spending all day sitting at my desk for my 9-5, it’s hard to motivate myself to sit back down and practice. I’ve also avoided recording because I kept telling myself I needed to be better first—but I’m realizing that mindset only holds me back. So here’s me letting go of that perfectionism and just sharing this loop.",
@@ -55,20 +55,20 @@ const guitarVideos = [
 const jugglingVideos = [
   {
     type: "video",
-    src: "/videos/cascadeFinish.MOV",
+    src: "/videos/cascadeFinish.mp4",
     title: "Cascade with behind-the-back catch finish",
     description: "My most impressive and satisfying trick.",
   },
   {
     type: "video",
-    src: "/videos/twoInOne.MOV",
+    src: "/videos/twoInOne.mp4",
     title: "Two in one hand",
     description:
       "Right and left hand. My right is definitely more controlled than my left. Once I get more control and consistency, I’ll work on 4 ball fountain.",
   },
   {
     type: "video",
-    src: "/videos/cascadeOverthrow.MOV",
+    src: "/videos/cascadeOverthrow.mp4",
     title: "Cascade overthrow",
     description: "Still working on making overthrow look better.",
   },
