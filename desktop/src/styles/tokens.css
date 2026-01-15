@@ -1,0 +1,47 @@
+@layer base {
+  :root {
+    /* surfaces */
+    --bg: 248 250 252; /* Background */
+    --window: 255 255 255; /* Window Background */
+    --widget: 241 245 249; /* Widget Background */
+    --section: 226 232 240; /* Section Fill */
+    --grey-98: 245 245 245; /* 98 Grey */
+    --dark-grey: 107 114 128; /* Dark Grey */
+
+    /* text */
+    --text: 17 24 39; /* Text Primary */
+    --text-on-dark: 255 255 255; /* Text Primary - Dark */
+
+    /* brand */
+    --primary: 59 130 246; /* Primary */
+    --secondary: 139 92 246; /* Secondary */
+    --tertiary: 37 99 235; /* Tertiary */
+
+    /* misc */
+    --border: 226 232 240;
+    --radius: 16px;
+  }
+
+  .dark {
+    --bg: 2 6 23; /* Background - Dark */
+    --window: 15 23 42; /* Window Background - Dark */
+    --widget: 17 24 39; /* Widget Background - Dark */
+    --section: 30 41 59; /* Section Fill, darker */
+    --grey-98: 31 41 55; /* 98 Grey - Dark */
+    --dark-grey: 156 163 175; /* Dark Grey - Dark */
+
+    --text: 255 255 255; /* Text Primary - Dark */
+    --border: 51 65 85;
+
+    --primary: 96 165 250; /* Primary - Dark */
+    --secondary: 167 139 250; /* Secondary - Dark */
+    --tertiary: 147 197 253; /* Tertiary - Dark */
+  }
+
+  body {
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+      sans-serif;
+    background: rgb(var(--bg));
+    color: rgb(var(--text));
+  }
+}
