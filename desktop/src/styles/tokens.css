@@ -1,7 +1,7 @@
 @layer base {
   :root {
     /* surfaces */
-    --bg: 248 250 252; /* Background */
+    --bg: #333333; /* Background */
     --window: 255 255 255; /* Window Background */
     --widget: 241 245 249; /* Widget Background */
     --section: 226 232 240; /* Section Fill */
@@ -26,7 +26,7 @@
     --bg: 2 6 23; /* Background - Dark */
     --window: 15 23 42; /* Window Background - Dark */
     --widget: 17 24 39; /* Widget Background - Dark */
-    --section: 30 41 59; /* Section Fill, darker */
+    --section: 30 41 59; /* Section Fill */
     --grey-98: 31 41 55; /* 98 Grey - Dark */
     --dark-grey: 156 163 175; /* Dark Grey - Dark */
 
@@ -38,10 +38,15 @@
     --tertiary: 147 197 253; /* Tertiary - Dark */
   }
 
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+  }
+
   body {
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
       sans-serif;
-    background: rgb(var(--bg));
-    color: rgb(var(--text));
   }
 }
