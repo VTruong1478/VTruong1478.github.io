@@ -1,52 +1,53 @@
+/* 
+  Design System Source of Truth
+  Derived from Figma
+  Do not add new tokens without updating Figma
+*/
+
 @layer base {
   :root {
-    /* surfaces */
-    --bg: #333333; /* Background */
-    --window: 255 255 255; /* Window Background */
-    --widget: 241 245 249; /* Widget Background */
-    --section: 226 232 240; /* Section Fill */
-    --grey-98: 245 245 245; /* 98 Grey */
-    --dark-grey: 107 114 128; /* Dark Grey */
+    --98-grey: #c0c0c0;
+    --background: #dae9f1;
+    --dark-grey: #5f5f5f;
+    --primary: #3f96cc;
+    --secondary: #917ecf;
+    --tertiary: #13367c;
 
-    /* text */
-    --text: 17 24 39; /* Text Primary */
-    --text-on-dark: 255 255 255; /* Text Primary - Dark */
+    --text: #333333;
 
-    /* brand */
-    --primary: 59 130 246; /* Primary */
-    --secondary: 139 92 246; /* Secondary */
-    --tertiary: 37 99 235; /* Tertiary */
+    --widget-background: #d9d9d9;
+    --window-background: #fdf9f6;
 
-    /* misc */
-    --border: 226 232 240;
+    --white: #ffffff;
+    --black: #000000;
+
+    --space-4: 4px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-40: 40px;
+    --space-48: 48px;
+    --space-56: 56px;
+    --space-64: 64px;
+    --space-72: 72px;
+    --space-80: 80px;
+
     --radius: 16px;
   }
 
   .dark {
-    --bg: 2 6 23; /* Background - Dark */
-    --window: 15 23 42; /* Window Background - Dark */
-    --widget: 17 24 39; /* Widget Background - Dark */
-    --section: 30 41 59; /* Section Fill */
-    --grey-98: 31 41 55; /* 98 Grey - Dark */
-    --dark-grey: 156 163 175; /* Dark Grey - Dark */
+    --98-grey: #404040;
+    --background: #0e1d25;
+    --dark-grey: #a1a1a1;
+    --primary: #2e7cad;
+    --secondary: #a593df;
+    --tertiary: #83a6ec;
 
-    --text: 255 255 255; /* Text Primary - Dark */
-    --border: 51 65 85;
+    --text: #fbfdff;
 
-    --primary: 96 165 250; /* Primary - Dark */
-    --secondary: 167 139 250; /* Secondary - Dark */
-    --tertiary: 147 197 253; /* Tertiary - Dark */
-  }
-
-  html,
-  body,
-  #root {
-    height: 100%;
-    margin: 0;
-  }
-
-  body {
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
-      sans-serif;
+    --widget-background: #262626;
+    --window-background: #252429;
   }
 }

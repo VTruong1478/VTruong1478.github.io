@@ -1,0 +1,219 @@
+/* typography.css
+   Matches your spec:
+   Inter: 42/48, 32/36, 26/30, 22/24, 19/21, 16/18
+   Pixel font: Pixelify Sans
+*/
+
+/* Base */
+:root {
+  --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  --font-pixel: "Pixelify Sans", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Headings (Inter) */
+h1,
+.h1 {
+  font-family: var(--font-sans);
+  font-size: 42px; /* 32pt */
+  line-height: 48px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h2,
+.h2 {
+  font-family: var(--font-sans);
+  font-size: 32px; /* 24pt */
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h3,
+.h3 {
+  font-family: var(--font-sans);
+  font-size: 26px; /* 20pt */
+  line-height: 30px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h4,
+.h4 {
+  font-family: var(--font-sans);
+  font-size: 22px; /* 16pt */
+  line-height: 24px;
+  font-weight: 700; /* bold style in your table */
+  letter-spacing: 0;
+}
+
+h5,
+.h5 {
+  font-family: var(--font-sans);
+  font-size: 19px; /* 14pt */
+  line-height: 21px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h6,
+.h6 {
+  font-family: var(--font-sans);
+  font-size: 16px; /* 12pt */
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* Paragraph sizes (Inter) */
+.p-xl {
+  font-size: 32px; /* 24pt */
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.p-lg {
+  font-size: 26px; /* 20pt */
+  line-height: 30px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.p-md {
+  font-size: 22px; /* 16pt */
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.p-md-bold {
+  font-size: 22px; /* 16pt */
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.p-sm {
+  font-size: 19px; /* 14pt */
+  line-height: 21px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.p-sm-bold {
+  font-size: 19px; /* 14pt */
+  line-height: 21px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.p-xs {
+  font-size: 16px; /* 12pt */
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.p-xs-bold {
+  font-size: 16px; /* 12pt */
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* Links (Inter) */
+a,
+.link {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link-md {
+  font-size: 22px; /* 16pt */
+  line-height: 24px;
+}
+
+.link-xs {
+  font-size: 16px; /* 12pt */
+  line-height: 18px;
+}
+
+/* Pixel (Pixelify Sans) */
+.pixel-xl {
+  font-family: var(--font-pixel);
+  font-size: 32px; /* 24pt */
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.pixel-lg {
+  font-family: var(--font-pixel);
+  font-size: 26px; /* 20pt */
+  line-height: 30px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.pixel-md,
+.pixel-md-normal {
+  font-family: var(--font-pixel);
+  font-size: 22px; /* 16pt */
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.pixel-md-bold {
+  font-family: var(--font-pixel);
+  font-size: 22px; /* 16pt */
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.pixel-sm {
+  font-family: var(--font-pixel);
+  font-size: 19px; /* 14pt */
+  line-height: 21px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.pixel-sm-bold {
+  font-family: var(--font-pixel);
+  font-size: 19px; /* 14pt */
+  line-height: 21px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.pixel-xs {
+  font-family: var(--font-pixel);
+  font-size: 16px; /* 12pt */
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.pixel-link-xs {
+  font-family: var(--font-pixel);
+  font-size: 16px; /* 12pt */
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

@@ -1,5 +1,17 @@
 @import "./styles/tokens.css";
+@import "./styles/typography.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Focus: show ring only for keyboard focus (focus-visible), not mouse click */
+@layer base {
+  *:focus {
+    outline: none;
+  }
+  *:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}

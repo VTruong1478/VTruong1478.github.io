@@ -1,3 +1,15 @@
+// Breakpoints (match Figma)
+// - mobile: 375px–767px
+// - tablet: 768px–1023px
+// - small desktop: 1024px–1439px
+// - large desktop: 1440px+
+//
+// Usage pattern:
+// - default styles = mobile-first (applies below 768px)
+// - md: tablet and up (>=768px)
+// - lg: small desktop and up (>=1024px)
+// - xl: large desktop and up (>=1440px)
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
@@ -5,34 +17,24 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        xl: "var(--radius)",
+        m: "var(--radius)",
       },
       colors: {
-        bg: "var(--bg)",
-        window: "var(--window)",
-        widget: "var(--widget)",
-        section: "var(--section)",
-        grey98: "var(--grey-98)",
+        bg: "var(--background)",
+        window: "var(--window-background)",
+        widget: "var(--widget-background)",
+        grey98: "var(--98-grey)",
         darkgrey: "var(--dark-grey)",
         text: "var(--text)",
         primary: "var(--primary)",
         secondary: "var(--secondary)",
         tertiary: "var(--tertiary)",
-        border: "var(--border)",
+        white: "var(--white)",
+        black: "var(--black)",
       },
-
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
         pixel: ["Pixelify Sans", "monospace"],
-      },
-      fontSize: {
-        // matches your Figma list: size / line-height
-        h1: ["32px", "48px"],
-        p24: ["24px", "36px"],
-        p20: ["20px", "30px"],
-        p16: ["16px", "24px"],
-        p14: ["14px", "21px"],
-        p12: ["12px", "18px"],
       },
     },
   },

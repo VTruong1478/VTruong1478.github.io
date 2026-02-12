@@ -1,9 +1,15 @@
-export default function App() {
-  return (
-    <div className="min-h-screen bg-bg text-text p-8">
-      <h1 className="text-h1 font-sans">Inter heading</h1>
+import { WindowManagerProvider } from "./contexts/WindowManagerContext";
+import DesktopLayout from "./components/desktop/DesktopLayout/DesktopLayout";
+import Footer from "./components/desktop/Footer/Footer";
+console.log("DEV MODE:", import.meta.env.DEV);
 
-      <p className="mt-4 text-p14 font-pixel">Pixelify Sans body</p>
-    </div>
+export default function App() {
+  console.log("DEV MODE:", import.meta.env.DEV);
+
+  return (
+    <WindowManagerProvider>
+      <DesktopLayout />
+      <Footer />
+    </WindowManagerProvider>
   );
 }
