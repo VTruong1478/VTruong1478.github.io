@@ -339,7 +339,7 @@ export default function PortfolioWindowContent() {
         {projects.map((project) => (
           <article
             key={project.id}
-            className="flex flex-col rounded-[24px] p-[16px] bg-bg"
+            className="flex flex-col rounded-[24px] p-[16px] bg-bg dark:bg-grey98"
           >
             {/* Image - only show if image exists */}
             {project.image && (
@@ -352,14 +352,22 @@ export default function PortfolioWindowContent() {
             )}
 
             {/* Title - 18px */}
-            <h3 className="text-text mb-[4px]" style={{ fontSize: '18px', fontWeight: 700, lineHeight: '24px' }}>
+            <h3 
+              className="text-text mb-[4px]" 
+              style={{ 
+                fontSize: '18px', 
+                fontWeight: 700, 
+                lineHeight: '24px',
+                marginTop: project.image ? '0' : '8px'
+              }}
+            >
               {project.title}
             </h3>
 
-            {/* Date - 12pt, dark gray */}
+            {/* Date - smaller than paragraph, dark gray */}
             <p
-              className="mb-[8px] text-darkgrey"
-              style={{ fontSize: "12pt", lineHeight: "1.5" }}
+              className="mb-[16px] text-darkgrey"
+              style={{ fontSize: "11pt", lineHeight: "1.5" }}
             >
               {project.date}
             </p>

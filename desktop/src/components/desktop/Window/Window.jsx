@@ -509,14 +509,11 @@ export default function Window({ window, bounds, content }) {
       >
         {content}
       </div>
-      {/* Bottom-right resize handle: visible grip for diagonal resizing */}
+      {/* Bottom-right resize handle: invisible but functional for diagonal resizing */}
       {!window.isMaximized && (
         <div
           onPointerDown={(e) => handleResizeStart(e, 'se')}
           className="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize z-20"
-          style={{
-            background: "linear-gradient(135deg, transparent 0%, transparent 40%, var(--dark-grey) 41%, var(--dark-grey) 43%, transparent 44%, transparent 54%, var(--dark-grey) 55%, var(--dark-grey) 57%, transparent 58%, transparent 68%, var(--dark-grey) 69%, var(--dark-grey) 71%, transparent 72%)",
-          }}
           aria-label="Resize window diagonally"
         />
       )}
