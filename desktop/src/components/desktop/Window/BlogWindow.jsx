@@ -4,7 +4,7 @@
  */
 export default function BlogWindowContent() {
   return (
-    <div className="p-[var(--space-24)] lg:p-[var(--space-32)]">
+    <div className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]">
       <h1 className="h1 text-text mb-[var(--space-16)]">Blog</h1>
       <p className="p-md text-text mb-[var(--space-16)]">
         Read my latest articles and thoughts.

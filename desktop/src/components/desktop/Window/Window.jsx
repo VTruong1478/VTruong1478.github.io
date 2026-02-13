@@ -14,20 +14,26 @@ export default function Window({ window, bounds, content }) {
     toggleMaximizeWindow,
     closeWindow,
     setWindowPosition,
+    setWindowSize,
   } = useWindowManager();
 
   const windowRef = useRef(null);
   const headerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  const [resizeDirection, setResizeDirection] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [cursorStyle, setCursorStyle] = useState("default");
+  const [hasBeenResized, setHasBeenResized] = useState(false);
   const dragStartRef = useRef({ x: 0, y: 0, windowX: 0, windowY: 0 });
+  const resizeStartRef = useRef({ x: 0, y: 0, windowX: 0, windowY: 0, windowWidth: 0, windowHeight: 0 });
   const hasDraggedRef = useRef(false);
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const mediaQuery = globalThis.window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     );
     setPrefersReducedMotion(mediaQuery.matches);
     const handler = (e) => setPrefersReducedMotion(e.matches);
@@ -59,7 +65,7 @@ export default function Window({ window, bounds, content }) {
       };
       e.preventDefault();
     },
-    [window.x, window.y, window.id, window.isMaximized, focusWindow]
+    [window.x, window.y, window.id, window.isMaximized, focusWindow],
   );
 
   const handlePointerMove = useCallback(
@@ -98,7 +104,7 @@ export default function Window({ window, bounds, content }) {
       window.width,
       bounds,
       setWindowPosition,
-    ]
+    ],
   );
 
   const handlePointerUp = useCallback(() => {
@@ -122,6 +128,206 @@ export default function Window({ window, bounds, content }) {
     }
   }, [isDragging, handlePointerMove, handlePointerUp, handlePointerCancel]);
 
+  // Detect resize edge/corner on mouse move
+  const getResizeDirection = useCallback((e) => {
+    if (window.isMaximized || !windowRef.current) return null;
+    
+    const rect = windowRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const edgeSize = 8; // pixels from edge to detect resize
+    
+    const onLeft = x < edgeSize;
+    const onRight = x > rect.width - edgeSize;
+    const onTop = y < edgeSize;
+    const onBottom = y > rect.height - edgeSize;
+    
+    // Corners take priority
+    if (onTop && onLeft) return 'nw';
+    if (onTop && onRight) return 'ne';
+    if (onBottom && onLeft) return 'sw';
+    if (onBottom && onRight) return 'se';
+    
+    // Edges
+    if (onTop) return 'n';
+    if (onBottom) return 's';
+    if (onLeft) return 'w';
+    if (onRight) return 'e';
+    
+    return null;
+  }, [window.isMaximized]);
+
+  // Update cursor based on hover position
+  const handleMouseMove = useCallback((e) => {
+    if (isDragging || isResizing) return;
+    
+    const direction = getResizeDirection(e);
+    
+    if (direction) {
+      const cursorMap = {
+        n: 'ns-resize',
+        s: 'ns-resize',
+        e: 'ew-resize',
+        w: 'ew-resize',
+        ne: 'nesw-resize',
+        sw: 'nesw-resize',
+        nw: 'nwse-resize',
+        se: 'nwse-resize',
+      };
+      setCursorStyle(cursorMap[direction] || 'default');
+    } else {
+      setCursorStyle('default');
+    }
+  }, [isDragging, isResizing, getResizeDirection]);
+
+  // Handle resizing
+  const handleResizeStart = useCallback(
+    (e, direction) => {
+      if (window.isMaximized || !windowRef.current) return;
+      
+      // Get the actual rendered dimensions
+      const rect = windowRef.current.getBoundingClientRect();
+      
+      setIsResizing(true);
+      setResizeDirection(direction);
+      focusWindow(window.id);
+      
+      resizeStartRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+        windowX: window.x,
+        windowY: window.y,
+        windowWidth: rect.width,
+        windowHeight: rect.height,
+      };
+      
+      // If window was using auto height, set it to the current rendered height
+      if (!hasBeenResized && !window.isMaximized) {
+        setWindowSize(window.id, rect.width, rect.height);
+      }
+      
+      e.preventDefault();
+      e.stopPropagation();
+    },
+    [window.x, window.y, window.id, window.isMaximized, hasBeenResized, focusWindow, setWindowSize]
+  );
+
+  const handleResizeMove = useCallback(
+    (e) => {
+      if (!isResizing || !resizeDirection || window.isMaximized) return;
+
+      const dx = e.clientX - resizeStartRef.current.x;
+      const dy = e.clientY - resizeStartRef.current.y;
+
+      const MIN_WIDTH = 400;
+      const MIN_HEIGHT = 300;
+
+      let newX = resizeStartRef.current.windowX;
+      let newY = resizeStartRef.current.windowY;
+      let newWidth = resizeStartRef.current.windowWidth;
+      let newHeight = resizeStartRef.current.windowHeight;
+
+      // Handle horizontal resizing
+      if (resizeDirection.includes('e')) {
+        newWidth = resizeStartRef.current.windowWidth + dx;
+      } else if (resizeDirection.includes('w')) {
+        newWidth = resizeStartRef.current.windowWidth - dx;
+        newX = resizeStartRef.current.windowX + dx;
+      }
+
+      // Handle vertical resizing
+      if (resizeDirection.includes('s')) {
+        newHeight = resizeStartRef.current.windowHeight + dy;
+      } else if (resizeDirection.includes('n')) {
+        newHeight = resizeStartRef.current.windowHeight - dy;
+        newY = resizeStartRef.current.windowY + dy;
+      }
+
+      // Apply minimum size constraints
+      if (newWidth < MIN_WIDTH) {
+        if (resizeDirection.includes('w')) {
+          newX = resizeStartRef.current.windowX + resizeStartRef.current.windowWidth - MIN_WIDTH;
+        }
+        newWidth = MIN_WIDTH;
+      }
+
+      if (newHeight < MIN_HEIGHT) {
+        if (resizeDirection.includes('n')) {
+          newY = resizeStartRef.current.windowY + resizeStartRef.current.windowHeight - MIN_HEIGHT;
+        }
+        newHeight = MIN_HEIGHT;
+      }
+
+      // Clamp to bounds
+      if (newX < bounds.left) {
+        newWidth = newWidth - (bounds.left - newX);
+        newX = bounds.left;
+      }
+      if (newY < bounds.top) {
+        newHeight = newHeight - (bounds.top - newY);
+        newY = bounds.top;
+      }
+      
+      const maxWidth = bounds.right - newX;
+      const maxHeight = bounds.bottom - newY;
+      newWidth = Math.min(newWidth, maxWidth);
+      newHeight = Math.min(newHeight, maxHeight);
+
+      // Update window position and size
+      if (newX !== window.x || newY !== window.y) {
+        setWindowPosition(window.id, newX, newY);
+      }
+      if (newWidth !== window.width || newHeight !== window.height) {
+        setWindowSize(window.id, newWidth, newHeight);
+      }
+    },
+    [
+      isResizing,
+      resizeDirection,
+      window.isMaximized,
+      window.id,
+      window.x,
+      window.y,
+      window.width,
+      window.height,
+      bounds,
+      setWindowPosition,
+      setWindowSize,
+    ]
+  );
+
+  const handleResizeEnd = useCallback(() => {
+    setIsResizing(false);
+    setResizeDirection(null);
+    setHasBeenResized(true);
+  }, []);
+
+  useEffect(() => {
+    if (isResizing) {
+      document.addEventListener("pointermove", handleResizeMove);
+      document.addEventListener("pointerup", handleResizeEnd);
+      document.addEventListener("pointercancel", handleResizeEnd);
+      return () => {
+        document.removeEventListener("pointermove", handleResizeMove);
+        document.removeEventListener("pointerup", handleResizeEnd);
+        document.removeEventListener("pointercancel", handleResizeEnd);
+      };
+    }
+  }, [isResizing, handleResizeMove, handleResizeEnd]);
+
+  // Handle pointer down on window edges
+  const handleWindowPointerDown = useCallback((e) => {
+    // Don't interfere with header drag or buttons
+    if (e.target.closest('[data-window-drag-handle]') || e.target.closest('button')) {
+      return;
+    }
+    
+    const direction = getResizeDirection(e);
+    if (direction) {
+      handleResizeStart(e, direction);
+    }
+  }, [getResizeDirection, handleResizeStart]);
+
   // Reset drag state when window is maximized so header controls stay usable
   useEffect(() => {
     if (window.isMaximized) {
@@ -136,7 +342,7 @@ export default function Window({ window, bounds, content }) {
     setIsAnimating(true);
     const windowRect = windowRef.current.getBoundingClientRect();
     const footerIcon = document.querySelector(
-      `[data-window-icon-id="${window.id}"]`
+      `[data-window-icon-id="${window.id}"]`,
     );
 
     if (!footerIcon) {
@@ -209,23 +415,23 @@ export default function Window({ window, bounds, content }) {
       // Toggle maximize/restore on double-click
       handleMaximize();
     },
-    [handleMaximize]
+    [handleMaximize],
   );
 
   // Check if this window has the highest zIndex (is focused)
   const isFocused = useMemo(() => {
     const allWindows = Array.from(windows.values()).filter(
-      (w) => w.isOpen && !w.isMinimized
+      (w) => w.isOpen && !w.isMinimized,
     );
     if (allWindows.length === 0) return true;
     const maxZIndex = Math.max(...allWindows.map((w) => w.zIndex));
     return window.zIndex >= maxZIndex;
   }, [windows, window.zIndex]);
 
-  // Height: content-driven when not maximized, with max so window never overlaps footer
+  // Height: use fixed height when resizing, has been resized, or maximized; otherwise content-driven with max
   const maxHeight =
     bounds.bottom > 0 ? Math.max(0, bounds.bottom - window.y) : undefined;
-  const heightStyle = window.isMaximized
+  const heightStyle = window.isMaximized || isResizing || hasBeenResized
     ? { height: `${window.height}px` }
     : { height: "auto", maxHeight: maxHeight };
 
@@ -234,32 +440,33 @@ export default function Window({ window, bounds, content }) {
       ref={windowRef}
       data-window-id={window.id}
       data-z-index={window.zIndex}
-      className={`fixed bg-window text-text border border-darkgrey overflow-hidden flex flex-col ${
+      className={`fixed bg-window text-text overflow-hidden flex flex-col ${
         isAnimating ? "" : "transition-shadow"
-      } ${
-        isFocused
-          ? "shadow-[4px_4px_16px_rgba(0,0,0,0.25)]"
-          : "shadow-[4px_4px_12px_rgba(0,0,0,0.18)]"
       }`}
       style={{
         borderRadius: 0, // Square corners, no border radius
+        border: isFocused ? "1px solid var(--dark-grey)" : "1px solid var(--98-grey)",
         left: `${window.x}px`,
         top: `${window.y}px`,
         width: `${window.width}px`,
         ...heightStyle,
         zIndex: Math.max(window.zIndex, 100), // Always above rail (z-10) and widgets
-        cursor: isDragging ? "grabbing" : "default",
+        cursor: isDragging ? "grabbing" : cursorStyle,
       }}
       role="dialog"
       aria-label={window.title}
       onClick={handleClick}
+      onMouseMove={handleMouseMove}
+      onPointerDown={handleWindowPointerDown}
     >
-      {/* Title bar: primary bg, Pixelify Sans, square corners - fixed height. relative z-10 so it stays above content and controls stay clickable when maximized. */}
+      {/* Title bar: active uses primary bg, inactive uses dark-grey bg. Pixelify Sans, square corners - fixed height. relative z-10 so it stays above content and controls stay clickable when maximized. */}
       <header
         ref={headerRef}
         onPointerDown={handlePointerDown}
         onDoubleClick={handleDoubleClick}
-        className={`relative z-10 flex items-center justify-between gap-[var(--space-12)] px-[var(--space-16)] py-[var(--space-8)] bg-primary text-white font-pixel pixel-md cursor-grab active:cursor-grabbing select-none shrink-0 ${
+        className={`relative z-10 flex items-center justify-between gap-[var(--space-12)] px-[var(--space-16)] py-[var(--space-8)] ${
+          isFocused ? "bg-primary" : "bg-darkgrey"
+        } text-white font-pixel pixel-md cursor-grab active:cursor-grabbing select-none shrink-0 ${
           isDragging ? "cursor-grabbing" : ""
         }`}
         data-window-drag-handle
@@ -302,6 +509,17 @@ export default function Window({ window, bounds, content }) {
       >
         {content}
       </div>
+      {/* Bottom-right resize handle: visible grip for diagonal resizing */}
+      {!window.isMaximized && (
+        <div
+          onPointerDown={(e) => handleResizeStart(e, 'se')}
+          className="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize z-20"
+          style={{
+            background: "linear-gradient(135deg, transparent 0%, transparent 40%, var(--dark-grey) 41%, var(--dark-grey) 43%, transparent 44%, transparent 54%, var(--dark-grey) 55%, var(--dark-grey) 57%, transparent 58%, transparent 68%, var(--dark-grey) 69%, var(--dark-grey) 71%, transparent 72%)",
+          }}
+          aria-label="Resize window diagonally"
+        />
+      )}
     </article>
   );
 }

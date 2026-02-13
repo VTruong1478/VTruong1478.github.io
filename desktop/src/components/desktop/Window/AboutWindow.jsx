@@ -14,7 +14,7 @@ const aboutBullets = [
 
 export default function AboutWindowContent() {
   return (
-    <div className="px-[var(--space-24)] py-[var(--space-32)] md:px-[var(--space-32)] md:pt-[var(--space-40)] md:pb-[var(--space-80)]">
+    <div className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]">
       {/* Centered container with max-width */}
       <div className="max-w-[600px] mx-auto text-center">
         {/* Profile image */}
@@ -52,7 +52,7 @@ export default function AboutWindowContent() {
           </a>
           <a
             href="https://www.linkedin.com/in/vinhan-truong/"
-            className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[24px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity w-full sm:w-auto"
             style={{ 
               fontSize: '16px', 
               fontWeight: 600
