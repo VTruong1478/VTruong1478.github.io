@@ -2,6 +2,7 @@
  * Right system tray: LinkedIn, Download, GitHub, Volume icons + clock.
  * Pixelify Sans, text-text. Icons as inline SVG. ARIA and focus-visible only.
  * Clock shows current time and date, updates every minute.
+ * On tablet (768-1023px), clock is hidden to save space for window icons.
  */
 import { useState, useEffect } from "react";
 import {
@@ -52,7 +53,7 @@ function formatDate(date) {
   return `${month}/${day}/${year}`;
 }
 
-export default function SystemTray() {
+export default function SystemTray({ isTablet = false }) {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -110,14 +111,16 @@ export default function SystemTray() {
           </button>
         );
       })}
-      <div
-        className="flex flex-col items-end text-right text-text font-pixel pixel-xs"
-        aria-live="polite"
-        aria-label="Current date and time"
-      >
-        <time dateTime={isoDateTime}>{timeString}</time>
-        <time dateTime={isoDate}>{dateString}</time>
-      </div>
+      {!isTablet && (
+        <div
+          className="flex flex-col items-end text-right text-text font-pixel pixel-xs"
+          aria-live="polite"
+          aria-label="Current date and time"
+        >
+          <time dateTime={isoDateTime}>{timeString}</time>
+          <time dateTime={isoDate}>{dateString}</time>
+        </div>
+      )}
     </div>
   );
 }

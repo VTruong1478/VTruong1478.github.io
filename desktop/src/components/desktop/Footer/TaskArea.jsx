@@ -17,9 +17,14 @@ export default function TaskArea() {
       focusWindow(window.id);
     } else {
       // Check if this is the focused window
-      const allWindows = Array.from(windows.values());
-      const maxZIndex = Math.max(...allWindows.map((w) => w.zIndex), 0);
-      if (window.zIndex >= maxZIndex && !window.isMinimized) {
+      const visibleWindows = Array.from(windows.values()).filter(
+        (w) => w.isOpen && !w.isMinimized,
+      );
+      const maxVisibleZIndex = Math.max(
+        ...visibleWindows.map((w) => w.zIndex),
+        0,
+      );
+      if (window.zIndex >= maxVisibleZIndex && !window.isMinimized) {
         // Already focused, minimize it
         minimizeWindow(window.id);
       } else {
@@ -29,8 +34,11 @@ export default function TaskArea() {
     }
   };
 
-  const allWindows = Array.from(windows.values());
-  const maxZIndex = Math.max(...allWindows.map((w) => w.zIndex), 0);
+  // Find the highest z-index among visible (non-minimized) windows
+  const visibleWindows = Array.from(windows.values()).filter(
+    (w) => w.isOpen && !w.isMinimized,
+  );
+  const maxVisibleZIndex = Math.max(...visibleWindows.map((w) => w.zIndex), 0);
 
   return (
     <div
@@ -39,15 +47,16 @@ export default function TaskArea() {
       role="region"
     >
       {openWindows.map((window) => {
-        const isFocused = window.zIndex >= maxZIndex && !window.isMinimized;
+        const isFocused =
+          window.zIndex >= maxVisibleZIndex && !window.isMinimized;
         return (
           <button
             key={window.id}
             type="button"
             data-window-icon-id={window.id}
             onClick={() => handleIconClick(window)}
-            className={`flex items-center justify-center shrink-0 w-12 h-[47px] hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-widget transition-colors ${
-              isFocused ? "bg-widget" : "rounded-m"
+            className={`flex items-center justify-center shrink-0 w-12 h-[47px] hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-widget transition-all relative ${
+              isFocused ? "bg-widget" : ""
             }`}
             aria-label={`${window.title} window${
               window.isMinimized ? " (minimized)" : ""

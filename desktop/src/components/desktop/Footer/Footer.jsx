@@ -1,7 +1,8 @@
 /**
  * Fixed footer/taskbar at bottom of desktop.
  * Desktop (>=1024): Start | task icons | system tray + clock.
- * Mobile/Tablet (<1024): Compact footer with Start + profile | chevron + volume, expandable quick links tray.
+ * Tablet (768-1023): Start | task icons | system tray (no clock).
+ * Mobile (<768): Compact footer with Start + profile | chevron + volume, expandable quick links tray.
  * Pixelify Sans, bg-widget, 1px top dark-grey border, text-text. ARIA and focus states.
  */
 import { useState, useCallback, useRef, useEffect } from "react";
@@ -13,6 +14,7 @@ import CompactFooter from "./CompactFooter";
 
 const FOOTER_HEIGHT = 48; // var(--space-48)
 const DESKTOP_MIN = 1024;
+const TABLET_MIN = 768;
 
 function useViewportSize() {
   const [width, setWidth] = useState(() => {
@@ -37,9 +39,10 @@ export default function Footer() {
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const viewportWidth = useViewportSize();
 
-  const isCompact = viewportWidth < DESKTOP_MIN;
+  const isCompact = viewportWidth < TABLET_MIN;
+  const isTablet = viewportWidth >= TABLET_MIN && viewportWidth < DESKTOP_MIN;
 
-  // Mobile/Tablet layout (< 1024px)
+  // Mobile layout (< 768px)
   if (isCompact) {
     return (
       <>
@@ -64,7 +67,7 @@ export default function Footer() {
     );
   }
 
-  // Desktop layout (>=1024px)
+  // Tablet (768-1023px) and Desktop (>=1024px) layout
   return (
     <>
       {/* Semi-transparent overlay on desktop body when Start menu is open */}
@@ -91,7 +94,7 @@ export default function Footer() {
           aria-pressed={menuOpen}
         />
         <TaskArea />
-        <SystemTray />
+        <SystemTray isTablet={isTablet} />
       </footer>
       {menuOpen && (
         <StartMenu onClose={closeMenu} startButtonRef={startButtonRef} />

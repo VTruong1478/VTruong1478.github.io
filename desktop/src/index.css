@@ -15,6 +15,17 @@
     outline-offset: 2px;
   }
 
+  /* Global link styles - exclude button-styled links */
+  a:not([class*="btn"]):not([class*="button"]):not([role="button"]):not([class*="inline-flex"]) {
+    color: var(--tertiary);
+    text-decoration: underline;
+    font-weight: 400;
+  }
+
+  a:not([class*="btn"]):not([class*="button"]):not([role="button"]):not([class*="inline-flex"]):hover {
+    opacity: 0.8;
+  }
+
   /* Custom scrollbar styling */
   * {
     scrollbar-width: thin;
