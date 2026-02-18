@@ -53,7 +53,12 @@ export default function StartMenu({ onClose, startButtonRef }) {
     e.preventDefault();
     const win = windows.get(id);
     if (win && win.isOpen && !win.isMinimized) {
-      focusWindow(id);
+      // Check if there are multiple open windows to play focus sound
+      const openWindows = Array.from(windows.values()).filter(
+        (w) => w.isOpen && !w.isMinimized
+      );
+      const shouldPlaySound = openWindows.length > 1;
+      focusWindow(id, shouldPlaySound);
     } else {
       openWindow(id);
     }
@@ -72,7 +77,7 @@ export default function StartMenu({ onClose, startButtonRef }) {
       }}
     >
       {/* Column 1: Left strip – blue rectangle on top of gray with margin */}
-      <div className="shrink-0 p-[var(--space-8)] flex items-stretch" aria-hidden>
+      <div className="shrink-0 p-[var(--space-4)] sm:p-[var(--space-8)] flex items-stretch" aria-hidden>
         <div
           className="bg-tertiary text-white flex items-end justify-center"
           style={{
@@ -94,7 +99,7 @@ export default function StartMenu({ onClose, startButtonRef }) {
       </div>
 
       {/* Column 2: Nav list – vertically distributed with equal space between items */}
-      <div className="flex min-w-0 flex-1 flex-col justify-between py-[var(--space-8)] pl-0 pr-[var(--space-8)]">
+      <div className="flex min-w-0 flex-1 flex-col justify-between py-[var(--space-8)] pl-0 pr-[var(--space-4)] sm:pr-[var(--space-8)]">
         {navItems.map(({ id, label, svg }) => {
           const win = windows.get(id);
           const isOpen = win?.isOpen && !win?.isMinimized;
@@ -104,7 +109,7 @@ export default function StartMenu({ onClose, startButtonRef }) {
               type="button"
               role="menuitem"
               onClick={(e) => handleNavClick(e, id)}
-              className={`group flex w-full items-center gap-[var(--space-8)] px-[var(--space-4)] py-[var(--space-4)] text-left font-pixel pixel-sm text-text transition-colors hover:bg-tertiary hover:text-white focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:underline focus-visible:underline-offset-2 ${
+              className={`group flex w-full items-center gap-[var(--space-4)] sm:gap-[var(--space-8)] px-[var(--space-4)] sm:px-[var(--space-8)] py-[var(--space-8)] text-left font-pixel pixel-sm text-text transition-colors hover:bg-tertiary hover:text-white focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:underline focus-visible:underline-offset-2 ${
                 isOpen ? "text-primary" : ""
               } [&_svg]:shrink-0 [&_svg]:transition-[filter] group-hover:[&_svg]:brightness-0 group-hover:[&_svg]:invert`}
             >
@@ -115,8 +120,8 @@ export default function StartMenu({ onClose, startButtonRef }) {
         })}
       </div>
 
-      {/* Column 3: Info panel – compact spacing; border inset 8px from top/bottom */}
-      <div className="flex shrink-0 flex-col justify-center border-l border-darkgrey bg-grey98 my-[var(--space-8)] py-[var(--space-8)] px-[var(--space-12)]">
+      {/* Column 3: Info panel – compact spacing; border inset 8px from top/bottom; hidden on mobile */}
+      <div className="hidden sm:flex shrink-0 flex-col justify-center border-l border-darkgrey bg-grey98 my-[var(--space-8)] py-[var(--space-8)] px-[var(--space-12)]">
         {infoLines.map(({ label, className, isTitle }) => (
           <span
             key={label}

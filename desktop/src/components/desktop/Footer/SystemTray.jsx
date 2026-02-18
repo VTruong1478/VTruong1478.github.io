@@ -4,12 +4,13 @@
  * Clock shows current time and date, updates every minute.
  * On tablet (768-1023px), clock is hidden to save space for window icons.
  */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   LinkedInIcon,
   DownloadIcon,
   GithubIcon,
   VolumeIcon,
+  MuteIcon,
 } from "../../icons/FooterIcons";
 
 const trayIcons = [
@@ -34,7 +35,6 @@ const trayIcons = [
     href: "https://github.com/VTruong1478",
     external: true,
   },
-  { id: "volume", label: "Volume", Icon: VolumeIcon },
 ];
 
 function formatTime(date) {
@@ -55,6 +55,8 @@ function formatDate(date) {
 
 export default function SystemTray({ isTablet = false }) {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isMuted, setIsMuted] = useState(true);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     // Update time immediately
@@ -68,52 +70,81 @@ export default function SystemTray({ isTablet = false }) {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    // Initialize audio element
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/background-music.mp3");
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.05;
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleMute = () => {
+    setIsMuted((prev) => {
+      const newMutedState = !prev;
+      if (audioRef.current) {
+        if (newMutedState) {
+          audioRef.current.pause();
+        } else {
+          audioRef.current.play().catch((err) => {
+            console.error("Failed to play audio:", err);
+          });
+        }
+      }
+      return newMutedState;
+    });
+  };
+
   const timeString = formatTime(currentTime);
   const dateString = formatDate(currentTime);
   const isoDateTime = currentTime.toISOString();
   const isoDate = currentTime.toISOString().split("T")[0];
 
+  const iconClassName =
+    "flex items-center justify-center w-8 h-8 text-text hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-widget transition-opacity";
+
   return (
     <div
-      className="flex items-center gap-[var(--space-12)] px-[var(--space-16)] py-[var(--space-8)]"
+      className="flex items-center gap-[var(--space-12)] pl-[var(--space-16)] pr-[var(--space-8)] py-[var(--space-8)]"
       role="region"
       aria-label="System tray"
     >
-      {trayIcons.map(({ id, label, Icon, href, external, download }) => {
-        const className =
-          "flex items-center justify-center w-8 h-8 text-text hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-widget transition-opacity";
-
-        if (href) {
-          return (
-            <a
-              key={id}
-              href={href}
-              className={className}
-              aria-label={label}
-              {...(external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-              {...(download ? { download: true } : {})}
-            >
-              <Icon className="w-8 h-8" aria-hidden />
-            </a>
-          );
-        }
-
-        return (
-          <button
-            key={id}
-            type="button"
-            className={className}
-            aria-label={label}
-          >
-            <Icon className="w-8 h-8" aria-hidden />
-          </button>
-        );
-      })}
+      {trayIcons.map(({ id, label, Icon, href, external, download }) => (
+        <a
+          key={id}
+          href={href}
+          className={iconClassName}
+          aria-label={label}
+          {...(external
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+          {...(download ? { download: true } : {})}
+        >
+          <Icon className="w-8 h-8" aria-hidden />
+        </a>
+      ))}
+      <button
+        type="button"
+        className={iconClassName}
+        aria-label={isMuted ? "Unmute" : "Mute"}
+        onClick={toggleMute}
+      >
+        {isMuted ? (
+          <MuteIcon className="w-8 h-8" aria-hidden />
+        ) : (
+          <VolumeIcon className="w-8 h-8" aria-hidden />
+        )}
+      </button>
       {!isTablet && (
         <div
-          className="flex flex-col items-end text-right text-text font-pixel pixel-xs"
+          className="flex flex-col items-center text-center text-text font-pixel pixel-xs"
           aria-live="polite"
           aria-label="Current date and time"
         >

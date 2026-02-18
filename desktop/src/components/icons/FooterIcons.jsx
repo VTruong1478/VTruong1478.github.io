@@ -8,6 +8,8 @@ import githubSvg from "../../assets/footer/Github Icon.svg?raw";
 import githubDarkSvg from "../../assets/footer/Github Icon - Dark.svg?raw";
 import volumeSvg from "../../assets/footer/Volume Icon.svg?raw";
 import volumeDarkSvg from "../../assets/footer/Volume Icon - Dark.svg?raw";
+import muteSvg from "../../assets/footer/Mute Icon.svg?raw";
+import muteDarkSvg from "../../assets/footer/Mute Icon - Dark.svg?raw";
 import upCaretSvg from "../../assets/footer/Up Caret Icon.svg?raw";
 import upCaretDarkSvg from "../../assets/footer/Up Caret Icon - Dark.svg?raw";
 import downCaretSvg from "../../assets/footer/Down Caret Icon.svg?raw";
@@ -50,6 +52,15 @@ export function VolumeIcon({ className = "w-8 h-8", ...rest }) {
     <>
       <InlineSvgIcon rawSvg={volumeSvg} className={`${className} dark:hidden`} {...rest} />
       <InlineSvgIcon rawSvg={volumeDarkSvg} className={`${className} hidden dark:block`} {...rest} />
+    </>
+  );
+}
+
+export function MuteIcon({ className = "w-8 h-8", ...rest }) {
+  return (
+    <>
+      <InlineSvgIcon rawSvg={muteSvg} className={`${className} dark:hidden`} {...rest} />
+      <InlineSvgIcon rawSvg={muteDarkSvg} className={`${className} hidden dark:block`} {...rest} />
     </>
   );
 }

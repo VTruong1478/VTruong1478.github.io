@@ -403,8 +403,18 @@ export default function Window({ window, bounds, content }) {
   }, [window.id, closeWindow]);
 
   const handleClick = useCallback(() => {
-    focusWindow(window.id);
-  }, [window.id, focusWindow]);
+    // Check if there are multiple open windows
+    const openWindows = Array.from(windows.values()).filter(
+      (w) => w.isOpen && !w.isMinimized
+    );
+    const hasMultipleWindows = openWindows.length > 1;
+    
+    // Play focus sound only if there are multiple windows and this window is not already focused
+    const isFocused = window.zIndex >= Math.max(...openWindows.map((w) => w.zIndex));
+    const shouldPlaySound = hasMultipleWindows && !isFocused;
+    
+    focusWindow(window.id, shouldPlaySound);
+  }, [window.id, windows, window.zIndex, focusWindow]);
 
   const handleDoubleClick = useCallback(
     (e) => {

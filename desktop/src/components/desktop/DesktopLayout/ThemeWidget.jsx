@@ -7,6 +7,7 @@
 import { useState, useEffect } from "react";
 import themeLight from "../../../assets/widgets/theme-light.png";
 import themeDark from "../../../assets/widgets/theme-dark.png";
+import { soundManager } from "../../../utils/soundEffects";
 
 export default function ThemeWidget({ showLabels = false }) {
   const [isDark, setIsDark] = useState(() => {
@@ -24,6 +25,7 @@ export default function ThemeWidget({ showLabels = false }) {
   }, [isDark]);
 
   const handleToggle = () => {
+    soundManager.playTheme();
     setIsDark((prev) => !prev);
   };
 

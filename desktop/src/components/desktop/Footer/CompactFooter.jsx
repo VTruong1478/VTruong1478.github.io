@@ -1,6 +1,6 @@
 /**
  * Compact footer for mobile and tablet screens (< 1024px).
- * Left: Cardinal icon + "Start" label + profile icon
+ * Left: Cardinal icon + "Start" label + current window icon
  * Right: Chevron toggle + volume icon
  * Expandable tray with LinkedIn, Download, GitHub icons
  */
@@ -11,10 +11,13 @@ import {
   UpCaretIcon,
   DownCaretIcon,
   VolumeIcon,
+  MuteIcon,
   LinkedInIcon,
   DownloadIcon,
   GithubIcon,
 } from "../../icons/FooterIcons";
+import InlineSvgIcon from "../../icons/InlineSvgIcon";
+import { useWindowManager } from "../../../contexts/WindowManagerContext";
 
 const quickLinks = [
   {
@@ -41,9 +44,17 @@ const quickLinks = [
 ];
 
 export default function CompactFooter({ onStartClick, startMenuOpen, startButtonRef }) {
+  const { windows } = useWindowManager();
   const [trayOpen, setTrayOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const trayRef = useRef(null);
   const toggleRef = useRef(null);
+  const audioRef = useRef(null);
+
+  // Find the currently active (non-minimized) window
+  const activeWindow = Array.from(windows.values()).find(
+    (w) => w.isOpen && !w.isMinimized
+  );
 
   const toggleTray = useCallback(() => {
     setTrayOpen((prev) => !prev);
@@ -51,6 +62,38 @@ export default function CompactFooter({ onStartClick, startMenuOpen, startButton
 
   const closeTray = useCallback(() => {
     setTrayOpen(false);
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    setIsMuted((prev) => {
+      const newMutedState = !prev;
+      if (audioRef.current) {
+        if (newMutedState) {
+          audioRef.current.pause();
+        } else {
+          audioRef.current.play().catch((err) => {
+            console.error("Failed to play audio:", err);
+          });
+        }
+      }
+      return newMutedState;
+    });
+  }, []);
+
+  // Initialize audio element
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/background-music.mp3");
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.05;
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
   }, []);
 
   // Close tray on Escape key
@@ -134,7 +177,7 @@ export default function CompactFooter({ onStartClick, startMenuOpen, startButton
         className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between bg-grey98 text-text border-t border-darkgrey h-[var(--space-48)] px-[var(--space-8)]"
         aria-label="Taskbar"
       >
-        {/* Left cluster: Cardinal + Start + Profile */}
+        {/* Left cluster: Cardinal + Start + Current Window Icon */}
         <div className="flex items-center gap-[var(--space-4)]">
           <button
             ref={startButtonRef}
@@ -147,13 +190,18 @@ export default function CompactFooter({ onStartClick, startMenuOpen, startButton
             <CardinalIcon className="w-8 h-8 shrink-0" aria-hidden />
             <span className="pixel-sm">Start</span>
           </button>
-          <button
-            type="button"
-            className={iconButtonClass}
-            aria-label="Profile"
-          >
-            <ProfileIcon className="w-8 h-8" aria-hidden />
-          </button>
+          {activeWindow && (
+            <div
+              className="flex items-center justify-center w-12 h-[47px] bg-widget"
+              aria-label={`${activeWindow.title} window (active)`}
+            >
+              <InlineSvgIcon
+                rawSvg={activeWindow.icon}
+                className="w-8 h-8"
+                aria-hidden
+              />
+            </div>
+          )}
         </div>
 
         {/* Right cluster: Chevron toggle + Volume */}
@@ -173,8 +221,17 @@ export default function CompactFooter({ onStartClick, startMenuOpen, startButton
               <UpCaretIcon className="w-8 h-8" aria-hidden />
             )}
           </button>
-          <button type="button" className={iconButtonClass} aria-label="Volume">
-            <VolumeIcon className="w-8 h-8" aria-hidden />
+          <button
+            type="button"
+            className={iconButtonClass}
+            aria-label={isMuted ? "Unmute" : "Mute"}
+            onClick={toggleMute}
+          >
+            {isMuted ? (
+              <MuteIcon className="w-8 h-8" aria-hidden />
+            ) : (
+              <VolumeIcon className="w-8 h-8" aria-hidden />
+            )}
           </button>
         </div>
       </footer>

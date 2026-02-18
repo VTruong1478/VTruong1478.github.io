@@ -90,7 +90,7 @@ export default function DesktopWindowHost({
             key={window.id}
             window={window}
             bounds={bounds}
-            content={<ContentComponent />}
+            content={<ContentComponent windowData={window.data} />}
           />
         );
       })}

@@ -24,7 +24,12 @@ export default function IconRail() {
     e.preventDefault();
     const win = windows.get(id);
     if (win && win.isOpen && !win.isMinimized) {
-      focusWindow(id);
+      // Check if there are multiple open windows to play focus sound
+      const openWindows = Array.from(windows.values()).filter(
+        (w) => w.isOpen && !w.isMinimized
+      );
+      const shouldPlaySound = openWindows.length > 1;
+      focusWindow(id, shouldPlaySound);
     } else {
       openWindow(id); // uses windowDefinitions staggered position/size
     }

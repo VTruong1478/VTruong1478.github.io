@@ -106,33 +106,26 @@ export default function DesktopLayout() {
               <ThemeWidget showLabels />
             </WidgetCard>
             <WidgetCard title="Blog Posts">
-              <p className="pixel-sm">
-                Read the rest of the blog{" "}
-                <a
-                  href="#blog"
-                  className="text-primary dark:text-tertiary underline font-pixel pixel-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:focus-visible:outline-tertiary rounded-m"
-                >
-                  here!
-                </a>
-              </p>
-              <ul className="mt-[var(--space-16)] list-disc list-inside space-y-[var(--space-8)] pixel-xs font-pixel">
+              <ul className="list-disc list-inside space-y-[var(--space-8)] pixel-xs font-pixel text-left">
                 <li>
                   Jan 2026:{" "}
-                  <a
-                    href="#blog"
-                    className="text-primary dark:text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:focus-visible:outline-tertiary rounded-m"
+                  <button
+                    onClick={() => openWindow("blog", { data: { articleId: 1 } })}
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: 'inline' }}
                   >
-                    How I Redesigned this Website
-                  </a>
+                    How I Designed This Website
+                  </button>
                 </li>
                 <li>
                   Dec 2023:{" "}
-                  <a
-                    href="#blog"
-                    className="text-primary dark:text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:focus-visible:outline-tertiary rounded-m"
+                  <button
+                    onClick={() => openWindow("blog", { data: { articleId: 2 } })}
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: 'inline' }}
                   >
-                    Lessons from Starting My Own Business
-                  </a>
+                    Lessons from Starting my Own Business
+                  </button>
                 </li>
               </ul>
             </WidgetCard>
@@ -189,33 +182,26 @@ export default function DesktopLayout() {
               <ThemeWidget />
             </WidgetCard>
             <WidgetCard title="Blog Posts">
-              <p className="pixel-sm">
-                Read the rest of the blog{" "}
-                <a
-                  href="#blog"
-                  className="text-primary dark:text-tertiary underline font-pixel pixel-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:focus-visible:outline-tertiary rounded-m"
-                >
-                  here!
-                </a>
-              </p>
-              <ul className="mt-[var(--space-16)] list-disc list-inside space-y-[var(--space-8)] pixel-sm font-pixel">
+              <ul className="list-disc list-inside space-y-[var(--space-8)] pixel-xs font-pixel text-left">
                 <li>
                   Jan 2026:{" "}
-                  <a
-                    href="#blog"
-                    className="text-primary dark:text-tertiary underline font-pixel pixel-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:focus-visible:outline-tertiary rounded-m"
+                  <button
+                    onClick={() => openWindow("blog", { data: { articleId: 1 } })}
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: 'inline' }}
                   >
-                    How I Redesigned this Website
-                  </a>
+                    How I Designed This Website
+                  </button>
                 </li>
                 <li>
                   Dec 2023:{" "}
-                  <a
-                    href="#blog"
-                    className="text-primary dark:text-tertiary underline font-pixel pixel-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:focus-visible:outline-tertiary rounded-m"
+                  <button
+                    onClick={() => openWindow("blog", { data: { articleId: 2 } })}
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: 'inline' }}
                   >
-                    Lessons from Starting My Own Business
-                  </a>
+                    Lessons from Starting my Own Business
+                  </button>
                 </li>
               </ul>
             </WidgetCard>

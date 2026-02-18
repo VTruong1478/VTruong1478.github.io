@@ -23,5 +23,5 @@ export default function MobileWindowArea({ windowContents = {} }) {
     return null;
   }
 
-  return <MobileWindow window={activeWindow} content={<ContentComponent />} />;
+  return <MobileWindow window={activeWindow} content={<ContentComponent windowData={activeWindow.data} />} />;
 }

@@ -7,6 +7,7 @@ import {
   useEffect,
 } from "react";
 import { windowDefinitions } from "../config/windowDefinitions";
+import { soundManager } from "../utils/soundEffects";
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -104,6 +105,7 @@ export function computeContactSpawn(desktopBodyRect, railTop, options = {}) {
  *   prevY?: number,
  *   prevWidth?: number,
  *   prevHeight?: number,
+ *   data?: any, // custom data for window content (e.g., article ID)
  * }
  */
 
@@ -126,12 +128,20 @@ export function WindowManagerProvider({ children }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Preload all sound effects on mount
+  useEffect(() => {
+    soundManager.preload();
+  }, []);
+
   const getNextZIndex = useCallback(() => {
     return nextZIndexRef.current++;
   }, []);
 
   const openWindow = useCallback(
     (id, config = {}) => {
+      // Play open sound
+      soundManager.playOpen();
+      
       setWindows((prev) => {
         const next = new Map(prev);
         const def = windowDefinitions[id];
@@ -269,6 +279,8 @@ export function WindowManagerProvider({ children }) {
             isOpen: true,
             isMinimized: false,
             zIndex: getNextZIndex(),
+            // Update data if provided in config
+            ...(config.data !== undefined && { data: config.data }),
           });
         } else {
           // Create new window: use computed position/size (or merged config)
@@ -284,6 +296,7 @@ export function WindowManagerProvider({ children }) {
             y: merged.y ?? 100,
             width: merged.width ?? 640,
             height: merged.height ?? 500,
+            ...(merged.data !== undefined && { data: merged.data }),
           });
         }
         return next;
@@ -293,6 +306,9 @@ export function WindowManagerProvider({ children }) {
   );
 
   const closeWindow = useCallback((id) => {
+    // Play close sound
+    soundManager.playClose();
+    
     setWindows((prev) => {
       const next = new Map(prev);
       next.delete(id);
@@ -301,7 +317,12 @@ export function WindowManagerProvider({ children }) {
   }, []);
 
   const focusWindow = useCallback(
-    (id) => {
+    (id, playSound = false) => {
+      // Only play focus sound if explicitly requested (to avoid sound on every window interaction)
+      if (playSound) {
+        soundManager.playFocus();
+      }
+      
       setWindows((prev) => {
         const next = new Map(prev);
         if (next.has(id)) {
@@ -318,6 +339,9 @@ export function WindowManagerProvider({ children }) {
   );
 
   const minimizeWindow = useCallback((id) => {
+    // Play minimize sound
+    soundManager.playMinimize();
+    
     setWindows((prev) => {
       const next = new Map(prev);
       if (next.has(id)) {
@@ -333,6 +357,9 @@ export function WindowManagerProvider({ children }) {
 
   const restoreWindow = useCallback(
     (id) => {
+      // Play focus sound when restoring a window
+      soundManager.playFocus();
+      
       setWindows((prev) => {
         const next = new Map(prev);
 
@@ -365,6 +392,9 @@ export function WindowManagerProvider({ children }) {
   );
 
   const toggleMaximizeWindow = useCallback((id) => {
+    // Play maximize sound
+    soundManager.playMaximize();
+    
     setWindows((prev) => {
       const next = new Map(prev);
       if (next.has(id)) {

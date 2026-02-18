@@ -1,21 +1,10 @@
 /**
  * Mobile Window component: no drag, renders in document flow, full width.
- * Title bar with minimize/maximize/close controls (maximize hidden on mobile).
+ * Title bar with all controls disabled on mobile (single window mode).
  */
-import { useCallback } from "react";
 import { MinimizeIcon, MaximizeIcon, CloseIcon } from "../../icons/WindowIcons";
-import { useWindowManager } from "../../../contexts/WindowManagerContext";
 
 export default function MobileWindow({ window, content }) {
-  const { minimizeWindow, closeWindow } = useWindowManager();
-
-  const handleMinimize = useCallback(() => {
-    minimizeWindow(window.id);
-  }, [window.id, minimizeWindow]);
-
-  const handleClose = useCallback(() => {
-    closeWindow(window.id);
-  }, [window.id, closeWindow]);
 
   return (
     <article
@@ -31,25 +20,25 @@ export default function MobileWindow({ window, content }) {
         <div className="flex items-center shrink-0 gap-0">
           <button
             type="button"
-            onClick={handleMinimize}
-            className="flex items-center justify-center w-8 h-8 hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset transition-opacity"
-            aria-label="Minimize"
+            className="flex items-center justify-center w-8 h-8 cursor-default"
+            aria-label="Minimize (disabled on mobile)"
+            aria-disabled="true"
           >
             <MinimizeIcon className="w-8 h-8" aria-hidden />
           </button>
           <button
             type="button"
-            onClick={handleMinimize}
-            className="flex items-center justify-center w-8 h-8 hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset transition-opacity"
-            aria-label="Maximize"
+            className="flex items-center justify-center w-8 h-8 cursor-default"
+            aria-label="Maximize (disabled on mobile)"
+            aria-disabled="true"
           >
             <MaximizeIcon className="w-8 h-8" aria-hidden />
           </button>
           <button
             type="button"
-            onClick={handleClose}
-            className="flex items-center justify-center w-8 h-8 hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset transition-opacity"
-            aria-label="Close"
+            className="flex items-center justify-center w-8 h-8 cursor-default"
+            aria-label="Close (disabled on mobile)"
+            aria-disabled="true"
           >
             <CloseIcon className="w-8 h-8" aria-hidden />
           </button>

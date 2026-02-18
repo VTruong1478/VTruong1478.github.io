@@ -13,6 +13,7 @@ export default function TaskArea() {
 
   const handleIconClick = (window) => {
     if (window.isMinimized) {
+      // Restoring from minimized - sound played in restoreWindow
       restoreWindow(window.id);
       focusWindow(window.id);
     } else {
@@ -25,11 +26,11 @@ export default function TaskArea() {
         0,
       );
       if (window.zIndex >= maxVisibleZIndex && !window.isMinimized) {
-        // Already focused, minimize it
+        // Already focused, minimize it - sound played in minimizeWindow
         minimizeWindow(window.id);
       } else {
-        // Focus it
-        focusWindow(window.id);
+        // Switching focus to a different window - play focus sound
+        focusWindow(window.id, true);
       }
     }
   };

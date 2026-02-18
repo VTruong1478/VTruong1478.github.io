@@ -3,7 +3,7 @@
  * Two-column grid on desktop, single column on mobile.
  * Clicking "Read More" shows full article within the same window.
  */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import lunarTeaMenuImg from "../../../assets/images/lunar-tea-menu.png";
 import figmaImg from "../../../assets/images/Figma.png";
 
@@ -218,8 +218,18 @@ const blogPosts = [
   },
 ];
 
-export default function BlogWindowContent() {
+export default function BlogWindowContent({ windowData }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
+
+  // If windowData contains an articleId, find and display that article
+  useEffect(() => {
+    if (windowData?.articleId) {
+      const article = blogPosts.find(post => post.id === windowData.articleId);
+      if (article) {
+        setSelectedArticle(article);
+      }
+    }
+  }, [windowData]);
 
   const handleReadMore = (e, post) => {
     e.preventDefault();
