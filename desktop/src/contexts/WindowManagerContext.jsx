@@ -62,29 +62,29 @@ export function computeAboutSpawn(desktopBodyRect, railTop, options = {}) {
 
 /**
  * Compute Portfolio window spawn position/size from grid.
- * Starts at column 1, spans 8 columns, staggered vertically.
+ * Starts at column 3, spans 8 columns, staggered vertically.
  */
 export function computePortfolioSpawn(desktopBodyRect, railTop, options = {}) {
   const staggerY = options.staggerY ?? 40;
-  return computeWindowSpawn(desktopBodyRect, railTop, 0, staggerY, options);
+  return computeWindowSpawn(desktopBodyRect, railTop, 2, staggerY, options);
 }
 
 /**
  * Compute Blog window spawn position/size from grid.
- * Starts at column 2 (same as About), spans 8 columns, staggered vertically.
+ * Starts at column 4, spans 8 columns, staggered vertically.
  */
 export function computeBlogSpawn(desktopBodyRect, railTop, options = {}) {
   const staggerY = options.staggerY ?? 80;
-  return computeWindowSpawn(desktopBodyRect, railTop, 1, staggerY, options);
+  return computeWindowSpawn(desktopBodyRect, railTop, 3, staggerY, options);
 }
 
 /**
  * Compute Contact window spawn position/size from grid.
- * Starts at column 3, spans 8 columns, staggered vertically.
+ * Starts at column 5, spans 8 columns, staggered vertically.
  */
 export function computeContactSpawn(desktopBodyRect, railTop, options = {}) {
   const staggerY = options.staggerY ?? 120;
-  return computeWindowSpawn(desktopBodyRect, railTop, 2, staggerY, options);
+  return computeWindowSpawn(desktopBodyRect, railTop, 4, staggerY, options);
 }
 
 /**
@@ -172,70 +172,42 @@ export function WindowManagerProvider({ children }) {
               height: config.height ?? def.height,
             };
           } else if (id === "portfolio" || id === "blog" || id === "contact") {
-            // Position relative to About window's top-left corner
-            const aboutWindow = next.get("about");
-            const STAGGER_OFFSET = 64;
+            // Always compute grid-based spawn positions for consistent placement
+            const desktopBody = document.querySelector("[data-desktop-body]");
+            const rail = document.querySelector("[data-desktop-rail]");
 
-            if (aboutWindow) {
-              // Stagger relative to About window's position
-              const staggerIndex =
-                id === "portfolio" ? 1 : id === "blog" ? 2 : 3;
-              defaultsFromDef = {
-                title: def.title,
-                icon: def.icon,
-                x: aboutWindow.x + STAGGER_OFFSET * staggerIndex,
-                y: aboutWindow.y + STAGGER_OFFSET * staggerIndex,
-                width: aboutWindow.width, // Same width as About (8 columns)
-                height: aboutWindow.height, // Same height as About
-              };
-            } else {
-              // Fallback: compute grid-based spawn if About doesn't exist yet
-              const desktopBody = document.querySelector("[data-desktop-body]");
-              const rail = document.querySelector("[data-desktop-rail]");
+            if (desktopBody && rail) {
+              const bodyRect = desktopBody.getBoundingClientRect();
+              const railTop = rail.getBoundingClientRect().top;
+              const isTabletUp =
+                typeof window !== "undefined" && window.innerWidth >= 768;
 
-              if (desktopBody && rail) {
-                const bodyRect = desktopBody.getBoundingClientRect();
-                const railTop = rail.getBoundingClientRect().top;
-                const isTabletUp =
-                  typeof window !== "undefined" && window.innerWidth >= 768;
+              if (isTabletUp) {
+                const options = {
+                  margin: 32,
+                  gutter: 20,
+                  cols: 12,
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  defaultHeight: 520,
+                };
 
-                if (isTabletUp) {
-                  const options = {
-                    margin: 32,
-                    gutter: 20,
-                    cols: 12,
-                    paddingTop: 0,
-                    paddingBottom: 0,
-                    defaultHeight: 520,
+                let spawn;
+                if (id === "portfolio") {
+                  spawn = computePortfolioSpawn(bodyRect, railTop, options);
+                } else if (id === "blog") {
+                  spawn = computeBlogSpawn(bodyRect, railTop, options);
+                } else if (id === "contact") {
+                  spawn = computeContactSpawn(bodyRect, railTop, options);
+                }
+
+                if (spawn) {
+                  defaultsFromDef = {
+                    title: def.title,
+                    icon: def.icon,
+                    ...spawn,
                   };
-
-                  let spawn;
-                  if (id === "portfolio") {
-                    spawn = computePortfolioSpawn(bodyRect, railTop, options);
-                  } else if (id === "blog") {
-                    spawn = computeBlogSpawn(bodyRect, railTop, options);
-                  } else if (id === "contact") {
-                    spawn = computeContactSpawn(bodyRect, railTop, options);
-                  }
-
-                  if (spawn) {
-                    defaultsFromDef = {
-                      title: def.title,
-                      icon: def.icon,
-                      ...spawn,
-                    };
-                  } else {
-                    defaultsFromDef = {
-                      title: def.title,
-                      icon: def.icon,
-                      x: def.x,
-                      y: def.y,
-                      width: def.width,
-                      height: def.height,
-                    };
-                  }
                 } else {
-                  // Mobile: use windowDefinitions defaults
                   defaultsFromDef = {
                     title: def.title,
                     icon: def.icon,
@@ -246,7 +218,7 @@ export function WindowManagerProvider({ children }) {
                   };
                 }
               } else {
-                // Fallback to windowDefinitions defaults if DOM not ready
+                // Mobile: use windowDefinitions defaults
                 defaultsFromDef = {
                   title: def.title,
                   icon: def.icon,
@@ -256,9 +228,67 @@ export function WindowManagerProvider({ children }) {
                   height: def.height,
                 };
               }
+            } else {
+              // Fallback to windowDefinitions defaults if DOM not ready
+              defaultsFromDef = {
+                title: def.title,
+                icon: def.icon,
+                x: def.x,
+                y: def.y,
+                width: def.width,
+                height: def.height,
+              };
+            }
+          } else if (id === "about") {
+            // About window: compute grid-based spawn position
+            const desktopBody = document.querySelector("[data-desktop-body]");
+            const rail = document.querySelector("[data-desktop-rail]");
+
+            if (desktopBody && rail) {
+              const bodyRect = desktopBody.getBoundingClientRect();
+              const railTop = rail.getBoundingClientRect().top;
+              const isTabletUp =
+                typeof window !== "undefined" && window.innerWidth >= 768;
+
+              if (isTabletUp) {
+                const options = {
+                  margin: 32,
+                  gutter: 20,
+                  cols: 12,
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  defaultHeight: 520,
+                };
+                const spawn = computeAboutSpawn(bodyRect, railTop, options);
+                defaultsFromDef = {
+                  title: def.title,
+                  icon: def.icon,
+                  ...spawn,
+                };
+              } else {
+                // Mobile: use windowDefinitions defaults
+                defaultsFromDef = {
+                  title: def.title,
+                  icon: def.icon,
+                  x: def.x,
+                  y: def.y,
+                  width: def.width,
+                  height: def.height,
+                };
+              }
+            } else {
+              // Fallback to windowDefinitions defaults if DOM not ready
+              defaultsFromDef = {
+                title: def.title,
+                icon: def.icon,
+                x: def.x,
+                y: def.y,
+                width: def.width,
+                height: def.height,
+              };
             }
           } else {
-            // Use windowDefinitions defaults (for About or other windows)
+            // Use windowDefinitions defaults (for other windows)
             defaultsFromDef = {
               title: def.title,
               icon: def.icon,
@@ -272,16 +302,32 @@ export function WindowManagerProvider({ children }) {
 
         const merged = { ...defaultsFromDef, ...config };
         if (next.has(id)) {
-          // Window exists, restore and focus it (keep position/size on restore)
+          // Window exists, restore and focus it
           const existing = next.get(id);
-          next.set(id, {
-            ...existing,
-            isOpen: true,
-            isMinimized: false,
-            zIndex: getNextZIndex(),
-            // Update data if provided in config
-            ...(config.data !== undefined && { data: config.data }),
-          });
+          // For all windows, use recomputed position if available
+          if (merged.x !== undefined && merged.y !== undefined) {
+            next.set(id, {
+              ...existing,
+              isOpen: true,
+              isMinimized: false,
+              zIndex: getNextZIndex(),
+              x: merged.x,
+              y: merged.y,
+              width: merged.width ?? existing.width,
+              height: merged.height ?? existing.height,
+              // Update data if provided in config
+              ...(config.data !== undefined && { data: config.data }),
+            });
+          } else {
+            next.set(id, {
+              ...existing,
+              isOpen: true,
+              isMinimized: false,
+              zIndex: getNextZIndex(),
+              // Update data if provided in config
+              ...(config.data !== undefined && { data: config.data }),
+            });
+          }
         } else {
           // Create new window: use computed position/size (or merged config)
           next.set(id, {

@@ -3,6 +3,7 @@
  * Follows same layout structure as Blog/Portfolio windows.
  */
 import { EmailIcon, LinkedInButtonIcon } from "../../icons/ButtonIcons";
+import cardinalImg from "../../../assets/images/Cardinal.png";
 
 export default function ContactWindowContent() {
   return (
@@ -67,10 +68,16 @@ export default function ContactWindowContent() {
 
       {/* Closing text */}
       <p
-        className="text-darkgrey italic"
+        className="text-darkgrey italic flex items-center"
         style={{ fontSize: "14px", lineHeight: "1.5" }}
       >
-        Thanks for stopping by!
+        <span>Thanks for stopping by!</span>
+        <img
+          src={cardinalImg}
+          alt=""
+          className="inline-block w-[32px] h-[32px]"
+          aria-hidden="true"
+        />
       </p>
     </div>
   );
