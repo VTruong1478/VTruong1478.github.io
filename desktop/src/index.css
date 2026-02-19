@@ -5,6 +5,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes wave-hand {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(14deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@layer utilities {
+  .animate-wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave-hand 2s ease-in-out infinite;
+  }
+}
+
 /* Focus: show ring only for keyboard focus (focus-visible), not mouse click */
 @layer base {
   *:focus {
@@ -16,13 +51,17 @@
   }
 
   /* Global link styles - exclude button-styled links */
-  a:not([class*="btn"]):not([class*="button"]):not([role="button"]):not([class*="inline-flex"]) {
+  a:not([class*="btn"]):not([class*="button"]):not([role="button"]):not(
+      [class*="inline-flex"]
+    ) {
     color: var(--tertiary);
     text-decoration: underline;
     font-weight: 400;
   }
 
-  a:not([class*="btn"]):not([class*="button"]):not([role="button"]):not([class*="inline-flex"]):hover {
+  a:not([class*="btn"]):not([class*="button"]):not([role="button"]):not(
+      [class*="inline-flex"]
+    ):hover {
     opacity: 0.8;
   }
 
