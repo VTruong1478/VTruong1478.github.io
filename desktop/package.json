@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "npm run build && cp -r dist/* ../docs/ && cd .. && git add docs/ && git commit -m 'Update GitHub Pages' && git push",
     "lint": "eslint .",
     "preview": "vite preview"
   },
