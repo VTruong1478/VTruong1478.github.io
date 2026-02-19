@@ -56,7 +56,7 @@ export default function TaskArea() {
             type="button"
             data-window-icon-id={window.id}
             onClick={() => handleIconClick(window)}
-            className={`flex items-center justify-center shrink-0 w-12 h-[47px] hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-widget transition-all relative ${
+            className={`flex items-center justify-center shrink-0 w-12 h-[47px] hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary transition-all relative ${
               isFocused ? "bg-widget" : ""
             }`}
             aria-label={`${window.title} window${

@@ -206,7 +206,7 @@ export default function PortfolioWindowContent() {
   const renderTextWithBold = (text) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
+      if (part.startsWith("**") && part.endsWith("**")) {
         return <strong key={index}>{part.slice(2, -2)}</strong>;
       }
       return part;
@@ -220,7 +220,7 @@ export default function PortfolioWindowContent() {
         {/* Back Button */}
         <button
           onClick={handleBackToPortfolio}
-          className="inline-flex items-center gap-[8px] mb-[var(--space-24)] text-primary hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity"
+          className="inline-flex items-center gap-[8px] mb-[var(--space-24)] text-primary hover:opacity-80 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity"
           style={{ fontSize: "16px", fontWeight: 600 }}
         >
           <span>← Back to Portfolio</span>
@@ -352,17 +352,17 @@ export default function PortfolioWindowContent() {
             )}
 
             {/* Title - 18px */}
-            <h3 
-              className="text-text mb-[4px]" 
-              style={{ 
-                fontSize: '18px', 
-                fontWeight: 700, 
-                lineHeight: '24px',
-                marginTop: project.image ? '0' : '8px'
+            <h2
+              className="text-text mb-[4px]"
+              style={{
+                fontSize: "18px",
+                fontWeight: 700,
+                lineHeight: "24px",
+                marginTop: project.image ? "0" : "8px",
               }}
             >
               {project.title}
-            </h3>
+            </h2>
 
             {/* Date - smaller than paragraph, dark gray */}
             <p
@@ -383,10 +383,11 @@ export default function PortfolioWindowContent() {
             {/* Read More Button - matches secondary button from About window, right-aligned */}
             <button
               onClick={(e) => handleReadMore(e, project)}
-              className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity self-end"
+              aria-label={`Read more about ${project.title}`}
+              className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity self-end"
               style={{ fontSize: "16px", fontWeight: 600 }}
             >
-              <span>Read More →</span>
+              <span aria-hidden="true">Read More →</span>
             </button>
           </article>
         ))}

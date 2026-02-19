@@ -16,7 +16,7 @@ import {
 const trayIcons = [
   {
     id: "linkedin",
-    label: "LinkedIn",
+    label: "LinkedIn, opens in new tab",
     Icon: LinkedInIcon,
     href: "https://www.linkedin.com/in/vinhan-truong/",
     external: true,
@@ -30,7 +30,7 @@ const trayIcons = [
   },
   {
     id: "github",
-    label: "GitHub",
+    label: "GitHub, opens in new tab",
     Icon: GithubIcon,
     href: "https://github.com/VTruong1478",
     external: true,
@@ -108,7 +108,7 @@ export default function SystemTray({ isTablet = false }) {
   const isoDate = currentTime.toISOString().split("T")[0];
 
   const iconClassName =
-    "flex items-center justify-center w-8 h-8 text-text hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-widget transition-opacity";
+    "flex items-center justify-center w-8 h-8 text-text hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity";
 
   return (
     <div
@@ -145,7 +145,6 @@ export default function SystemTray({ isTablet = false }) {
       {!isTablet && (
         <div
           className="flex flex-col items-center text-center text-text font-pixel pixel-xs"
-          aria-live="polite"
           aria-label="Current date and time"
         >
           <time dateTime={isoDateTime}>{timeString}</time>

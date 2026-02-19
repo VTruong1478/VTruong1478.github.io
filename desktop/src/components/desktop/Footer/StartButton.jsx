@@ -8,14 +8,14 @@ import { CardinalIcon } from "../../icons/FooterIcons";
 
 const StartButton = forwardRef(function StartButton(
   { onClick, "aria-expanded": ariaExpanded, "aria-pressed": ariaPressed },
-  ref
+  ref,
 ) {
   return (
     <button
       ref={ref}
       type="button"
       onClick={onClick}
-      className="flex items-center px-[var(--space-8)] py-[var(--space-8)] font-pixel text-text hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-widget rounded-m transition-opacity"
+      className="flex items-center px-[var(--space-8)] py-[var(--space-8)] font-pixel text-text hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary transition-opacity"
       aria-label="Start menu"
       aria-expanded={ariaExpanded}
       aria-pressed={ariaPressed}

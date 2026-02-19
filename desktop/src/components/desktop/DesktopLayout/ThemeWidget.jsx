@@ -65,7 +65,7 @@ export default function ThemeWidget({ showLabels = false }) {
             handleToggle();
           }
         }}
-        className="relative flex h-12 w-24 shrink-0 rounded-[32px] focus:outline-none focus-visible:ring-0"
+        className="relative flex h-12 w-24 shrink-0 rounded-[32px] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         style={{
           backgroundColor: isDark ? "#2a2a2a" : "#e8e8e8",
           border: isDark ? "1px solid #1a1a1a" : "1px solid #d0d0d0",

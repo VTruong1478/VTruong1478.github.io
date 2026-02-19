@@ -21,9 +21,7 @@ export default function WidgetCard({
       }}
       {...(label ? { "aria-label": label } : {})}
     >
-      {title ? (
-        <h2 className="pixel-md mb-[var(--space-12)]">{title}</h2>
-      ) : null}
+      {title ? <p className="pixel-md mb-[var(--space-12)]">{title}</p> : null}
       {children}
     </aside>
   );

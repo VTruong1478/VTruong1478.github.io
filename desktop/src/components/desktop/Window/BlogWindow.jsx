@@ -13,14 +13,13 @@ const blogPosts = [
     image: figmaImg,
     title: "How I Designed This Website",
     date: "January 2026",
-    description:
-      "Behind-the-scenes of the construction of this site.",
+    description: "Behind-the-scenes of the construction of this site.",
     fullArticle: {
       sections: [
         {
           type: "paragraph",
           content:
-            "When I set out to build my personal website, I knew I didn't want it to feel like just another static resume. I wanted it to reflect my personality while still being easy and enjoyable to use. That's why I turned to **Human-Centered Design** (HCD), an approach that puts **people at the core** of every design decision. Instead of starting with \"what do I want to show?\" the question shifts to \"how will someone experience this and what will make it more enjoyable for them?\"",
+            'When I set out to build my personal website, I knew I didn\'t want it to feel like just another static resume. I wanted it to reflect my personality while still being easy and enjoyable to use. That\'s why I turned to **Human-Centered Design** (HCD), an approach that puts **people at the core** of every design decision. Instead of starting with "what do I want to show?" the question shifts to "how will someone experience this and what will make it more enjoyable for them?"',
         },
         {
           type: "paragraph",
@@ -110,12 +109,12 @@ const blogPosts = [
         {
           type: "paragraph",
           content:
-            "It all started during a late-night \"study\" session with college friends. We were joking about dream jobs when someone mentioned wanting to work at a boba shop. I laughed and said, \"What if we started one?\" We all laughed it off…but that night, the idea stuck. I couldn't stop thinking about it. I dove into research: **market trends, suppliers, startup costs**. Nervously, I pitched it to my parents. I expected skepticism. Instead, my dad said something that changed everything:",
+            'It all started during a late-night "study" session with college friends. We were joking about dream jobs when someone mentioned wanting to work at a boba shop. I laughed and said, "What if we started one?" We all laughed it off…but that night, the idea stuck. I couldn\'t stop thinking about it. I dove into research: **market trends, suppliers, startup costs**. Nervously, I pitched it to my parents. I expected skepticism. Instead, my dad said something that changed everything:',
         },
         {
           type: "quote",
           content:
-            "\"I'd rather you try, fail, and learn than never try at all and regret it.\"",
+            '"I\'d rather you try, fail, and learn than never try at all and regret it."',
         },
         {
           type: "paragraph",
@@ -206,7 +205,7 @@ const blogPosts = [
         {
           type: "paragraph",
           content:
-            "Running Lunar Tea was hands down the **hardest but most rewarding** thing I've done. I learned that being a founder means constantly balancing freedom with responsibility. Lunar Tea only came to life because of the **family and friends** who stood behind me every step of the way. They showed up at dawn to help set up, spread the word, and reminded me that even though I carried the title of \"sole proprietor,\" I was never truly on my own.",
+            'Running Lunar Tea was hands down the **hardest but most rewarding** thing I\'ve done. I learned that being a founder means constantly balancing freedom with responsibility. Lunar Tea only came to life because of the **family and friends** who stood behind me every step of the way. They showed up at dawn to help set up, spread the word, and reminded me that even though I carried the title of "sole proprietor," I was never truly on my own.',
         },
         {
           type: "paragraph",
@@ -224,7 +223,9 @@ export default function BlogWindowContent({ windowData }) {
   // If windowData contains an articleId, find and display that article
   useEffect(() => {
     if (windowData?.articleId) {
-      const article = blogPosts.find(post => post.id === windowData.articleId);
+      const article = blogPosts.find(
+        (post) => post.id === windowData.articleId,
+      );
       if (article) {
         setSelectedArticle(article);
       }
@@ -244,7 +245,7 @@ export default function BlogWindowContent({ windowData }) {
   const renderTextWithBold = (text) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
+      if (part.startsWith("**") && part.endsWith("**")) {
         return <strong key={index}>{part.slice(2, -2)}</strong>;
       }
       return part;
@@ -258,7 +259,7 @@ export default function BlogWindowContent({ windowData }) {
         {/* Back Button */}
         <button
           onClick={handleBackToBlog}
-          className="inline-flex items-center gap-[8px] mb-[var(--space-24)] text-primary hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity"
+          className="inline-flex items-center gap-[8px] mb-[var(--space-24)] text-primary hover:opacity-80 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity"
           style={{ fontSize: "16px", fontWeight: 600 }}
         >
           <span>← Back to Blog</span>
@@ -402,17 +403,17 @@ export default function BlogWindowContent({ windowData }) {
             )}
 
             {/* Title - 18px */}
-            <h3 
-              className="text-text mb-[4px]" 
-              style={{ 
-                fontSize: '18px', 
-                fontWeight: 700, 
-                lineHeight: '24px',
-                marginTop: post.image ? '0' : '8px'
+            <h2
+              className="text-text mb-[4px]"
+              style={{
+                fontSize: "18px",
+                fontWeight: 700,
+                lineHeight: "24px",
+                marginTop: post.image ? "0" : "8px",
               }}
             >
               {post.title}
-            </h3>
+            </h2>
 
             {/* Date - smaller than paragraph, dark gray */}
             <p
@@ -433,10 +434,11 @@ export default function BlogWindowContent({ windowData }) {
             {/* Read More Button - matches secondary button from About window, right-aligned */}
             <button
               onClick={(e) => handleReadMore(e, post)}
-              className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity self-end"
+              aria-label={`Read more about ${post.title}`}
+              className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity self-end"
               style={{ fontSize: "16px", fontWeight: 600 }}
             >
-              <span>Read More →</span>
+              <span aria-hidden="true">Read More →</span>
             </button>
           </article>
         ))}

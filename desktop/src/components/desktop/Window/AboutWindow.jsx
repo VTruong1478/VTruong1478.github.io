@@ -20,19 +20,26 @@ export default function AboutWindowContent() {
         {/* Profile image */}
         <img
           src="/images/profile.jpg"
-          alt="An Truong"
+          alt="An Truong Headshot"
           width={160}
           height={160}
           className="w-[160px] h-[160px] rounded-[32px] object-cover border-[2px] border-solid border-tertiary mx-auto mb-[var(--space-24)]"
         />
 
         {/* Greeting */}
-        <p className="font-sans text-primary" style={{ fontSize: '16px', fontWeight: 700 }}>
-          <span className="inline-block animate-wave origin-[70%_70%]">👋</span> Hey there! I'm
+        <p
+          className="font-sans text-primary"
+          style={{ fontSize: "16px", fontWeight: 700 }}
+        >
+          <span className="inline-block animate-wave origin-[70%_70%]">👋</span>{" "}
+          Hey there! I'm
         </p>
 
         {/* Name */}
-        <h1 className="font-sans text-text mb-[var(--space-16)]" style={{ fontSize: '32px', fontWeight: 700 }}>
+        <h1
+          className="font-sans text-text mb-[var(--space-16)]"
+          style={{ fontSize: "32px", fontWeight: 700 }}
+        >
           An Truong
         </h1>
 
@@ -40,10 +47,10 @@ export default function AboutWindowContent() {
         <div className="mb-[var(--space-32)] flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-stretch sm:items-center">
           <a
             href="mailto:v.truong1478@gmail.com"
-            className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[24px] py-[12px] box-border bg-primary text-white border-none rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity w-full sm:w-auto"
-            style={{ 
-              fontSize: '16px', 
-              fontWeight: 600
+            className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[24px] py-[12px] box-border bg-primary text-white border-none rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity w-full sm:w-auto"
+            style={{
+              fontSize: "16px",
+              fontWeight: 600,
             }}
             aria-label="Email An Truong"
           >
@@ -52,12 +59,14 @@ export default function AboutWindowContent() {
           </a>
           <a
             href="https://www.linkedin.com/in/vinhan-truong/"
-            className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-opacity w-full sm:w-auto"
-            style={{ 
-              fontSize: '16px', 
-              fontWeight: 600
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity w-full sm:w-auto"
+            style={{
+              fontSize: "16px",
+              fontWeight: 600,
             }}
-            aria-label="Connect on LinkedIn"
+            aria-label="Connect on LinkedIn, opens in new tab"
           >
             <LinkedInButtonIcon className="w-[18px] h-[18px]" />
             <span>Connect</span>
@@ -65,7 +74,10 @@ export default function AboutWindowContent() {
         </div>
 
         {/* Bullet points - left aligned within centered container */}
-        <ul className="list-disc list-inside font-sans text-text text-left" style={{ fontSize: '16px', lineHeight: '1.5', fontWeight: 400 }}>
+        <ul
+          className="list-disc list-inside font-sans text-text text-left"
+          style={{ fontSize: "16px", lineHeight: "1.5", fontWeight: 400 }}
+        >
           {aboutBullets.map((item, i) => (
             <li key={i}>{item}</li>
           ))}

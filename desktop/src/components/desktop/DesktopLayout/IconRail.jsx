@@ -26,7 +26,7 @@ export default function IconRail() {
     if (win && win.isOpen && !win.isMinimized) {
       // Check if there are multiple open windows to play focus sound
       const openWindows = Array.from(windows.values()).filter(
-        (w) => w.isOpen && !w.isMinimized
+        (w) => w.isOpen && !w.isMinimized,
       );
       const shouldPlaySound = openWindows.length > 1;
       focusWindow(id, shouldPlaySound);
@@ -48,7 +48,7 @@ export default function IconRail() {
             key={id}
             type="button"
             onClick={(e) => handleClick(e, id)}
-            className={`flex flex-col items-center gap-[var(--space-8)] font-pixel text-text hover:text-primary focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-m transition-colors pixel-sm ${
+            className={`flex flex-col items-center gap-[var(--space-8)] font-pixel text-text hover:text-primary focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors pixel-sm ${
               isOpen ? "text-primary" : ""
             }`}
             aria-label={label}

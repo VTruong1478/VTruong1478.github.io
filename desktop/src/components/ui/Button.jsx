@@ -32,7 +32,7 @@ export default function Button({
   );
 
   const sharedClasses =
-    "inline-flex items-center justify-center gap-[var(--space-8)] h-[var(--space-48)] px-[var(--space-16)] bg-primary text-white rounded-m font-sans p-md hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-window transition-opacity";
+    "inline-flex items-center justify-center gap-[var(--space-8)] h-[var(--space-48)] px-[var(--space-16)] bg-primary text-white rounded-m font-sans p-md hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity";
 
   if (href) {
     return (

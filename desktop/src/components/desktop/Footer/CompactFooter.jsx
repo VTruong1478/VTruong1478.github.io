@@ -22,7 +22,7 @@ import { useWindowManager } from "../../../contexts/WindowManagerContext";
 const quickLinks = [
   {
     id: "linkedin",
-    label: "LinkedIn",
+    label: "LinkedIn, opens in new tab",
     Icon: LinkedInIcon,
     href: "https://www.linkedin.com/in/vinhan-truong/",
     external: true,
@@ -36,14 +36,18 @@ const quickLinks = [
   },
   {
     id: "github",
-    label: "GitHub",
+    label: "GitHub, opens in new tab",
     Icon: GithubIcon,
     href: "https://github.com/VTruong1478",
     external: true,
   },
 ];
 
-export default function CompactFooter({ onStartClick, startMenuOpen, startButtonRef }) {
+export default function CompactFooter({
+  onStartClick,
+  startMenuOpen,
+  startButtonRef,
+}) {
   const { windows } = useWindowManager();
   const [trayOpen, setTrayOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -53,7 +57,7 @@ export default function CompactFooter({ onStartClick, startMenuOpen, startButton
 
   // Find the currently active (non-minimized) window
   const activeWindow = Array.from(windows.values()).find(
-    (w) => w.isOpen && !w.isMinimized
+    (w) => w.isOpen && !w.isMinimized,
   );
 
   const toggleTray = useCallback(() => {
@@ -125,7 +129,7 @@ export default function CompactFooter({ onStartClick, startMenuOpen, startButton
   }, [trayOpen, closeTray]);
 
   const iconButtonClass =
-    "flex items-center justify-center w-10 h-10 text-text hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-grey98 dark:focus-visible:ring-offset-grey98 transition-opacity";
+    "flex items-center justify-center w-10 h-10 text-text hover:opacity-80 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity";
 
   return (
     <>
@@ -183,7 +187,7 @@ export default function CompactFooter({ onStartClick, startMenuOpen, startButton
             ref={startButtonRef}
             type="button"
             onClick={onStartClick}
-            className="flex items-center gap-[var(--space-4)] px-[var(--space-8)] py-[var(--space-4)] font-pixel text-text hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-grey98 transition-opacity"
+            className="flex items-center gap-[var(--space-4)] px-[var(--space-8)] py-[var(--space-4)] font-pixel text-text hover:opacity-80 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary transition-opacity"
             aria-label="Start menu"
             aria-expanded={startMenuOpen}
           >

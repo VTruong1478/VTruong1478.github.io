@@ -19,6 +19,7 @@ import BlogWindowContent from "../Window/BlogWindow";
 import ContactWindowContent from "../Window/ContactWindow";
 import { windowDefinitions } from "../../../config/windowDefinitions";
 import { computeAboutSpawn } from "../../../contexts/WindowManagerContext";
+import SkipLink from "../../ui/SkipLink";
 
 const windowContents = {
   about: AboutWindowContent,
@@ -79,6 +80,7 @@ export default function DesktopLayout() {
   if (isMobile) {
     return (
       <div className="min-h-screen bg-bg text-text flex flex-col">
+        <SkipLink />
         {/* Scrollable content area - excludes fixed footer */}
         <div
           className="flex-1 flex flex-col overflow-y-auto"
@@ -110,9 +112,11 @@ export default function DesktopLayout() {
                 <li>
                   Jan 2026:{" "}
                   <button
-                    onClick={() => openWindow("blog", { data: { articleId: 1 } })}
-                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
-                    style={{ display: 'inline' }}
+                    onClick={() =>
+                      openWindow("blog", { data: { articleId: 1 } })
+                    }
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: "inline" }}
                   >
                     How I Designed This Website
                   </button>
@@ -120,9 +124,11 @@ export default function DesktopLayout() {
                 <li>
                   Dec 2023:{" "}
                   <button
-                    onClick={() => openWindow("blog", { data: { articleId: 2 } })}
-                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
-                    style={{ display: 'inline' }}
+                    onClick={() =>
+                      openWindow("blog", { data: { articleId: 2 } })
+                    }
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: "inline" }}
                   >
                     Lessons from Starting my Own Business
                   </button>
@@ -138,6 +144,7 @@ export default function DesktopLayout() {
   // Desktop/tablet layout (>= 768px)
   return (
     <div className="min-h-screen h-screen bg-bg text-text flex flex-col overflow-hidden">
+      <SkipLink />
       {/* Desktop body: full viewport minus footer; used for maximize bounds */}
       <div
         ref={desktopBodyRef}
@@ -186,9 +193,11 @@ export default function DesktopLayout() {
                 <li>
                   Jan 2026:{" "}
                   <button
-                    onClick={() => openWindow("blog", { data: { articleId: 1 } })}
-                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
-                    style={{ display: 'inline' }}
+                    onClick={() =>
+                      openWindow("blog", { data: { articleId: 1 } })
+                    }
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: "inline" }}
                   >
                     How I Designed This Website
                   </button>
@@ -196,9 +205,11 @@ export default function DesktopLayout() {
                 <li>
                   Dec 2023:{" "}
                   <button
-                    onClick={() => openWindow("blog", { data: { articleId: 2 } })}
-                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary rounded-m bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
-                    style={{ display: 'inline' }}
+                    onClick={() =>
+                      openWindow("blog", { data: { articleId: 2 } })
+                    }
+                    className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
+                    style={{ display: "inline" }}
                   >
                     Lessons from Starting my Own Business
                   </button>
