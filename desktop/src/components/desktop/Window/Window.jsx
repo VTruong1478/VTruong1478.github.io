@@ -456,6 +456,7 @@ export default function Window({ window, bounds, content }) {
       style={{
         borderRadius: 0, // Square corners, no border radius
         border: isFocused ? "1px solid var(--dark-grey)" : "1px solid var(--98-grey)",
+        boxShadow: isFocused ? "var(--shadow-window-focused)" : "var(--shadow-window)",
         left: `${window.x}px`,
         top: `${window.y}px`,
         width: `${window.width}px`,

@@ -101,7 +101,7 @@ export default function DesktopLayout() {
             <WidgetCard
               title=""
               aria-label="Theme switcher"
-              className="!p-0 !bg-transparent"
+              className="!p-0 !bg-transparent !border-none !shadow-none"
             >
               <ThemeWidget showLabels />
             </WidgetCard>
@@ -177,7 +177,7 @@ export default function DesktopLayout() {
             <WidgetCard
               title=""
               aria-label="Theme switcher"
-              className="!p-0 !bg-transparent"
+              className="!p-0 !bg-transparent !border-none !shadow-none"
             >
               <ThemeWidget />
             </WidgetCard>

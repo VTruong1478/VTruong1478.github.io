@@ -31,9 +31,16 @@ export default function ThemeWidget({ showLabels = false }) {
 
   return (
     <div
-      className={`flex items-center rounded-m px-[var(--space-16)] py-[var(--space-16)] font-pixel pixel-sm bg-widget transition-colors focus-within:ring-offset-transparent focus-within:outline-none ${
+      className={`flex items-center rounded-m px-[var(--space-16)] py-[var(--space-16)] font-pixel pixel-sm transition-colors focus-within:ring-offset-transparent focus-within:outline-none ${
         showLabels ? "justify-between" : "justify-center lg:justify-between"
       }`}
+      style={{
+        background: "var(--widget-glass-bg)",
+        backdropFilter: "blur(var(--widget-blur))",
+        WebkitBackdropFilter: "blur(var(--widget-blur))",
+        border: "1px solid var(--widget-glass-border)",
+        boxShadow: "var(--shadow-widget-aero)",
+      }}
     >
       <span
         aria-hidden="true"
@@ -58,19 +65,18 @@ export default function ThemeWidget({ showLabels = false }) {
             handleToggle();
           }
         }}
-        className="relative flex h-8 w-16 shrink-0 rounded-[32px] focus:outline-none focus-visible:ring-0"
+        className="relative flex h-12 w-24 shrink-0 rounded-[32px] focus:outline-none focus-visible:ring-0"
         style={{
-          backgroundColor: isDark
-            ? "var(--dark-grey)"
-            : "var(--window-background)",
+          backgroundColor: isDark ? "#2a2a2a" : "#e8e8e8",
+          border: isDark ? "1px solid #1a1a1a" : "1px solid #d0d0d0",
         }}
       >
         {/* Inactive icon on track - same size and position as selected icon */}
         <span className="absolute inset-0 flex items-center" aria-hidden>
           <span
-            className="absolute h-4 w-4 flex items-center justify-center"
+            className="absolute h-6 w-6 flex items-center justify-center"
             style={{
-              left: "8px",
+              left: "12px",
               top: "50%",
               transform: "translateY(-50%)",
               opacity: isDark ? 1 : 0,
@@ -79,9 +85,9 @@ export default function ThemeWidget({ showLabels = false }) {
             <img
               src={themeLight}
               alt=""
-              width={16}
-              height={16}
-              className="h-4 w-4 object-contain"
+              width={24}
+              height={24}
+              className="h-6 w-6 object-contain"
               style={{
                 filter: "brightness(0)",
                 opacity: 0.3,
@@ -89,9 +95,9 @@ export default function ThemeWidget({ showLabels = false }) {
             />
           </span>
           <span
-            className="absolute h-4 w-4 flex items-center justify-center"
+            className="absolute h-6 w-6 flex items-center justify-center"
             style={{
-              left: "40px",
+              left: "60px",
               top: "50%",
               transform: "translateY(-50%)",
               opacity: isDark ? 0 : 1,
@@ -100,9 +106,9 @@ export default function ThemeWidget({ showLabels = false }) {
             <img
               src={themeDark}
               alt=""
-              width={16}
-              height={16}
-              className="h-4 w-4 object-contain"
+              width={24}
+              height={24}
+              className="h-6 w-6 object-contain"
               style={{
                 filter: "brightness(0)",
                 opacity: 0.3,
@@ -112,21 +118,22 @@ export default function ThemeWidget({ showLabels = false }) {
         </span>
         {/* Knob: blue circle with active icon */}
         <span
-          className="absolute flex h-6 w-6 items-center justify-center rounded-full bg-primary transition-[left] duration-200 ease-out"
+          className="absolute flex h-9 w-9 items-center justify-center rounded-full bg-primary transition-[left] duration-200 ease-out"
           style={{
-            left: isDark ? "36px" : "4px",
+            left: isDark ? "54px" : "6px",
             top: "50%",
             transform: "translateY(-50%)",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
           }}
           aria-hidden
         >
           <img
             src={isDark ? themeDark : themeLight}
             alt=""
-            width={16}
-            height={16}
-            className="h-4 w-4 object-contain"
-            style={{ filter: "brightness(0)" }}
+            width={24}
+            height={24}
+            className="h-6 w-6 object-contain"
+            style={{ filter: "brightness(0) invert(1)" }}
           />
         </span>
       </button>

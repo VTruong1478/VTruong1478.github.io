@@ -10,7 +10,10 @@ export default function MobileWindow({ window, content }) {
     <article
       data-window-id={window.id}
       className="bg-window text-text border border-darkgrey overflow-hidden flex flex-col"
-      style={{ borderRadius: 0 }}
+      style={{ 
+        borderRadius: 0,
+        boxShadow: "var(--shadow-window)"
+      }}
       role="dialog"
       aria-label={window.title}
     >

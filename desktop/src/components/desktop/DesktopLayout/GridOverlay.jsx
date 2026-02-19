@@ -1,6 +1,6 @@
 /**
- * Dev-only grid overlay to validate the responsive column system.
- * Toggle with "g" when running in DEV. Column widths as semi-transparent red bands; gutters empty.
+ * Grid overlay to validate the responsive column system.
+ * Toggle with "g" key. Column widths as semi-transparent red bands; gutters empty.
  * Breakpoints: mobile <768 (8 cols), tablet+ >=768 (12 cols). Margins/gutters per Figma.
  * No new tokens; uses Tailwind arbitrary values for red fill.
  */
@@ -10,7 +10,6 @@ export default function GridOverlay() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!import.meta.env.DEV) return;
     const handleKeyDown = (e) => {
       const t = e.target;
       if (
@@ -26,7 +25,6 @@ export default function GridOverlay() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  if (!import.meta.env.DEV) return null;
   if (!visible) return null;
 
   return (
