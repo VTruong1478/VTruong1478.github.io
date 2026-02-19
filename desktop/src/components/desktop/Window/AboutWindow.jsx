@@ -12,6 +12,30 @@ const aboutBullets = [
   "I learn fast, whether it's a new industry or a new hobby",
 ];
 
+const workExperiences = [
+  {
+    dates: "Nov 2025 – Feb 2026",
+    role: "Head of Operations & Growth",
+    company: "HomePlate Health",
+    description:
+      "Built pre-launch systems and shipped product for an early-stage food startup.",
+  },
+  {
+    dates: "Jun 2023 – Nov 2025",
+    role: "Solutions Engineer",
+    company: "Deloitte Consulting",
+    description:
+      "Coordinated cross-functional delivery across product, engineering, and QA for a government platform.",
+  },
+  {
+    dates: "Jan 2023 – Aug 2023",
+    role: "Founder",
+    company: "Lunar Tea",
+    description:
+      "Founded and grew a boba beverage business from zero, owning all operations.",
+  },
+];
+
 export default function AboutWindowContent() {
   return (
     <div className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]">
@@ -82,6 +106,81 @@ export default function AboutWindowContent() {
             <li key={i}>{item}</li>
           ))}
         </ul>
+
+        <div className="mt-[var(--space-40)] text-left">
+          <h2
+            className="font-sans text-text"
+            style={{ fontSize: "20px", fontWeight: 700 }}
+          >
+            Work Experience
+          </h2>
+          <ol className="mt-[var(--space-24)] space-y-[var(--space-32)]">
+            {workExperiences.map((experience) => (
+              <li
+                key={`${experience.role}-${experience.company}`}
+                className="grid grid-cols-[24px_1fr] gap-[var(--space-24)]"
+              >
+                <div className="relative flex flex-col items-center h-full">
+                  <span
+                    className="absolute top-0 bottom-0 w-[2px]"
+                    style={{ backgroundColor: "rgba(19, 54, 124, 0.2)" }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="relative block w-[16px] h-[16px] rounded-full"
+                    style={{
+                      backgroundColor: "var(--window-background)",
+                      border: "2px solid rgba(19, 54, 124, 0.4)",
+                    }}
+                    aria-hidden="true"
+                  />
+                </div>
+                <div
+                  className="relative font-sans"
+                  style={{
+                    backgroundColor: "var(--window-background)",
+                    padding: "var(--space-20)",
+                  }}
+                >
+                  <p
+                    className="text-darkgrey mb-[var(--space-8)]"
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: 500,
+                      letterSpacing: "0.04em",
+                      textTransform: "uppercase",
+                      color: "rgba(95, 95, 95, 0.75)",
+                    }}
+                  >
+                    {experience.dates}
+                  </p>
+                  <h3
+                    className="font-sans text-text"
+                    style={{ fontSize: "20px", fontWeight: 700 }}
+                  >
+                    {experience.role}
+                  </h3>
+                  <p
+                    className="text-text mt-[var(--space-4)]"
+                    style={{ fontSize: "16px", fontWeight: 600 }}
+                  >
+                    {experience.company}
+                  </p>
+                  <p
+                    className="text-text mt-[var(--space-8)]"
+                    style={{
+                      fontSize: "16px",
+                      lineHeight: "1.5",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {experience.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </div>
   );

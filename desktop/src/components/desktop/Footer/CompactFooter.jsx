@@ -140,7 +140,7 @@ export default function CompactFooter({
           style={{
             bottom: "48px",
             backgroundColor:
-              "color-mix(in srgb, var(--secondary) 28%, transparent)",
+              "color-mix(in srgb, var(--tertiary) 28%, transparent)",
           }}
           aria-hidden
           onClick={closeTray}

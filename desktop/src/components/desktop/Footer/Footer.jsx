@@ -53,13 +53,17 @@ export default function Footer() {
             style={{
               bottom: `${FOOTER_HEIGHT}px`,
               backgroundColor:
-                "color-mix(in srgb, var(--secondary) 28%, transparent)",
+                "color-mix(in srgb, var(--tertiary) 28%, transparent)",
             }}
             aria-hidden
             onClick={closeMenu}
           />
         )}
-        <CompactFooter onStartClick={toggleMenu} startMenuOpen={menuOpen} startButtonRef={startButtonRef} />
+        <CompactFooter
+          onStartClick={toggleMenu}
+          startMenuOpen={menuOpen}
+          startButtonRef={startButtonRef}
+        />
         {menuOpen && (
           <StartMenu onClose={closeMenu} startButtonRef={startButtonRef} />
         )}
@@ -77,7 +81,7 @@ export default function Footer() {
           style={{
             bottom: `${FOOTER_HEIGHT}px`,
             backgroundColor:
-              "color-mix(in srgb, var(--secondary) 28%, transparent)",
+              "color-mix(in srgb, var(--tertiary) 28%, transparent)",
           }}
           aria-hidden
           onClick={closeMenu}
