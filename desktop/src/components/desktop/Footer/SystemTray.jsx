@@ -2,7 +2,7 @@
  * Right system tray: LinkedIn, Download, GitHub, Volume icons + clock.
  * Pixelify Sans, text-text. Icons as inline SVG. ARIA and focus-visible only.
  * Clock shows current time and date, updates every minute.
- * On tablet (768-1023px), clock is hidden to save space for window icons.
+ * On mobile (<768px), clock is hidden to save space.
  */
 import { useState, useEffect, useRef } from "react";
 import {
@@ -53,7 +53,7 @@ function formatDate(date) {
   return `${month}/${day}/${year}`;
 }
 
-export default function SystemTray({ isTablet = false }) {
+export default function SystemTray({ isMobile = false }) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef(null);
@@ -75,7 +75,7 @@ export default function SystemTray({ isTablet = false }) {
     if (!audioRef.current) {
       audioRef.current = new Audio("/background-music.mp3");
       audioRef.current.loop = true;
-      audioRef.current.volume = 0.05;
+      audioRef.current.volume = 0.2;
     }
 
     return () => {
@@ -142,7 +142,7 @@ export default function SystemTray({ isTablet = false }) {
           <VolumeIcon className="w-8 h-8" aria-hidden />
         )}
       </button>
-      {!isTablet && (
+      {!isMobile && (
         <div
           className="flex flex-col items-center text-center text-text font-pixel pixel-xs"
           aria-label="Current date and time"

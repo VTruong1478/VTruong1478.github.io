@@ -67,8 +67,10 @@ export default function ThemeWidget({ showLabels = false }) {
         }}
         className="relative flex h-12 w-24 shrink-0 rounded-[32px] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         style={{
-          backgroundColor: isDark ? "#2a2a2a" : "#e8e8e8",
-          border: isDark ? "1px solid #1a1a1a" : "1px solid #d0d0d0",
+          backgroundColor: isDark
+            ? "var(--98-grey)"
+            : "var(--widget-background)",
+          border: "1px solid var(--98-grey)",
         }}
       >
         {/* Inactive icon on track - same size and position as selected icon */}

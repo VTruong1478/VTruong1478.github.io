@@ -2,7 +2,7 @@
  * Sound effects utility for window actions
  */
 
-const SOUND_VOLUME = 1.0; // 100% volume for all sound effects
+const SOUND_VOLUME = 0.5;
 
 class SoundManager {
   constructor() {
@@ -20,7 +20,7 @@ class SoundManager {
 
   init() {
     if (this.initialized) return;
-    
+
     // Create and preload all audio files
     this.sounds.open = new Audio("/focus-window.mp3");
     this.sounds.close = new Audio("/close-window.mp3");
@@ -45,13 +45,13 @@ class SoundManager {
   // Preload all sounds immediately
   preload() {
     if (this.preloadPromise) return this.preloadPromise;
-    
+
     this.init();
-    
+
     // Create promises for all audio files to ensure they're loaded
     const loadPromises = Object.values(this.sounds).map((audio) => {
       if (!audio) return Promise.resolve();
-      
+
       return new Promise((resolve) => {
         if (audio.readyState >= 3) {
           // HAVE_FUTURE_DATA or better
@@ -69,7 +69,7 @@ class SoundManager {
 
   play(soundName) {
     this.init(); // Ensure initialized
-    
+
     const sound = this.sounds[soundName];
     if (sound) {
       // Clone and play to allow overlapping sounds

@@ -33,7 +33,7 @@ export default {
         black: "var(--black)",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Lora", "system-ui", "sans-serif"],
         pixel: ["Pixelify Sans", "monospace"],
       },
     },

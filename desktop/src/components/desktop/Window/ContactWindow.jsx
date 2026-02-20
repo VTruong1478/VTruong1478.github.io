@@ -38,11 +38,7 @@ export default function ContactWindowContent() {
         {/* Primary button - Get in touch */}
         <a
           href="mailto:v.truong1478@gmail.com"
-          className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[24px] py-[12px] box-border bg-primary text-white border-none rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity"
-          style={{
-            fontSize: "16px",
-            fontWeight: 600,
-          }}
+          className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[24px] py-[12px] box-border bg-primary text-white border-none rounded-[var(--radius)] p-xs-bold hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity"
           aria-label="Email An Truong"
         >
           <EmailIcon className="w-[18px] h-[18px]" />
@@ -54,11 +50,7 @@ export default function ContactWindowContent() {
           href="https://www.linkedin.com/in/vinhan-truong/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity"
-          style={{
-            fontSize: "16px",
-            fontWeight: 600,
-          }}
+          className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] p-xs-bold hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity"
           aria-label="Connect on LinkedIn, opens in new tab"
         >
           <LinkedInButtonIcon className="w-[18px] h-[18px]" />

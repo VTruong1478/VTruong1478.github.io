@@ -9,6 +9,110 @@ import figmaImg from "../../../assets/images/Figma.png";
 
 const projects = [
   {
+    id: 3,
+    image: figmaImg,
+    title: "Designing My Personal Website with Human-Centered Design",
+    date: "February 2026",
+    description:
+      "Applying Human-Centered Design principles to create a personal website that reflects how I think and work.",
+    fullArticle: {
+      sections: [
+        {
+          type: "heading",
+          content: "Overview",
+        },
+        {
+          type: "paragraph",
+          content:
+            "When I set out to redesign my personal website, I wanted it to do more than display my resume. I wanted it to reflect **how I think** — and **how I work**. So instead of jumping straight into building, I applied **[Human-Centered Design (HCD)](https://www.interaction-design.org/literature/topics/human-centered-design?srsltid=AfmBOooidm3GjVAKGykvwsBKif5NUDQd-hcSsIDRgxgKKZYthV6ZByML)**: a framework that starts with the people who will use the product and works backward to every design decision.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "This project became a practical exercise in the same principles I apply professionally: **define the problem, understand the audience, build intentionally, and test your assumptions**.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Note: the live site may differ from the Figma design in places. Design and development are iterative (and I changed my mind a few times after the design phase was over).",
+        },
+        {
+          type: "paragraph",
+          content:
+            "If you're curious about the day-to-day design process like why I chose a desktop-inspired layout, how the Design Language System came together, and the mistakes along the way, I wrote about it in detail in my **[blog post](https://www.figma.com/design/q5ouRlX1hcWwjRGEm1uGcS/Personal-Website?node-id=82-1390&t=0tKYIav1wBoKT4lV-1)**.",
+        },
+        {
+          type: "heading",
+          content: "The Problem with Skipping the Foundation",
+        },
+        {
+          type: "paragraph",
+          content:
+            "My previous site was functional but forgettable. It followed the standard template most developers default to — clean, minimal, and indistinct. I'd also seen firsthand on a design team what happens when you build without a foundation: **inconsistent components, confused users, frustrated developers**, and a product that's expensive to maintain.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "That experience shaped how I approached this redesign. Before writing a single line of code, I invested time in designing a proper system in Figma — complete with a **Design Language System (DLS), global components, and responsive layouts** for both desktop and mobile. The upfront investment paid off every step of the way.",
+        },
+        {
+          type: "heading",
+          content: "Understanding the Audience",
+        },
+        {
+          type: "paragraph",
+          content:
+            'The first question I asked wasn\'t "what do I want to show?" It was "**who is going to visit this, and what do they need from it?"',
+        },
+        {
+          type: "paragraph",
+          content:
+            "The primary audience is **recruiters, potential collaborators, and hiring managers** — people who may spend fewer than two minutes on the page before forming an opinion. With that in mind, I designed for **scannability and clarity**: the most important information surfaces immediately, navigation is intuitive, and nothing competes for attention unnecessarily.",
+        },
+        {
+          type: "heading",
+          content: "Design Decisions",
+        },
+        {
+          type: "subheading",
+          content: "Color",
+        },
+        {
+          type: "paragraph",
+          content:
+            "I chose a **blue-forward palette** grounded in color psychology — blue signals trust and professionalism, while cool tones reduce cognitive load and create a calm experience. I used Realtime Colors and Coolors to test combinations in both light and dark modes, ensuring every color met **WCAG AA contrast standards** before it made it into the design.",
+        },
+        {
+          type: "subheading",
+          content: "Accessibility",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Accessibility was a foundation, not an afterthought**. I followed WCAG AA guidelines throughout: contrast ratios, line height minimums, heading hierarchy, and semantic HTML structure. I also built responsive layouts on a 12-column grid for desktop and 8-column for mobile (click the G key to see it!), and manually tested keyboard and screen reader navigation.",
+        },
+        {
+          type: "subheading",
+          content: "Typography & Layout",
+        },
+        {
+          type: "paragraph",
+          content:
+            "A **clear typographic hierarchy** lets visual users instantly orient themselves — headlines, section headers, and body text each occupy a distinct visual layer. A **minimalist layout** and generous whitespace keep the focus on content rather than decoration.",
+        },
+        {
+          type: "heading",
+          content: "What This Reflects",
+        },
+        {
+          type: "paragraph",
+          content:
+            "This project is a small example of something I care about in every context: **building things that work for the people who use them**. Whether it's a product workflow, an operational system, or a website, the approach is the same — **start with the user, set the foundation, then build everything else on top of it**.",
+        },
+      ],
+    },
+  },
+  {
     id: 1,
     image: smallBusinessImg,
     title: "Driving Revenue Growth for Small Business",
@@ -220,8 +324,7 @@ export default function PortfolioWindowContent() {
         {/* Back Button */}
         <button
           onClick={handleBackToPortfolio}
-          className="inline-flex items-center gap-[8px] mb-[var(--space-24)] text-primary hover:opacity-80 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity"
-          style={{ fontSize: "16px", fontWeight: 600 }}
+          className="inline-flex items-center gap-[8px] mb-[var(--space-24)] text-primary hover:opacity-80 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity p-xs-bold"
         >
           <span>← Back to Portfolio</span>
         </button>
@@ -384,8 +487,7 @@ export default function PortfolioWindowContent() {
             <button
               onClick={(e) => handleReadMore(e, project)}
               aria-label={`Read more about ${project.title}`}
-              className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] font-sans hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity self-end"
-              style={{ fontSize: "16px", fontWeight: 600 }}
+              className="inline-flex items-center justify-center gap-[8px] h-[48px] px-[16px] py-[12px] box-border bg-transparent text-primary border-[3px] border-solid border-primary rounded-[var(--radius)] hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-opacity self-end p-xs-bold"
             >
               <span aria-hidden="true">Read More →</span>
             </button>

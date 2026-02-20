@@ -98,7 +98,7 @@ export default function Footer() {
           aria-pressed={menuOpen}
         />
         <TaskArea />
-        <SystemTray isTablet={isTablet} />
+        <SystemTray isMobile={isCompact} />
       </footer>
       {menuOpen && (
         <StartMenu onClose={closeMenu} startButtonRef={startButtonRef} />
