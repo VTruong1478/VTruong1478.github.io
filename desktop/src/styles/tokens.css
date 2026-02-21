@@ -37,11 +37,14 @@
     --radius: 16px;
 
     /* Shadows for window layering (retro 2010 Windows style) */
-    --shadow-window: 0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-window-focused: 0 12px 32px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
-    
+    --shadow-window:
+      0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-window-focused:
+      0 12px 32px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
+
     /* Aero glass effect for widgets */
-    --shadow-widget-aero: 0 4px 16px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+    --shadow-widget-aero:
+      0 4px 16px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
     --widget-glass-bg: rgba(255, 255, 255, 0.7);
     --widget-glass-border: rgba(255, 255, 255, 0.9);
     --widget-blur: 12px;
@@ -51,7 +54,7 @@
     --98-grey: #404040;
     --background: #0e1d25;
     --dark-grey: #a1a1a1;
-    --primary: #2e7cad;
+    --primary: #3e93cc;
     --secondary: #a593df;
     --tertiary: #83a6ec;
 
@@ -61,11 +64,14 @@
     --window-background: #252429;
 
     /* Shadows for dark mode - slightly more prominent */
-    --shadow-window: 0 8px 24px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
-    --shadow-window-focused: 0 12px 32px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
-    
+    --shadow-window:
+      0 8px 24px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-window-focused:
+      0 12px 32px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+
     /* Aero glass effect for widgets - dark mode */
-    --shadow-widget-aero: 0 4px 16px rgba(0, 0, 0, 0.25), 0 1px 4px rgba(0, 0, 0, 0.15);
+    --shadow-widget-aero:
+      0 4px 16px rgba(0, 0, 0, 0.25), 0 1px 4px rgba(0, 0, 0, 0.15);
     --widget-glass-bg: rgba(0, 0, 0, 0.3);
     --widget-glass-border: rgba(255, 255, 255, 0.15);
     --widget-blur: 12px;
