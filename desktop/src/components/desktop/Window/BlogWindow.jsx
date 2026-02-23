@@ -238,13 +238,13 @@ const blogPosts = [
             "Hustling to lock down a spot at a farmers market in Northern Virginia",
             "Figuring out confusing licenses and permits",
             "Testing suppliers to find the best ingredients",
-            "Piecing together a website and social media presence to make it all feel real",
+            "Piecing together a website and social media presence",
           ],
           subsections: [
             {
               subheading: "Lesson: Surround yourself with the right people.",
               body: [
-                "Starting a business isn't just about hustle and grit—it's about the **people who show up** when it matters most. Their support turned what felt impossible into something **I'll always be proud of**.",
+                "Starting a business is more than the hustle and grit. I couldn't have done it without the **people who showed up** when it matters most. Their support turned what felt impossible into something **I'll always be proud of**.",
               ],
             },
           ],
@@ -258,7 +258,7 @@ const blogPosts = [
             {
               subheading: "Lesson: You can't plan for everything.",
               body: [
-                "As a naturally type-A planner, I wanted to control every detail—but some things are impossible to predict. What mattered most was **focusing on the essentials**: the people, the product, and the experience. The rest would fall into place.",
+                "As a naturally type-A planner, I wanted to control every detail, but some things are impossible to predict. What mattered most was **focusing on the essentials**: the people, the product, and the experience. The rest would fall into place.",
               ],
             },
           ],
@@ -266,13 +266,13 @@ const blogPosts = [
         {
           heading: "The Summer Grind (Jun - Aug 2023)",
           body: [
-            "That summer, almost every weekend started at 5 a.m.—cooking fresh boba, loading tables into my dad's truck, and setting up the booth before the first customers arrived. On top of that, I was working a full 40-hour week at my first internship. Balancing corporate projects on weekdays and Lunar Tea on weekends was exhausting, but also energizing.",
+            "That summer, almost every weekend started at 5 a.m.: cooking fresh boba, loading tables into my dad's car, and setting up the booth before the first customers arrived. On top of that, I was working a full 40-hour week at my first internship. Balancing corporate projects on weekdays and Lunar Tea on weekends was exhausting, but also energizing.",
           ],
           subsections: [
             {
               subheading: "Lesson: Consistent work leads to impact.",
               body: [
-                "The grind was intense, but nothing compared to seeing a line form at my booth, hearing customers say they'd been looking forward to my drinks all week, and realizing that all those **late nights and early mornings** had created something people genuinely loved.",
+                "The grind was intense, but it was worth seeing a line form at my booth, hearing customers say they'd been looking forward to my drinks all week, and realizing that all those **late nights and early mornings** had created something people genuinely loved.",
               ],
             },
           ],
@@ -592,6 +592,11 @@ export default function BlogWindowContent({ windowData }) {
                           `block-${blockIndex}-paragraph-${paragraphIndex}`,
                         )}
                       </p>
+                    );
+                  } else if (paragraph?.style === "quote") {
+                    return renderParagraphContent(
+                      paragraph,
+                      `block-${blockIndex}-quote-${paragraphIndex}`,
                     );
                   } else if (paragraph?.bullets) {
                     return (

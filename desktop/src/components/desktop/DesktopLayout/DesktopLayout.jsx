@@ -118,7 +118,7 @@ export default function DesktopLayout() {
                     className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
                     style={{ display: "inline" }}
                   >
-                    How I Designed This Website
+                    How I Redesigned This Website
                   </button>
                 </li>
                 <li>
@@ -199,7 +199,7 @@ export default function DesktopLayout() {
                     className="text-tertiary underline font-pixel pixel-xs focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary bg-transparent border-none cursor-pointer p-0 align-baseline text-left"
                     style={{ display: "inline" }}
                   >
-                    How I Designed This Website
+                    How I Redesigned This Website
                   </button>
                 </li>
                 <li>
