@@ -279,27 +279,27 @@ const projects = [
         {
           heading: "The Bottleneck",
           body: [
-            'As the only developer on the design team, I quickly **became the go-to person** for every design and styling question, from "Which component should I implement to match the Figma file?" to "Where can I find an instance of this component in our codebase?"',
-            "Additionally, we had to maintain **WCAG 2.1 accessibility compliance**, and many developers were unsure how to implement accessible code correctly. As a result, developers frequently pinged me directly for guidance. With limited time and bandwidth, I quickly became a bottleneck, **slowing down the entire team**.",
-            "I realized that UX isn't just for end users. **Developers deserve a great experience too**.",
+            "As the only developer on the design team, every question landed on my desk. Which component matches this Figma? Where's an example in the codebase? How do I make this accessible? I **became the go-to person** for everything.",
+            "We also had **WCAG 2.1 accessibility compliance** to maintain, and most developers weren't sure how to implement it correctly. So they'd ping me. Every time. I didn't have the bandwidth for it, and I was **slowing the whole team down** just by being the only person who knew the answers.",
+            "That's when it clicked: UX isn't just for end users. **Developers deserve a great experience too**.",
           ],
         },
         {
           heading: "The Product Solution",
           body: [
-            "I treated the developer experience as a product opportunity and designed a component library to serve the team as its primary users. My product management approach included:",
+            "I stopped thinking of this as a developer problem and started treating it as a product problem — with my teammates as the users. Here's what I built:",
           ],
           bullets: [
-            "**Product Design:** Centralized all reusable website components and connected them to our Design Language System, bridging designers and developers.",
-            "**Standards & Compliance:** Standardized styling, design patterns, and accessibility best practices so components were compliant out-of-the-box.",
-            "**Documentation:** Created clear documentation, examples, and usage guidelines to reduce onboarding friction.",
-            "**Adoption & Feedback:** Ran hands-on training sessions, established office hours, and built a feedback loop so the library could evolve based on developer needs.",
+            "**Component Library:** Centralized all reusable components and tied them directly to our Design Language System, so designers and developers were finally speaking the same language.",
+            "**Built-in Standards:** Baked accessibility and design patterns into every component so developers didn't have to think about compliance — it just worked out of the box.",
+            "**Real Documentation:** Wrote clear usage guidelines and examples so anyone could onboard quickly without hunting through the codebase.",
+            "**Adoption & Feedback:** Ran training sessions, held office hours, and kept a feedback loop open so the library actually evolved with the team's needs.",
           ],
           subsections: [
             {
               subheading: "",
               body: [
-                "I treated the library as a living product, iterating continuously with the team to maximize adoption and usability.",
+                "I treated this as a living product, not a one-time delivery. It kept improving because the team kept using it and telling me what wasn't working.",
               ],
             },
           ],
@@ -307,16 +307,15 @@ const projects = [
         {
           heading: "Results",
           bullets: [
-            "Streamlined the codebase by **reducing duplicate CSS**, resulting in a cleaner, more maintainable architecture and faster development cycles.",
-            "Decreased **Jira defect tickets by 30%** through **standardized workflows** and built-in accessibility enhancing overall product quality and consistency.",
-            "Removed **key developer bottlenecks**, freeing my time and enabling the team to **deliver features faster** with fewer interruptions.",
-            "Elevated the **developer experience**, demonstrating that **thoughtful product design** benefits not just end users but also internal teams, driving long-term efficiency.",
+            "Dropped **Jira defect tickets by 40%** by standardizing how things were built and making accessibility compliance the default.",
+            "Removed myself as a **bottleneck**, so developers could move faster without waiting on me for answers.",
+            "Proved that **investing in developer experience** isn't just nice to have — it directly improves what ships to users.",
           ],
         },
         {
           heading: "Key Takeaway",
           body: [
-            "By treating developer experience as a product, I led the full lifecycle: design, rollout, and iteration. This work accelerated development, improved accessibility compliance, and created a **scalable, maintainable system** that empowered the team and elevated the overall quality of our product.",
+            "Treating developer experience as a product changed how the whole team worked. I owned the full lifecycle — design, rollout, iteration — and the result was a faster, more consistent, more accessible product. When your internal tools are good, everything built on top of them gets better too.",
           ],
         },
       ],
