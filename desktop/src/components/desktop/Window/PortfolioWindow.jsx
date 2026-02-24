@@ -6,7 +6,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { useWindowManager } from "../../../contexts/WindowManagerContext";
 import legacyScreenshotImg from "../../../assets/images/portfolio/legacy-screenshot.png";
-import smallBusinessImg from "../../../assets/images/portfolio/small-business.JPG";
+import smallBusinessImg from "../../../assets/images/portfolio/lunar-tea-logo.png";
 import figmaImg from "../../../assets/images/portfolio/Figma-Light-Dark.png";
 import opsWorkflowImg from "../../../assets/images/portfolio/ops-workflow.png";
 import frontEndFlowImg from "../../../assets/images/portfolio/front-back-flow.png";
