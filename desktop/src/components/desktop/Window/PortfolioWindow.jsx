@@ -3,9 +3,10 @@
  * Two-column grid on desktop, single column on mobile.
  * Clicking "Read More" shows full article within the same window.
  */
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { useWindowManager } from "../../../contexts/WindowManagerContext";
 import { toggleGridOverlay } from "../../../utils/gridOverlay";
+import { scrollWindowContentToTop } from "../../../utils/scrollWindowContent";
 import legacyScreenshotImg from "../../../assets/images/portfolio/legacy-screenshot.png";
 import smallBusinessImg from "../../../assets/images/portfolio/lunar-tea-logo.png";
 import figmaImg from "../../../assets/images/portfolio/Figma-Light-Dark.png";
@@ -334,7 +335,12 @@ const projects = [
 
 export default function PortfolioWindowContent({ windowData }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const contentRef = useRef(null);
   const { openWindow, focusWindow, windows } = useWindowManager();
+
+  useEffect(() => {
+    scrollWindowContentToTop(contentRef.current);
+  }, [selectedArticle?.id]);
 
   // Restore selected article from window data when window is opened/focused
   useEffect(() => {
@@ -514,6 +520,19 @@ export default function PortfolioWindowContent({ windowData }) {
     }
 
     const text = paragraph?.text ?? "";
+
+    if (paragraph?.style === "quote") {
+      return (
+        <blockquote
+          key={keyPrefix}
+          className="border-l-4 border-primary pl-[var(--space-16)] italic text-text"
+          style={{ fontSize: "16px", lineHeight: "1.8" }}
+        >
+          {text}
+        </blockquote>
+      );
+    }
+
     const links = paragraph?.links ?? [];
 
     if (!links.length) {
@@ -587,7 +606,10 @@ export default function PortfolioWindowContent({ windowData }) {
   // Article View
   if (selectedArticle) {
     return (
-      <div className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]">
+      <div
+        ref={contentRef}
+        className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]"
+      >
         {/* Back Button */}
         <button
           onClick={handleBackToPortfolio}
@@ -652,37 +674,65 @@ export default function PortfolioWindowContent({ windowData }) {
                 key={`block-${blockIndex}-${block.heading}`}
                 className="space-y-[var(--space-24)]"
               >
-                <h2
-                  className="text-text mt-[var(--space-32)]"
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: 700,
-                    lineHeight: "1.3",
-                  }}
-                >
-                  {block.heading}
-                </h2>
-
-                {block.body?.map((paragraph, paragraphIndex) => (
-                  <Fragment
-                    key={`block-${blockIndex}-paragraph-${paragraphIndex}`}
+                {block.heading ? (
+                  <h2
+                    className="text-text mt-[var(--space-32)]"
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: 700,
+                      lineHeight: "1.3",
+                    }}
                   >
-                    <p
-                      className="text-text"
-                      style={{ fontSize: "16px", lineHeight: "1.8" }}
-                    >
-                      {renderParagraphContent(
+                    {block.heading}
+                  </h2>
+                ) : null}
+
+                {block.body?.map((paragraph, paragraphIndex) => {
+                  const paragraphKey = `block-${blockIndex}-paragraph-${paragraphIndex}`;
+
+                  if (typeof paragraph === "string" || paragraph?.text) {
+                    if (paragraph?.style === "quote") {
+                      return renderParagraphContent(
                         paragraph,
-                        `block-${blockIndex}-paragraph-${paragraphIndex}`,
-                      )}
-                    </p>
-                    {paragraph?.image &&
-                      renderArticleImage(
-                        paragraph.image,
-                        `block-${blockIndex}-paragraph-image-${paragraphIndex}`,
-                      )}
-                  </Fragment>
-                ))}
+                        `block-${blockIndex}-quote-${paragraphIndex}`,
+                      );
+                    }
+
+                    return (
+                      <Fragment key={paragraphKey}>
+                        <p
+                          className="text-text"
+                          style={{ fontSize: "16px", lineHeight: "1.8" }}
+                        >
+                          {renderParagraphContent(paragraph, paragraphKey)}
+                        </p>
+                        {paragraph?.image &&
+                          renderArticleImage(
+                            paragraph.image,
+                            `${paragraphKey}-image`,
+                          )}
+                      </Fragment>
+                    );
+                  }
+
+                  if (paragraph?.bullets) {
+                    return (
+                      <ul
+                        key={paragraphKey}
+                        className="list-disc list-inside space-y-[var(--space-4)] text-text ml-[var(--space-16)]"
+                        style={{ fontSize: "16px", lineHeight: "1.6" }}
+                      >
+                        {paragraph.bullets.map((item, itemIndex) => (
+                          <li key={`${paragraphKey}-bullet-${itemIndex}`}>
+                            {renderTextWithBold(item)}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
+
+                  return null;
+                })}
 
                 {block.image &&
                   renderArticleImage(block.image, `block-image-${blockIndex}`)}
@@ -708,29 +758,56 @@ export default function PortfolioWindowContent({ windowData }) {
                     key={`block-${blockIndex}-subsection-${subsectionIndex}`}
                     className="space-y-[var(--space-24)]"
                   >
-                    <h3
-                      className="text-text mt-[var(--space-24)]"
-                      style={{
-                        fontSize: "20px",
-                        fontWeight: 700,
-                        lineHeight: "1.3",
-                      }}
-                    >
-                      {subsection.subheading}
-                    </h3>
-
-                    {subsection.body?.map((paragraph, paragraphIndex) => (
-                      <p
-                        key={`block-${blockIndex}-subsection-${subsectionIndex}-paragraph-${paragraphIndex}`}
-                        className="text-text"
-                        style={{ fontSize: "16px", lineHeight: "1.8" }}
+                    {subsection.subheading ? (
+                      <h3
+                        className="text-text mt-[var(--space-24)]"
+                        style={{
+                          fontSize: "20px",
+                          fontWeight: 700,
+                          lineHeight: "1.3",
+                        }}
                       >
-                        {renderParagraphContent(
-                          paragraph,
-                          `block-${blockIndex}-subsection-${subsectionIndex}-paragraph-${paragraphIndex}`,
-                        )}
-                      </p>
-                    ))}
+                        {subsection.subheading}
+                      </h3>
+                    ) : null}
+
+                    {subsection.body?.map((paragraph, paragraphIndex) => {
+                      const paragraphKey = `block-${blockIndex}-subsection-${subsectionIndex}-paragraph-${paragraphIndex}`;
+
+                      if (typeof paragraph === "string" || paragraph?.text) {
+                        if (paragraph?.style === "quote") {
+                          return renderParagraphContent(paragraph, paragraphKey);
+                        }
+
+                        return (
+                          <p
+                            key={paragraphKey}
+                            className="text-text"
+                            style={{ fontSize: "16px", lineHeight: "1.8" }}
+                          >
+                            {renderParagraphContent(paragraph, paragraphKey)}
+                          </p>
+                        );
+                      }
+
+                      if (paragraph?.bullets) {
+                        return (
+                          <ul
+                            key={paragraphKey}
+                            className="list-disc list-inside space-y-[var(--space-4)] text-text ml-[var(--space-16)]"
+                            style={{ fontSize: "16px", lineHeight: "1.6" }}
+                          >
+                            {paragraph.bullets.map((item, itemIndex) => (
+                              <li key={`${paragraphKey}-bullet-${itemIndex}`}>
+                                {renderTextWithBold(item)}
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+
+                      return null;
+                    })}
 
                     {subsection.image &&
                       renderArticleImage(
@@ -764,7 +841,10 @@ export default function PortfolioWindowContent({ windowData }) {
 
   // Portfolio Grid View (default)
   return (
-    <div className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]">
+    <div
+      ref={contentRef}
+      className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]"
+    >
       {/* Title */}
       <h1
         className="text-text mb-[var(--space-16)]"

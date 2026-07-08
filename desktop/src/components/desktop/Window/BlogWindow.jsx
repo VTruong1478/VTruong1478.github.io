@@ -3,9 +3,10 @@
  * Two-column grid on desktop, single column on mobile.
  * Clicking "Read More" shows full article within the same window.
  */
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { useWindowManager } from "../../../contexts/WindowManagerContext";
 import { toggleGridOverlay } from "../../../utils/gridOverlay";
+import { scrollWindowContentToTop } from "../../../utils/scrollWindowContent";
 import lunarTeaMenuImg from "../../../assets/images/portfolio/lunar-tea-menu.png";
 import figmaImg from "../../../assets/images/portfolio/Figma-Light-Dark.png";
 import blogImage1 from "../../../assets/images/blog/How I Redesigned This Website/image1.png";
@@ -308,7 +309,12 @@ const blogPosts = [
 
 export default function BlogWindowContent({ windowData }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const contentRef = useRef(null);
   const { openWindow, focusWindow, windows } = useWindowManager();
+
+  useEffect(() => {
+    scrollWindowContentToTop(contentRef.current);
+  }, [selectedArticle?.id]);
 
   // If windowData contains an articleId, find and display that article
   useEffect(() => {
@@ -533,7 +539,10 @@ export default function BlogWindowContent({ windowData }) {
   // Article View
   if (selectedArticle) {
     return (
-      <div className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]">
+      <div
+        ref={contentRef}
+        className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]"
+      >
         {/* Back Button */}
         <button
           onClick={handleBackToBlog}
@@ -598,18 +607,22 @@ export default function BlogWindowContent({ windowData }) {
                 key={`block-${blockIndex}-${block.heading}`}
                 className="space-y-[var(--space-24)]"
               >
-                <h2
-                  className="text-text mt-[var(--space-32)]"
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: 700,
-                    lineHeight: "1.3",
-                  }}
-                >
-                  {block.heading}
-                </h2>
+                {block.heading ? (
+                  <h2
+                    className="text-text mt-[var(--space-32)]"
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: 700,
+                      lineHeight: "1.3",
+                    }}
+                  >
+                    {block.heading}
+                  </h2>
+                ) : null}
 
                 {block.body?.map((paragraph, paragraphIndex) => {
+                  const paragraphKey = `block-${blockIndex}-paragraph-${paragraphIndex}`;
+
                   if (typeof paragraph === "string" || paragraph?.text) {
                     if (paragraph?.style === "quote") {
                       return renderParagraphContent(
@@ -619,27 +632,32 @@ export default function BlogWindowContent({ windowData }) {
                     }
 
                     return (
-                      <p
-                        key={`block-${blockIndex}-paragraph-${paragraphIndex}`}
-                        className="text-text"
-                        style={{ fontSize: "16px", lineHeight: "1.8" }}
-                      >
-                        {renderParagraphContent(
-                          paragraph,
-                          `block-${blockIndex}-paragraph-${paragraphIndex}`,
-                        )}
-                      </p>
+                      <Fragment key={paragraphKey}>
+                        <p
+                          className="text-text"
+                          style={{ fontSize: "16px", lineHeight: "1.8" }}
+                        >
+                          {renderParagraphContent(paragraph, paragraphKey)}
+                        </p>
+                        {paragraph?.image &&
+                          renderArticleImage(
+                            paragraph.image,
+                            `${paragraphKey}-image`,
+                          )}
+                      </Fragment>
                     );
-                  } else if (paragraph?.bullets) {
+                  }
+
+                  if (paragraph?.bullets) {
                     return (
                       <ul
-                        key={`block-${blockIndex}-bullets-${paragraphIndex}`}
+                        key={paragraphKey}
                         className="list-disc list-inside space-y-[var(--space-4)] text-text ml-[var(--space-16)]"
                         style={{ fontSize: "16px", lineHeight: "1.6" }}
                       >
                         {paragraph.bullets.map((item, itemIndex) => (
                           <li
-                            key={`block-${blockIndex}-bullet-${paragraphIndex}-${itemIndex}`}
+                            key={`${paragraphKey}-bullet-${itemIndex}`}
                           >
                             {renderTextWithBold(item)}
                           </li>
@@ -647,6 +665,7 @@ export default function BlogWindowContent({ windowData }) {
                       </ul>
                     );
                   }
+
                   return null;
                 })}
 
@@ -671,29 +690,56 @@ export default function BlogWindowContent({ windowData }) {
                     key={`block-${blockIndex}-subsection-${subsectionIndex}`}
                     className="space-y-[var(--space-24)]"
                   >
-                    <h3
-                      className="text-text mt-[var(--space-24)]"
-                      style={{
-                        fontSize: "20px",
-                        fontWeight: 700,
-                        lineHeight: "1.3",
-                      }}
-                    >
-                      {subsection.subheading}
-                    </h3>
-
-                    {subsection.body?.map((paragraph, paragraphIndex) => (
-                      <p
-                        key={`block-${blockIndex}-subsection-${subsectionIndex}-paragraph-${paragraphIndex}`}
-                        className="text-text"
-                        style={{ fontSize: "16px", lineHeight: "1.8" }}
+                    {subsection.subheading ? (
+                      <h3
+                        className="text-text mt-[var(--space-24)]"
+                        style={{
+                          fontSize: "20px",
+                          fontWeight: 700,
+                          lineHeight: "1.3",
+                        }}
                       >
-                        {renderParagraphContent(
-                          paragraph,
-                          `block-${blockIndex}-subsection-${subsectionIndex}-paragraph-${paragraphIndex}`,
-                        )}
-                      </p>
-                    ))}
+                        {subsection.subheading}
+                      </h3>
+                    ) : null}
+
+                    {subsection.body?.map((paragraph, paragraphIndex) => {
+                      const paragraphKey = `block-${blockIndex}-subsection-${subsectionIndex}-paragraph-${paragraphIndex}`;
+
+                      if (typeof paragraph === "string" || paragraph?.text) {
+                        if (paragraph?.style === "quote") {
+                          return renderParagraphContent(paragraph, paragraphKey);
+                        }
+
+                        return (
+                          <p
+                            key={paragraphKey}
+                            className="text-text"
+                            style={{ fontSize: "16px", lineHeight: "1.8" }}
+                          >
+                            {renderParagraphContent(paragraph, paragraphKey)}
+                          </p>
+                        );
+                      }
+
+                      if (paragraph?.bullets) {
+                        return (
+                          <ul
+                            key={paragraphKey}
+                            className="list-disc list-inside space-y-[var(--space-4)] text-text ml-[var(--space-16)]"
+                            style={{ fontSize: "16px", lineHeight: "1.6" }}
+                          >
+                            {paragraph.bullets.map((item, itemIndex) => (
+                              <li key={`${paragraphKey}-bullet-${itemIndex}`}>
+                                {renderTextWithBold(item)}
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+
+                      return null;
+                    })}
 
                     {subsection.image &&
                       renderArticleImage(
@@ -727,7 +773,10 @@ export default function BlogWindowContent({ windowData }) {
 
   // Blog Grid View (default)
   return (
-    <div className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]">
+    <div
+      ref={contentRef}
+      className="px-[var(--space-32)] py-[var(--space-48)] md:px-[var(--space-48)]"
+    >
       {/* Title */}
       <h1
         className="text-text mb-[var(--space-16)]"
