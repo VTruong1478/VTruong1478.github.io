@@ -5,6 +5,7 @@
  * No new tokens; uses Tailwind arbitrary values for red fill.
  */
 import { useState, useEffect } from "react";
+import { GRID_OVERLAY_TOGGLE_EVENT } from "../../../utils/gridOverlay";
 
 export default function GridOverlay() {
   const [visible, setVisible] = useState(false);
@@ -21,8 +22,14 @@ export default function GridOverlay() {
         return;
       if (e.key.toLowerCase() === "g") setVisible((v) => !v);
     };
+    const handleToggleEvent = () => setVisible((v) => !v);
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener(GRID_OVERLAY_TOGGLE_EVENT, handleToggleEvent);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener(GRID_OVERLAY_TOGGLE_EVENT, handleToggleEvent);
+    };
   }, []);
 
   if (!visible) return null;

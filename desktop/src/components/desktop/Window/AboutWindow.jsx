@@ -6,7 +6,7 @@
 import { EmailIcon, LinkedInButtonIcon } from "../../icons/ButtonIcons";
 
 const aboutBullets = [
-  "Operator with a builder's mindset. Currently looking for ops and product ops roles at growth-stage startups.",
+  "Software engineer with a background in operations and consulting, bringing a product-first approach to building software, automating workflows, and delivering customer value.",
 ];
 
 const workExperiences = [

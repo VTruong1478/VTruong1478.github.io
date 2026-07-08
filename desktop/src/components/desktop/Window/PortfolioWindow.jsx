@@ -5,6 +5,7 @@
  */
 import { Fragment, useState, useEffect } from "react";
 import { useWindowManager } from "../../../contexts/WindowManagerContext";
+import { toggleGridOverlay } from "../../../utils/gridOverlay";
 import legacyScreenshotImg from "../../../assets/images/portfolio/legacy-screenshot.png";
 import smallBusinessImg from "../../../assets/images/portfolio/lunar-tea-logo.png";
 import figmaImg from "../../../assets/images/portfolio/Figma-Light-Dark.png";
@@ -94,7 +95,15 @@ const projects = [
             {
               subheading: "Accessibility",
               body: [
-                "Accessibility was a foundation, not an afterthought. During my time at Deloitte, I worked closely on accessibility initiatives, and that experience shaped how seriously I take it. I followed WCAG AA guidelines throughout: contrast ratios, line height minimums, heading hierarchy, and semantic HTML structure. I also built **responsive layouts** on a 12-column grid for desktop and 8-column for mobile (**click the G key to see it!**), and manually tested keyboard and screen reader navigation.",
+                {
+                  text: "Accessibility was a foundation, not an afterthought. During my time at Deloitte, I worked closely on accessibility initiatives, and that experience shaped how seriously I take it. I followed WCAG AA guidelines throughout: contrast ratios, line height minimums, heading hierarchy, and semantic HTML structure. I also built **responsive layouts** on a 12-column grid for desktop and 8-column for mobile ({{click here to see it!}} or press G), and manually tested keyboard and screen reader navigation.",
+                  links: [
+                    {
+                      label: "click here to see it!",
+                      action: { type: "toggleGrid" },
+                    },
+                  ],
+                },
               ],
             },
             {
@@ -424,6 +433,11 @@ export default function PortfolioWindowContent({ windowData }) {
   };
 
   const handleInlineLinkAction = (action) => {
+    if (action?.type === "toggleGrid") {
+      toggleGridOverlay();
+      return;
+    }
+
     if (action?.type === "openWindow" && action.windowId) {
       const existingWindow = windows.get(action.windowId);
 

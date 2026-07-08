@@ -5,6 +5,7 @@
  */
 import { useState, useEffect } from "react";
 import { useWindowManager } from "../../../contexts/WindowManagerContext";
+import { toggleGridOverlay } from "../../../utils/gridOverlay";
 import lunarTeaMenuImg from "../../../assets/images/portfolio/lunar-tea-menu.png";
 import figmaImg from "../../../assets/images/portfolio/Figma-Light-Dark.png";
 import blogImage1 from "../../../assets/images/blog/How I Redesigned This Website/image1.png";
@@ -65,8 +66,24 @@ const blogPosts = [
           heading: "Day 2 (1/9/26)",
           body: [
             "Day 1 was a great start. Day 2 is where I really pushed forward. It helped that I already had most of the content from my legacy site, so I could focus purely on redesigning the visual components.",
-            "From my previous experience as a Frontend Developer, I knew how important it is to design with accessibility in mind. I stuck to WCAG AA guidelines: checking color contrasts, setting line heights to at least 1.5x the font size, and following the heading hierarchy. I also wanted the site to be responsive across all screen sizes, so I followed a 12-column grid for desktop (**click the G key to see it!**) and 8 columns for mobile. Did it require a lot more time and effort? Yes. Do I regret it? Absolutely not. Accessibility matters to me, and I wanted the site to reflect that.",
-            "I wanted my start icon to be a pixelated cardinal bird (more on the origin of this bird here). I drew the cardinal in Piskel.",
+            {
+              text: "From my previous experience as a Frontend Developer, I knew how important it is to design with accessibility in mind. I stuck to WCAG AA guidelines: checking color contrasts, setting line heights to at least 1.5x the font size, and following the heading hierarchy. I also wanted the site to be responsive across all screen sizes, so I followed a 12-column grid for desktop ({{click here to see it!}} or press G) and 8 columns for mobile. Did it require a lot more time and effort? Yes. Do I regret it? Absolutely not. Accessibility matters to me, and I wanted the site to reflect that.",
+              links: [
+                {
+                  label: "click here to see it!",
+                  action: { type: "toggleGrid" },
+                },
+              ],
+            },
+            {
+              text: "I wanted my start icon to be a pixelated cardinal bird (more on the {{origin of this bird here}}). I drew the cardinal in Piskel.",
+              links: [
+                {
+                  label: "origin of this bird here",
+                  action: { type: "openArticle", articleId: 3 },
+                },
+              ],
+            },
             "I had designed the About page within the window, a mobile caret menu, and a start menu. At the end of Day 2, I realized that I should have been creating components this whole time. Copying and pasting corrections/edits 10 times for each wireframe is not fun.",
           ],
           image: {
@@ -315,6 +332,19 @@ export default function BlogWindowContent({ windowData }) {
   };
 
   const handleInlineLinkAction = (action) => {
+    if (action?.type === "toggleGrid") {
+      toggleGridOverlay();
+      return;
+    }
+
+    if (action?.type === "openArticle" && action.articleId) {
+      const article = blogPosts.find((post) => post.id === action.articleId);
+      if (article) {
+        setSelectedArticle(article);
+      }
+      return;
+    }
+
     if (action?.type === "openWindow" && action.windowId) {
       const existingWindow = windows.get(action.windowId);
 
