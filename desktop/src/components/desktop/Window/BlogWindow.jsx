@@ -610,7 +610,14 @@ export default function BlogWindowContent({ windowData }) {
                 </h2>
 
                 {block.body?.map((paragraph, paragraphIndex) => {
-                  if (typeof paragraph === "string") {
+                  if (typeof paragraph === "string" || paragraph?.text) {
+                    if (paragraph?.style === "quote") {
+                      return renderParagraphContent(
+                        paragraph,
+                        `block-${blockIndex}-quote-${paragraphIndex}`,
+                      );
+                    }
+
                     return (
                       <p
                         key={`block-${blockIndex}-paragraph-${paragraphIndex}`}
@@ -622,11 +629,6 @@ export default function BlogWindowContent({ windowData }) {
                           `block-${blockIndex}-paragraph-${paragraphIndex}`,
                         )}
                       </p>
-                    );
-                  } else if (paragraph?.style === "quote") {
-                    return renderParagraphContent(
-                      paragraph,
-                      `block-${blockIndex}-quote-${paragraphIndex}`,
                     );
                   } else if (paragraph?.bullets) {
                     return (
