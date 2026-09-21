@@ -11,8 +11,15 @@ const aboutBullets = [
 
 const workExperiences = [
   {
+    dates: "Jun 2026 – Sep 2026",
+    role: "Founding Engineer",
+    company: "Our Day",
+    description:
+      "Shipped payments, integrations, and a guided intake flow for a two-sided wedding marketplace serving 16K+ users and vendors.",
+  },
+  {
     dates: "Nov 2025 – Feb 2026",
-    role: "Head of Operations & Growth",
+    role: "Software Engineer & Operations Lead",
     company: "HomePlate Health",
     description:
       "Built pre-launch systems and shipped product for an early-stage food startup.",
